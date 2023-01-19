@@ -15,7 +15,7 @@ N'oubliez pas d'ajouter les autres membres de votre équipe aux membres du proje
 
 # Sujet
 
-[Le sujet 2023](https://www.fil.univ-lille1.fr/portail/index.php?dipl=L&sem=S4&ue=Projet&label=Documents)
+[Le sujet 2023](https://www.fil.univ-lille.fr/portail/index.php?dipl=L&sem=S4&ue=Projet&label=Documents)
 
 # Livrables
 
