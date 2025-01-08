@@ -59,9 +59,20 @@ Pour chaque semaine on y trouvera :
 
 ### Ce qui a été réalisé
 
+Réflexion à propos de la conception des premières classes concernant le plateau. Nous avons schématisé cela sous forme de diagramme UML au brouillon.
+Nous avons réfléchi à la génération aléatoire du tableau avec différentes approches.
+
 ### Difficultés rencontrées
 
+Nous voulions créer une classe Mer mais ne savions pas quelles méthodes y intégrer du fait de sa nature.
+Nous avions également rencontré des difficultés algorithmiques concernant la gestion de la génération d'îles dans le plateau.
+Nous ne savons pas encore quelle approche choisir pour la génération du plateau.
+Enfin, nous nous posions des questions sur la collaboration pour le projet avec Git.
+
 ### Objectifs pour la semaine
+
+Se rassembler pour mieux prendre en main les outils Git (branch, merge, etc...).
+Décider de l'approche que nous allons suivre pour la conception du plateau. 
 
 ## Semaine 2
 
