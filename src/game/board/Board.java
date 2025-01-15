@@ -27,4 +27,14 @@ public class Board {
     public Tile getTile(int x, int y){
         return this.grid[x][y];
     }
+
+    /**
+     * Set the tile at line x and at column y
+     * @param x the line number
+     * @param y the column number
+     * @param tile the tile
+     */
+    public void setTile(int x, int y, Tile tile){
+        return this.grid[x][y] = tile;
+    }
 }
