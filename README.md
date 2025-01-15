@@ -80,11 +80,15 @@ Décider de l'approche que nous allons suivre pour la conception du plateau.
 
 ### Ce qui a été réalisé
 
+Modification de l'uml du plateau.
+
 ![image](images/BoardUML2.png)
 
-Reflexion aux classes *Building*, *Player*, *Action* et *Game*. Les classes *Building* et *Action* sont abstraites pour qu'une implémentation de nouvelles actions ou batîments soit plus simple.
-On s'est finalement mis d'accord sur la génération aléatoire du plateau.
-Création des premières classes abstraites de tuiles et de ressources.
+Reflexion sur les classes *Building*, *Player*, *Action* et *Game*. Les classes *Building* et *Action* sont abstraites pour qu'une implémentation de nouvelles actions ou batîments soit plus simple.
+
+On s'est finalement mis d'accord sur la génération aléatoire du plateau. Tout d'abord les dimensions du plateau sont choisies à sa construction. Puis une grille remplie de tuile mer est généré. Ensuite on détermine aléatoirement le nombre de tuile terrain à génèrer entre 1/4 et 1/3 pour respecté la condition d'au moins 2/3 de mer. Ensuite tant qu'il reste plus d'une tuile à poser, on se positionne sur une tuile au hasard et si c'est une tuile mer, on la change en terrain au hazard. Puis si elle est entouré de mer, on génère un autre terrain à coté. Puis si il reste des tuiles à placer, on a une probabilité de 0.5 de poursuivre la génération à partir de l'ancienne tuile génèré. Sinon recommence le processus.
+
+Création de l'ensemble des classes pour les tuiles ,de l'enum ressource ainsi que la classe plateau qui n'est pas terminée.
 
 ![image](images/buildingUML.png)
 
@@ -96,9 +100,13 @@ Création des premières classes abstraites de tuiles et de ressources.
 Quelques désagrèments à propos du *Building* et du fonctionnement des ressources, notamment avec la méthode **produce()**.
 Doutes concernant la création des constructeurs dans les classes abstraites.
 
+Pour la génération aléatoire du plateau, nous avons rencontré des difficultés sur le choix aléatoire d'un terrain qui puissent comporter les terrains créé postérieurement. Nous avons eu aussi des doutes sur la meilleur façon de vérifier ou de choisir une tuile voisine qui est une mer. Ces deux dernières difficultés n'ont pas encore était résolue.
+
 ### Objectifs pour la semaine
 
-Avoir codé le plateau, en entier.
+Rémi, Tom : finir la creation du plateau avec les tests
+
+Andreï, Samuel : Poursuite de la reflexion sur les classes à venir et les umls, ainsi que la création de premières classes dont l'uml à déja été fait.
 
 ## Semaine 3
 
