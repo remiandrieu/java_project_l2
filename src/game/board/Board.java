@@ -1,5 +1,7 @@
 package game.board;
 
+import java.util.Random;
+
 /* A class to represent a board */
 public class Board {
 
@@ -16,6 +18,7 @@ public class Board {
     public Board(int length, int width){
         this.LENGTH = length;
         this.WIDTH = width;
+        this.grid = new Tile[LENGTH][WIDTH];
     }
 
     /**
@@ -55,5 +58,40 @@ public class Board {
      */
     public void setTile(int x, int y, Tile tile){
         return this.grid[x][y] = tile;
+    }
+
+    public void createGrid(){
+        for (int i = 0; i < this.LENGTH; i++){
+            for (int j = 0; j < this.WIDTH; j++){
+                this.setTile(i, j, new Sea());
+            }
+        }
+
+        Random random = new Random();
+        int numberOfLand = (this.LENGTH * this.WIDTH)/4 + random.nextInt((this.LENGTH * this.WIDTH)/3 - (this.LENGTH * this.WIDTH)/4);
+
+        while (numberOfLand > 1) {
+            
+            int x = random.nextInt(this.LENGTH);
+            int y = random.nextInt(this.WIDTH);
+
+            if (this.getTile(x, y) instanceof Sea) {
+                
+                // TODO : replace Land by a random land child
+                this.setTile(x, y, Land);
+                numberOfLand--;
+
+                Tile[] neighbours = this.getNeighbourTiles(x, y);
+                boolean hasLandNeighbour = false;
+                for (Tile neighbourTile : neighbours){
+                    if (!(neighbourTile instanceof Sea)){
+                        hasLandNeighbour = true;
+                    }
+                }
+
+                // TODO : if 0 land neighbour place another land else place an other land with a certain probability
+
+            }
+        }
     }
 }
