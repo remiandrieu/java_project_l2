@@ -80,9 +80,25 @@ Décider de l'approche que nous allons suivre pour la conception du plateau.
 
 ### Ce qui a été réalisé
 
+![image](images/BoardUML2.png)
+
+Reflexion aux classes *Building*, *Player*, *Action* et *Game*. Les classes *Building* et *Action* sont abstraites pour qu'une implémentation de nouvelles actions ou batîments soit plus simple.
+On s'est finalement mis d'accord sur la génération aléatoire du plateau.
+Création des premières classes abstraites de tuiles et de ressources.
+
+![image](images/buildingUML.png)
+
+
+![image](images/PlayerGameActionUML.png)
+
 ### Difficultés rencontrées
 
+Quelques désagrèments à propos du *Building* et du fonctionnement des ressources, notamment avec la méthode **produce()**.
+Doutes concernant la création des constructeurs dans les classes abstraites.
+
 ### Objectifs pour la semaine
+
+Avoir codé le plateau, en entier.
 
 ## Semaine 3
 
