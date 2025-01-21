@@ -52,7 +52,15 @@ public class Board {
         return res;
     }
 
-    // TODO : isCorrectLocation method
+    /**
+     * Checks if a location is on the grid
+     * @param x the line number
+     * @param y the column number
+     * @return true if the location is correct, false otherwise
+     */
+    public boolean isCorrectLocation(int x, int y){
+        return x > -1 && x < this.LENGTH &&  y > -1 && y < this.WIDTH;
+    }
 
     /**
      * Set the tile at line x and column y
