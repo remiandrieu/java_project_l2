@@ -96,10 +96,14 @@ public class Board {
         // While there are lands to place
         while (numberOfLand > 1) {
 
+            System.out.println(numberOfLand);
+
             boolean chooseRandomLocation = true;
 
             // If it's a sea tile i.e. if you can place a land tile
             if (this.getTile(x, y) instanceof Sea) {
+
+                System.out.println("case sea");
                 
                 // Choose a random type of Land, place it and decrease the number lands to place by 1.
                 Ressource[] ressources = Ressource.values();
@@ -125,6 +129,8 @@ public class Board {
                 this.setTile(x, y, randomLand);
                 numberOfLand--;
 
+                System.out.println("nuberOfLand décrémenté");
+
                 // Get the neighboring tiles and check if there is land
                 Tile[] neighbours = this.getNeighbourTiles(x, y);
                 boolean hasLandNeighbour = false;
@@ -137,21 +143,37 @@ public class Board {
                     }
                 }
 
+                System.out.println("voisins récupérés");
+
                 /**
                  * If there isn't land in the neighboring tiles, you must place another tile next to it
                  * Else there is a certain probability to place a tile next to it (if there is a sea tile in the neighboring tiles)
                  * In the two cases above, pick a random neighboring tile that is not already a land tile
                  * Otherwise pick an other random location
                  */
-                if (!(hasLandNeighbour) || (!(allLandNeighbour) && random.nextDouble(1) > this.PROBABILITY_PICKING_NEW_LOCATION)){
+                if ((!(hasLandNeighbour)) || ((!(allLandNeighbour)) && (random.nextDouble(1) > this.PROBABILITY_PICKING_NEW_LOCATION))){
                     
+                    System.out.println("on continue ?");
+
                     // Pick the location of a random neighboring tile that is not already a land tile
                     int[] offset = {-1, 1};
-                    int neighbouringX = x + offset[random.nextInt(offset.length)];
-                    int neighbouringY = y + offset[random.nextInt(offset.length)];
-                    while (!(this.isCorrectLocation(neighbouringX, neighbouringY)) || !(this.getTile(x, y) instanceof Sea)){
+                    int neighbouringX = x;
+                    int neighbouringY = y;
+                    if (random.nextInt(2) == 0){
                         neighbouringX = x + offset[random.nextInt(offset.length)];
+                    }
+                    else {
                         neighbouringY = y + offset[random.nextInt(offset.length)];
+                    }
+                    while ((!(this.isCorrectLocation(neighbouringX, neighbouringY))) || (!(this.getTile(neighbouringX, neighbouringY) instanceof Sea))){
+                        if (random.nextInt(2) == 0){
+                            neighbouringX = x + offset[random.nextInt(offset.length)];
+                            neighbouringY = y;
+                        }
+                        else {
+                            neighbouringY = y + offset[random.nextInt(offset.length)];
+                            neighbouringX = x;
+                        }
                     }
                     x = neighbouringX;
                     y = neighbouringY;
