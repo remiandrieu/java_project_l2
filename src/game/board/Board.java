@@ -2,6 +2,8 @@ package game.board;
 
 import java.util.Random;
 
+import game.board.util.Ressource;
+
 /* A class to represent a board */
 public class Board {
 
@@ -9,7 +11,6 @@ public class Board {
     protected Tile[][] grid;
     protected final int LENGTH;
     protected final int WIDTH;
-    protected final Tile[] PLACABLE_TILES = {Fields, Forest, Mountain, Pasture};
     protected final double PROBABILITY_PICKING_NEW_LOCATION = 0.5;
 
     /**
@@ -69,7 +70,7 @@ public class Board {
      * @param tile the tile
      */
     public void setTile(int x, int y, Tile tile){
-        return this.grid[x][y] = tile;
+        this.grid[x][y] = tile;
     }
 
     /**
@@ -101,7 +102,26 @@ public class Board {
             if (this.getTile(x, y) instanceof Sea) {
                 
                 // Choose a random type of Land, place it and decrease the number lands to place by 1.
-                Land randomLand = new this.PLACABLE_TILES[random.nextInt(this.PLACABLE_TILES.length)]();
+                Ressource[] ressources = Ressource.values();
+                Ressource randomRessource = ressources[random.nextInt(ressources.length)];
+                Land randomLand;
+                switch(randomRessource){
+   
+                    case WHEAT: 
+                        randomLand = new Fields();
+                        break;
+                
+                    case SHEEP:
+                        randomLand = new Pasture();
+                        break;
+                
+                    case ORE:
+                        randomLand = new Mountain();
+                        break;
+                    default:
+                        randomLand = new Forest();
+                        break;
+                }
                 this.setTile(x, y, randomLand);
                 numberOfLand--;
 
@@ -123,7 +143,7 @@ public class Board {
                  * In the two cases above, pick a random neighboring tile that is not already a land tile
                  * Otherwise pick an other random location
                  */
-                if (!(hasLandNeighbour) || (!(allLandNeighbour) && random.nextDouble(1) > this.PROBABILITY_PICKING_NEW_LOCATION)){
+                if (!(hasLandNeighbour) || (!(allLandNeighbour) && random.nextDouble((1) > this.PROBABILITY_PICKING_NEW_LOCATION)){
                     
                     // Pick the location of a random neighboring tile that is not already a land tile
                     int[] offset = {-1, 1};
@@ -147,6 +167,8 @@ public class Board {
                 x = random.nextInt(this.LENGTH);
                 y = random.nextInt(this.WIDTH);
             }
+        }
+    }
 
     /**
      * Get a String representation of the board
@@ -161,7 +183,7 @@ public class Board {
                 if (tile instanceof Sea){
                     res += ".   ";
                 } else {
-                    res += tile.toString()[0] + "   ";
+                    res += tile.toString().charAt(0) + "   ";
                 }
             }
             res += '\n';
