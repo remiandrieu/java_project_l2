@@ -112,9 +112,50 @@ Andreï, Samuel : Poursuite de la reflexion sur les classes à venir et les umls
 
 ### Ce qui a été réalisé
 
+#### Building:
+
+![image](images/week3_uml_building.png)
+
+Changement au niveau de la classe **building**, création d'une classe abstraite **LandBuilding**, représantant les bâtiments sur terre, qui ne sont donc pas des ports et peuvent collecter des ressources.
+
+Cette classe est divisée en plusieurs classes représentant les bâtiments des différents jeux.
+
+__________________
+
+#### Player and Game:
+
+![image](images/week3_uml_player_and_game.png)
+
+Pour les classes **Player** et **Game**, on a également crée des classes filles pour chaque jeu différent, permettant ainsi de représenter les attributs uniques de chaque jeu.
+
+_______
+
+#### Action:
+
+![image](images/week3_uml_actions.png)
+
+On ajoute un attribut *label* à la classe **action**. Nous permettant plus tard de pouvoir représenter cette action plus facilement.
+On ajoute également des classes abstraite pour chaque jeu, mais on a des doutes concernant l'implémentation des actions communes aux 2 jeux. Peut-être avec une interface? Pour l'instant on laisse ça en suspens...
+
+_____
+
+#### Objective:
+
+![image](images/week3_uml_Objective.png)
+
+On crée une interface **Objective** pour représenter les différents objectifs, comme le jeu *Démeter* n'a qu'un seul objectif, on ne crée pas de classes intermédiaires pour les différents jeux. Cependant, cette implémentation n'est peut-être pas la meilleure et va probablement changer.
+
+______
+
+On rajoute également des méthodes `toString()` aux classes **Building** et **Tile** pour permettre une représentation visuelle plus simple.
+
 ### Difficultés rencontrées
 
+La classe **Action** qui souffre encore de quelques problèmes, comme explicité ci-dessus. Et l'interface **Objective** n'est pas non plus très convaincante.
+
 ### Objectifs pour la semaine
+
+Andreï, Samuel: Réflechir aux classes **Action** et **Objective**.
 
 ## Semaine 4
 
