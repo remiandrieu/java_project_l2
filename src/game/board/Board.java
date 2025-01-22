@@ -95,7 +95,7 @@ public class Board {
         // While there are lands to place
         while (numberOfLand > 1) {
 
-            boolean chooseRandomLocation = false;
+            boolean chooseRandomLocation = true;
 
             // If it's a sea tile i.e. if you can place a land tile
             if (this.getTile(x, y) instanceof Sea) {
@@ -136,12 +136,9 @@ public class Board {
                     x = neighbouringX;
                     y = neighbouringY;
 
-                } else {
-                    
-                    // Pick a random location on the board
-                    chooseRandomLocation = true;
+                    chooseRandomLocation = false;
 
-                }
+                } 
 
             }
 
@@ -150,6 +147,26 @@ public class Board {
                 x = random.nextInt(this.LENGTH);
                 y = random.nextInt(this.WIDTH);
             }
+
+    /**
+     * Get a String representation of the board
+     * @param buildings true to print buildings
+     * @return a String representation of the board
+     */
+    public String boardToString(boolean buildings){
+        String res = "";
+        for (int x = 0; x < this.LENGTH; x++){
+            for (int y = 0; y < this.WIDTH; y++){
+                Tile tile = this.getTile(x, y);
+                if (tile instanceof Sea){
+                    res += ".   ";
+                } else {
+                    res += tile.toString()[0] + "   ";
+                }
+            }
+            res += '\n';
         }
+        return res;
     }
+
 }
