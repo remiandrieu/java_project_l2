@@ -149,13 +149,21 @@ ______
 
 On rajoute également des méthodes `toString()` aux classes **Building** et **Tile** pour permettre une représentation visuelle plus simple.
 
+_____
+
+Continuation du codage de la classe **Board**, dernière ligne droite.
+
 ### Difficultés rencontrées
 
 La classe **Action** qui souffre encore de quelques problèmes, comme explicité ci-dessus. Et l'interface **Objective** n'est pas non plus très convaincante.
 
+Boucle infinie dans la classe **Board**, méthode `createGrid()`
+
 ### Objectifs pour la semaine
 
-Andreï, Samuel: Réflechir aux classes **Action** et **Objective**.
+Andreï, Samuel: Trouver une meilleure implémentation des classes **Action** et **Objective**.
+
+Rémi, Tom: Régler les derniers problèmes du **Board**, faire les derniers tests.
 
 ## Semaine 4
 
