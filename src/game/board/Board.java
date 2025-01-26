@@ -11,7 +11,7 @@ public class Board {
     protected Tile[][] grid;
     protected final int LENGTH;
     protected final int WIDTH;
-    protected final double PROBABILITY_PICKING_NEW_LOCATION = 0.5;
+    protected final double PROBABILITY_PICKING_NEW_LOCATION = 0.35;
 
     /**
      * Create a board with a length and a width
@@ -51,13 +51,13 @@ public class Board {
         }
         Tile[] res = new Tile[4];
         try{
-            if (x-1 > 0)
+            if (x-1 >= 0)
                 res[0] = this.getTile(x-1, y);
             if (y+1 < this.WIDTH)
                 res[1] = this.getTile(x, y+1);
             if (x+1 < this.LENGTH)
                 res[2] = this.getTile(x+1, y);
-            if (y-1 > 0)
+            if (y-1 >= 0)
                 res[3] = this.getTile(x, y-1);
         } catch (InvalidPositionException e){
             System.out.println();
@@ -106,23 +106,23 @@ public class Board {
         Random random = new Random();
 
         // Choose a random number of land to place. This number is between 1/4 and 1/3 of the total number of tiles
-        int numberOfLand = (this.LENGTH * this.WIDTH)/4 + random.nextInt((this.LENGTH * this.WIDTH)/3 - (this.LENGTH * this.WIDTH)/4);
+        int numberOfLand = (this.LENGTH * this.WIDTH)/4 + 1 + random.nextInt((this.LENGTH * this.WIDTH)/3 - (this.LENGTH * this.WIDTH)/4);
         
         // Pick a first random location on the board
         int x = random.nextInt(this.LENGTH);
         int y = random.nextInt(this.WIDTH);
-        
+        boolean hasLandNeighbour = false;
         // While there are lands to place
-        while (numberOfLand > 1) {
-
-            System.out.println(numberOfLand);
+        while (numberOfLand > 1 || !hasLandNeighbour) {
 
             boolean chooseRandomLocation = true;
+
+            System.out.println(x+","+y);
 
             // If it's a sea tile i.e. if you can place a land tile
             if (this.getTile(x, y) instanceof Sea) {
 
-                System.out.println("case sea");
+                System.out.println("la case est une mer");
                 
                 // Choose a random type of Land, place it and decrease the number lands to place by 1.
                 Ressource[] ressources = Ressource.values();
@@ -141,32 +141,34 @@ public class Board {
                     case ORE:
                         randomLand = new Mountain();
                         break;
+                    
                     default:
                         randomLand = new Forest();
                         break;
                 }
-                try {
-                    this.setTile(x, y, randomLand);
-                } catch (InvalidPositionException e) {
-                    System.out.println(e.getMessage());
-                }
+                this.setTile(x, y, randomLand);
                 numberOfLand--;
 
-                System.out.println("nuberOfLand décrémenté");
+                System.out.println(this.boardToString(false));
+                System.out.println("nb land:"+numberOfLand);
 
                 // Get the neighboring tiles and check if there is land
                 Tile[] neighbours = this.getNeighbourTiles(x, y);
-                boolean hasLandNeighbour = false;
+                hasLandNeighbour = false;
                 boolean allLandNeighbour = true;
                 for (Tile neighbourTile : neighbours){
-                    if (!(neighbourTile instanceof Sea)){
-                        hasLandNeighbour = true;
-                    } else {
+                    System.out.println(neighbourTile);
+                    if (neighbourTile instanceof Sea){
                         allLandNeighbour = false;
+                    }
+                    if (neighbourTile instanceof Land){
+                        hasLandNeighbour = true;
                     }
                 }
 
                 System.out.println("voisins récupérés");
+                System.out.println(hasLandNeighbour);
+                System.out.println(allLandNeighbour);
 
                 /**
                  * If there isn't land in the neighboring tiles, you must place another tile next to it
@@ -174,9 +176,9 @@ public class Board {
                  * In the two cases above, pick a random neighboring tile that is not already a land tile
                  * Otherwise pick an other random location
                  */
-                if ((!(hasLandNeighbour)) || ((!(allLandNeighbour)) && (random.nextDouble(1) > this.PROBABILITY_PICKING_NEW_LOCATION))){
+                if (!hasLandNeighbour || (!allLandNeighbour && (random.nextDouble(1) < this.PROBABILITY_PICKING_NEW_LOCATION))){
                     
-                    System.out.println("on continue ?");
+                    System.out.println("on continue");
 
                     // Pick the location of a random neighboring tile that is not already a land tile
                     int[] offset = {-1, 1};
@@ -188,14 +190,14 @@ public class Board {
                     else {
                         neighbouringY = y + offset[random.nextInt(offset.length)];
                     }
-                    while ((!(this.isCorrectLocation(neighbouringX, neighbouringY))) || (!(this.getTile(neighbouringX, neighbouringY) instanceof Sea))){
+                    while (!this.isCorrectLocation(neighbouringX, neighbouringY) || !(this.getTile(neighbouringX, neighbouringY) instanceof Sea)){
+                        neighbouringY = y;
+                        neighbouringX = x;
                         if (random.nextInt(2) == 0){
                             neighbouringX = x + offset[random.nextInt(offset.length)];
-                            neighbouringY = y;
                         }
                         else {
                             neighbouringY = y + offset[random.nextInt(offset.length)];
-                            neighbouringX = x;
                         }
                     }
                     x = neighbouringX;
@@ -209,6 +211,7 @@ public class Board {
 
             if (chooseRandomLocation){
                 // Pick a random location on the board
+                System.out.println("on recommence");
                 x = random.nextInt(this.LENGTH);
                 y = random.nextInt(this.WIDTH);
             }
@@ -227,9 +230,9 @@ public class Board {
             for (int y = 0; y < this.WIDTH; y++){
                 Tile tile = this.getTile(x, y);
                 if (tile instanceof Sea){
-                    res += ".   ";
+                    res += ". ";
                 } else {
-                    res += tile.toString().charAt(0) + "   ";
+                    res += tile.toString().charAt(0) + " ";
                 }
             }
             res += '\n';
