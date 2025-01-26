@@ -22,14 +22,23 @@ public class BoardTest {
     void testGetNeighbourTiles() {
         Tile forest = new Forest();
         Tile sea = new Sea();
+        Tile sea2 = new Sea();
+        Tile sea3 = new Sea();
         try {
             board.setTile(0, 1, forest);
             board.setTile(1, 0, sea);
+            board.setTile(2, 1, sea2);
+            board.setTile(1, 2, sea3);
             Tile[] neighbours = board.getNeighbourTiles(0, 0);
             assertNull(neighbours[0]);
             assertSame(forest, neighbours[1]);
             assertSame(sea, neighbours[2]);
             assertNull(neighbours[3]);
+            Tile[] neighbours2 = board.getNeighbourTiles(1, 1);
+            assertSame(forest, neighbours2[0]);
+            assertSame(sea3, neighbours2[1]);
+            assertSame(sea2, neighbours2[2]);
+            assertSame(sea, neighbours2[3]);
 
         } catch (InvalidPositionException e) {
             fail();
