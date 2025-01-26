@@ -169,6 +169,13 @@ Rémi, Tom: Régler les derniers problèmes du **Board**, faire les derniers tes
 
 ### Ce qui a été réalisé
 
+Trace de la génération du plateau 
+
+![image](images/traceGenerateboard.png)
+![image](images/traceGenerateboard1.png)
+![image](images/traceGenerateboard2.png)
+![image](images/traceGenerateboard3.png)
+
 ### Difficultés rencontrées
 
 ### Objectifs pour la semaine
