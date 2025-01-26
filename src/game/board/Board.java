@@ -29,9 +29,13 @@ public class Board {
      * @param x the line number
      * @param y the column number
      * @return The tile at position (x, y)
-     */
-    public Tile getTile(int x, int y){
-        return this.grid[x][y];
+     * @throws InvalidPositionException if x y out of grid
+    */
+    public Tile getTile(int x, int y) throws InvalidPositionException{
+        if (isCorrectLocation(x, y)){
+            return this.grid[x][y];
+        }
+        throw new InvalidPositionException("coordinates " + x + ", " + y + " out of grid");
     }
 
     /**
@@ -39,17 +43,25 @@ public class Board {
      * @param x the line number
      * @param y the column number
      * @return The neighbours of the tile at position (x, y)
-     */
-    public Tile[] getNeighbourTiles(int x, int y){
+     * @throws InvalidPositionException if x y out of grid
+    */
+    public Tile[] getNeighbourTiles(int x, int y) throws InvalidPositionException{
+        if (!isCorrectLocation(x, y)){
+            throw new InvalidPositionException("coordinates " + x + ", " + y + " out of grid");
+        }
         Tile[] res = new Tile[4];
-        if (x-1 > 0)
-            res[0] = this.getTile(x-1, y);
-        if (y+1 < this.WIDTH)
-            res[1] = this.getTile(x, y+1);
-        if (x+1 < this.LENGTH)
-            res[2] = this.getTile(x+1, y);
-        if (y-1 > 0)
-            res[3] = this.getTile(x, y-1);
+        try{
+            if (x-1 > 0)
+                res[0] = this.getTile(x-1, y);
+            if (y+1 < this.WIDTH)
+                res[1] = this.getTile(x, y+1);
+            if (x+1 < this.LENGTH)
+                res[2] = this.getTile(x+1, y);
+            if (y-1 > 0)
+                res[3] = this.getTile(x, y-1);
+        } catch (InvalidPositionException e){
+            System.out.println();
+        }
         return res;
     }
 
@@ -68,15 +80,22 @@ public class Board {
      * @param x the line number
      * @param y the column number
      * @param tile the tile
-     */
-    public void setTile(int x, int y, Tile tile){
-        this.grid[x][y] = tile;
+     * @throws InvalidPositionException if x y out of grid
+    */
+    public void setTile(int x, int y, Tile tile) throws InvalidPositionException{
+        if (isCorrectLocation(x, y)){
+            this.grid[x][y] = tile;
+        }
+        else{
+            throw new InvalidPositionException("coordinates " + x + ", " + y + " out of grid");
+        }
     }
 
     /**
      * Create a new grid according to the rules of the game
-     */
-    public void createGrid(){
+     * @throws InvalidPositionException 
+    */
+    public void createGrid() throws InvalidPositionException{
         // At first, fill the grid with Sea tiles
         for (int i = 0; i < this.LENGTH; i++){
             for (int j = 0; j < this.WIDTH; j++){
@@ -126,7 +145,11 @@ public class Board {
                         randomLand = new Forest();
                         break;
                 }
-                this.setTile(x, y, randomLand);
+                try {
+                    this.setTile(x, y, randomLand);
+                } catch (InvalidPositionException e) {
+                    System.out.println(e.getMessage());
+                }
                 numberOfLand--;
 
                 System.out.println("nuberOfLand décrémenté");
@@ -196,8 +219,9 @@ public class Board {
      * Get a String representation of the board
      * @param buildings true to print buildings
      * @return a String representation of the board
-     */
-    public String boardToString(boolean buildings){
+     * @throws InvalidPositionException 
+    */
+         public String boardToString(boolean buildings) throws InvalidPositionException{
         String res = "";
         for (int x = 0; x < this.LENGTH; x++){
             for (int y = 0; y < this.WIDTH; y++){
