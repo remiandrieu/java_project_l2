@@ -7,4 +7,8 @@ public class Fields extends Land {
         return Ressource.WHEAT;
     }
 
+    public String toString(){
+        return "Field";
+    }
+
 }

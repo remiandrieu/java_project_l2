@@ -7,4 +7,8 @@ public class Forest extends Land{
         return Ressource.WOOD;
     }
 
+    public String toString() {
+        return "Tree";
+    }
+
 }

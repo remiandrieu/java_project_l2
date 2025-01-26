@@ -7,4 +7,7 @@ public class Pasture extends Land {
         return Ressource.SHEEP;
     }
     
+    public String toString(){
+        return "Pasture";
+    }
 }
