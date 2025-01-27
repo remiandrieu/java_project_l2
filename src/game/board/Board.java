@@ -176,7 +176,7 @@ public class Board {
                  * In the two cases above, pick a random neighboring tile that is not already a land tile
                  * Otherwise pick an other random location
                  */
-                if (!hasLandNeighbour || (!allLandNeighbour && (random.nextDouble(1) < this.PROBABILITY_PICKING_NEW_LOCATION))){
+                if (!hasLandNeighbour || (!allLandNeighbour && (random.nextDouble() < this.PROBABILITY_PICKING_NEW_LOCATION))){
                     
                     System.out.println("on continue");
 
