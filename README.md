@@ -27,8 +27,6 @@ Un lien vers une image de l'UML doit être fourni (une photo d'un diagramme UML 
 
 ### Atteinte des objectifs
 
-
-
 ### Difficultés restant à résoudre
 
 ## Livrable 2
