@@ -12,11 +12,28 @@ public abstract class Building {
         this.land = land;
     }
 
+    /**
+     * Returns the building's owner.
+     * @return the building's owner.
+     */
     public Player getPlayer() {
         return this.player;
     }
 
+    /**
+     * Returns the land where the building is standing.
+     * @return the land where the building is standing.
+     */
     public Land getLand() {
         return this.land;
     }
+    
+    /**
+     * Returns the string presentation for the board.
+     * @return a string representation for 
+     */
+    public String toString() {
+        return "";
+    }
+
 }
