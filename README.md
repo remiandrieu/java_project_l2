@@ -27,7 +27,12 @@ Un lien vers une image de l'UML doit être fourni (une photo d'un diagramme UML 
 
 ### Atteinte des objectifs
 
+La génération du plateau se fait selon la methode suivante. Tout d'abord les dimensions du plateau sont choisies à sa construction. Puis une grille remplie de tuile mer est généré. Ensuite on détermine aléatoirement le nombre de tuile terrain à génèrer entre 1/4 et 1/3 pour respecté la condition d'au moins 2/3 de mer. Ensuite tant qu'il reste des tuiles terrain à poser, on se positionne sur une tuile au hasard et si c'est une tuile mer, on la change en terrain au hazard. Puis si elle est entouré que de mer, on génère un autre terrain à coté aléatoirement. Puis si il reste des tuiles à placer, on a une probabilité p de poursuivre la génération à partir de l'ancienne tuile génèré. Sinon recommence le processus. Cette probabilité p peut être mofifié afin de générer plus ou moins d'îles de taille plus ou moins grande. La génération du plateau est instantané pour un plateau de 1000 par 1000.
+
+
 ### Difficultés restant à résoudre
+
+Nous n'avons pas trouvé de moyen pour que si un nouveau type de terrain est ajouté, le choix du terrain inclu ce nouveau terrain. La methode getRandomTypeOfLand devra donc être modifié. Le choix d'un voisin mer aléatoirement n'est pas trés efficace, nous reviendrons peut être sur son implémentation.
 
 ## Livrable 2
 
@@ -196,8 +201,13 @@ On a finalement décidé de faire une implémentation similaire aux actions. La 
 
 
 ### Difficultés rencontrées
+Doute sur les parties du code de createGrid à encapsuler dans des methodes. Test des methodes avec du random. Nous n'avons pas trouvé de moyen pour que si un nouveau type de terrain est ajouté, le choix du terrain inclu ce nouveau terrain. La methode getRandomTypeOfLand devra donc être modifié. Enfin le choix d'un voisin mer aléatoirement n'est pas trés efficace, nous reviendrons peut être sur son implémentation.
 
 ### Objectifs pour la semaine
+
+Andreï, Samuel: Continuer l'implémentation des batiments.
+
+Rémi, Tom: Rendre le livrable 1. Réflexion sur l'uml de objectif et implémentation des actions.
 
 ## Semaine 5
 
