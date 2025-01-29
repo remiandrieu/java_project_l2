@@ -1,5 +1,7 @@
 package game.building;
 import game.board.*;
+import game.board.util.*;
+import game.player.*;
 
 /** a class to represent the classic buildings */
 public abstract class LandBuilding extends Building {
