@@ -25,7 +25,10 @@ public abstract class LandBuilding extends Building {
         return this.dimension;
     }
 
+    /** collects the ressources produced by this building's landland
+     * @return the ressource produced
+     */
     public Ressource collectRessources(){
-
+        return this.land.produce();
     }
 }
