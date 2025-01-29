@@ -1,7 +1,7 @@
 package game.board;
 import game.board.util.Ressource;
 
-/** a closs to model Forest */
+/** a class to model Forest */
 public class Forest extends Land{
 
     /** produces the WOOD ressource

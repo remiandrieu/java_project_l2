@@ -4,7 +4,7 @@ import java.util.Random;
 
 import game.board.util.Ressource;
 
-/* A class to represent a board */
+/** a class to model a board */
 public class Board {
 
     /* Attributes */

@@ -1,7 +1,7 @@
 package game.board;
 import game.board.util.Ressource;
 
-/** a closs to model Fields */
+/** a class to model Fields */
 public class Fields extends Land {
 
     /** produces the WHEAT ressource
