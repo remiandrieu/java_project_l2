@@ -176,6 +176,25 @@ Trace de la génération du plateau
 ![image](images/traceGenerateboard2.png)
 ![image](images/traceGenerateboard3.png)
 
+____
+
+#### UML:
+
+On remplace les attributs *private* par des *protected* dans les classes qu'il faut.
+
+#### Actions:
+
+On a trouvé une façon efficace d'implémenter les **Actions**. On a une classe **Action** abstraite qui *extend* vers des classes abstraites **DemeterActions**, **AresActions** et **CommonActions**, qui représentent, respectivement, les actions possibles des deux jeux, et les actions communes aux 2 jeux.
+
+![image](images/week4_uml_actions.png)
+
+#### Objectifs:
+
+On a finalement décidé de faire une implémentation similaire aux actions. La classe **joueur** aura un attribut objectif pour représenter les objectifs que chaque joueur doit atteindre.
+
+![image](images/week4_uml_objective.png)
+
+
 ### Difficultés rencontrées
 
 ### Objectifs pour la semaine
