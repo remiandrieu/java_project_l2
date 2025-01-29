@@ -92,6 +92,46 @@ public class Board {
     }
 
     /**
+     * Get a random type of Land 
+     * @return a random type of Land
+     */
+    public Land getRandomTypeOfLand(){
+        Random random = new Random();
+        Ressource[] ressources = Ressource.values();
+        Ressource randomRessource = ressources[random.nextInt(ressources.length)];
+        switch(randomRessource){
+            case WHEAT: 
+                return new Fields();
+            case SHEEP:
+                return new Pasture();
+            case ORE:
+                return new Mountain();
+            default:
+                return new Forest();
+        }
+    }
+
+
+    /**
+     * Get the coordinates of a random neighbour of a tile in parameters
+     * @param x the line number
+     * @param y the column number
+     * @return coordinates of a random neighbour
+     */
+    public int[] getRandomCoordinatesNeighbour(int x, int y){
+        Random random = new Random();
+        int[] offset = {-1, 1};
+        int[] res = {x, y};
+        if (random.nextInt(2) == 0){
+            res[0] += offset[random.nextInt(offset.length)];
+        }
+        else {
+            res[1] += offset[random.nextInt(offset.length)];
+        }
+        return res;
+    }
+
+    /**
      * Create a new grid according to the rules of the game
      * @throws InvalidPositionException 
     */
@@ -117,47 +157,19 @@ public class Board {
 
             boolean chooseRandomLocation = true;
 
-            System.out.println(x+","+y);
-
             // If it's a sea tile i.e. if you can place a land tile
             if (this.getTile(x, y) instanceof Sea) {
-
-                System.out.println("la case est une mer");
                 
                 // Choose a random type of Land, place it and decrease the number lands to place by 1.
-                Ressource[] ressources = Ressource.values();
-                Ressource randomRessource = ressources[random.nextInt(ressources.length)];
-                Land randomLand;
-                switch(randomRessource){
-   
-                    case WHEAT: 
-                        randomLand = new Fields();
-                        break;
-                
-                    case SHEEP:
-                        randomLand = new Pasture();
-                        break;
-                
-                    case ORE:
-                        randomLand = new Mountain();
-                        break;
-                    
-                    default:
-                        randomLand = new Forest();
-                        break;
-                }
+                Land randomLand = this.getRandomTypeOfLand();
                 this.setTile(x, y, randomLand);
                 numberOfLand--;
-
-                System.out.println(this.boardToString(false));
-                System.out.println("nb land:"+numberOfLand);
 
                 // Get the neighboring tiles and check if there is land
                 Tile[] neighbours = this.getNeighbourTiles(x, y);
                 hasLandNeighbour = false;
                 boolean allLandNeighbour = true;
                 for (Tile neighbourTile : neighbours){
-                    System.out.println(neighbourTile);
                     if (neighbourTile instanceof Sea){
                         allLandNeighbour = false;
                     }
@@ -165,10 +177,6 @@ public class Board {
                         hasLandNeighbour = true;
                     }
                 }
-
-                System.out.println("voisins récupérés");
-                System.out.println(hasLandNeighbour);
-                System.out.println(allLandNeighbour);
 
                 /**
                  * If there isn't land in the neighboring tiles, you must place another tile next to it
@@ -178,27 +186,15 @@ public class Board {
                  */
                 if (!hasLandNeighbour || (!allLandNeighbour && (random.nextDouble() < this.PROBABILITY_PICKING_NEW_LOCATION))){
                     
-                    System.out.println("on continue");
-
+                    int neighbouringX = -1;
+                    int neighbouringY = -1;
+                    int[] randomNeighbourCoordinates;
+                    
                     // Pick the location of a random neighboring tile that is not already a land tile
-                    int[] offset = {-1, 1};
-                    int neighbouringX = x;
-                    int neighbouringY = y;
-                    if (random.nextInt(2) == 0){
-                        neighbouringX = x + offset[random.nextInt(offset.length)];
-                    }
-                    else {
-                        neighbouringY = y + offset[random.nextInt(offset.length)];
-                    }
                     while (!this.isCorrectLocation(neighbouringX, neighbouringY) || !(this.getTile(neighbouringX, neighbouringY) instanceof Sea)){
-                        neighbouringY = y;
-                        neighbouringX = x;
-                        if (random.nextInt(2) == 0){
-                            neighbouringX = x + offset[random.nextInt(offset.length)];
-                        }
-                        else {
-                            neighbouringY = y + offset[random.nextInt(offset.length)];
-                        }
+                        randomNeighbourCoordinates = getRandomCoordinatesNeighbour(x, y);
+                        neighbouringX = randomNeighbourCoordinates[0];
+                        neighbouringY = randomNeighbourCoordinates[1];
                     }
                     x = neighbouringX;
                     y = neighbouringY;
@@ -211,7 +207,6 @@ public class Board {
 
             if (chooseRandomLocation){
                 // Pick a random location on the board
-                System.out.println("on recommence");
                 x = random.nextInt(this.LENGTH);
                 y = random.nextInt(this.WIDTH);
             }
@@ -224,7 +219,7 @@ public class Board {
      * @return a String representation of the board
      * @throws InvalidPositionException 
     */
-         public String boardToString(boolean buildings) throws InvalidPositionException{
+        public String boardToString(boolean buildings) throws InvalidPositionException{
         String res = "";
         for (int x = 0; x < this.LENGTH; x++){
             for (int y = 0; y < this.WIDTH; y++){
