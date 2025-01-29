@@ -11,4 +11,12 @@ public abstract class Building {
         this.player = player;
         this.land = land;
     }
+
+    public Player getPlayer() {
+        return this.player;
+    }
+
+    public Land getLand() {
+        return this.land;
+    }
 }
