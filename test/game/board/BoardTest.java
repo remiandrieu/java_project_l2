@@ -17,7 +17,23 @@ public class BoardTest {
         for(int i =0 ; i<100 ; i++){
             assertTrue(randomLand instanceof Forest || randomLand instanceof Pasture || randomLand instanceof Mountain || randomLand instanceof Fields);
         }
+    }
 
+    @Test
+    void testGetRandomCoordinatesNeighbour(){
+        for (int i = 0; i < 100; i++){
+            int x = 4;
+            int y = 5;
+            
+            int[] neighbour = this.board.getRandomCoordinatesNeighbour(x, y);
+            int neighbourX = neighbour[0];
+            int neighbourY = neighbour[1];
+    
+            assertTrue((neighbourX == 4 && neighbourY == 6) 
+                        || (neighbourX == 4 && neighbourY == 4)
+                        || (neighbourX == 5 && neighbourY == 5)
+                        || (neighbourX == 3 && neighbourY == 5));
+        }
     }
     
     @Test
