@@ -1,6 +1,7 @@
 package game.building;
 
 import game.board.*;
+import game.player.*;
 
 public abstract class Building {
     protected Player player;
