@@ -10,7 +10,9 @@ public abstract class LandBuilding extends Building {
     protected int dimension;
 
     /**
-     * creates a building with its dimension
+     * creates a building with its player, land and dimension
+     * @param player the player who owns this building
+     * @param land the land where the building is placed
      * @param dimension the dimension of the building
      */
     public LandBuilding(Player player, Land land, int dimension){
