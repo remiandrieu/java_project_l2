@@ -27,7 +27,14 @@ Un lien vers une image de l'UML doit être fourni (une photo d'un diagramme UML 
 
 ### Atteinte des objectifs
 
-La génération du plateau se fait selon la methode suivante. Tout d'abord les dimensions du plateau sont choisies à sa construction. Puis une grille remplie de tuile mer est généré. Ensuite on détermine aléatoirement le nombre de tuile terrain à génèrer entre 1/4 et 1/3 pour respecter la condition d'au moins 2/3 de mer. Ensuite tant qu'il reste des tuiles terrain à poser, on se positionne sur une tuile aléatoirement et si c'est une tuile mer, on la change en terrain aléatoirement. Puis si elle est entouré que de mer, on génère un autre terrain à coté aléatoirement. Puis si il reste des tuiles à placer, on a une probabilité p de poursuivre la génération à partir de l'ancienne tuile génèré. Sinon recommence le processus. Cette probabilité p peut être mofifié afin de générer plus ou moins d'îles de taille plus ou moins grande. La génération du plateau est instantané pour un plateau de 1000 par 1000.
+La génération du plateau se fait selon la méthode suivante. Tout d'abord les dimensions du plateau sont choisies à sa construction. Puis une grille remplie de tuiles mer est générée. Ensuite on détermine aléatoirement le nombre de tuiles terrain à générer entre 1/4 et 1/3 pour respecter la condition d'au moins 2/3 de mer. Ensuite tant qu'il reste des tuiles terrain à poser, on se positionne sur une tuile aléatoirement et si c'est une tuile mer, on la change en terrain aléatoirement. Puis si elle est entourée que de mer, on génère un autre terrain à côté aléatoirement. Puis si il reste des tuiles à placer, on a une probabilité p de poursuivre la génération à partir de l'ancienne tuile générée. Sinon recommence le processus. Cette probabilité p peut être mofifiée afin de générer plus ou moins d'îles de taille plus ou moins grande. La génération du plateau est instantanée pour un plateau de 1000 par 1000.
+
+Les ressources ont été implémentées avec un enum car chaque joueur aura une hashmap avec les ressources en clé et leurs quantités en valeur.
+
+La classe abstraite tile représente l'ensemble des tuiles. La classe abstraite Land représente les terrains qui produisent une ressource, la méthode produce renvoie la ressource associée au terrain et la méthode toString permet l'affichage correct du plateau.
+Le board possède un tableau à deux dimensions de tuiles pour le plateau. Pour générer le plateau il faut appeler la méthode createGrid(). Board possède aussi d'autres méthodes utilisées dans createGrid et qui pourront aussi servir par la suite.
+
+Presque toutes les classes n'ont pas été testées car elles ne possèdent pas de méthodes ou uniquement des méthodes triviales. De même pour quelques méthodes de Board qui sont triviales.
 
 ____
 
@@ -72,7 +79,7 @@ Pour compiler et exécuter les tests :
 
 ### Difficultés restant à résoudre
 
-Nous n'avons pas trouvé de moyen pour que si un nouveau type de terrain est ajouté, le choix du terrain inclu ce nouveau terrain. La methode getRandomTypeOfLand devra donc être modifié. Le choix d'un voisin mer aléatoirement n'est pas trés efficace, nous reviendrons peut être sur son implémentation.
+Nous n'avons pas trouvé de moyen pour que si un nouveau type de terrain est ajouté, le choix du terrain inclu ce nouveau terrain. La méthode getRandomTypeOfLand devra donc être modifiée. Le choix d'un voisin mer aléatoirement n'est pas très efficace, nous reviendrons peut-être sur son implémentation.
 
 ## Livrable 2
 
