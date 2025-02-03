@@ -2,7 +2,7 @@ package game.building;
 import game.board.*;
 import game.player.*;
 
-/** a class to represent the ports */
+/* a class to represent the ports */
 public class Port extends Building {
 
     /**

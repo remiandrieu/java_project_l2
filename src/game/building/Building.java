@@ -3,7 +3,7 @@ package game.building;
 import game.board.*;
 import game.player.*;
 
-/** a class to represent the buildings */
+/* a class to represent the buildings */
 public abstract class Building {
 
     /* attributes */
