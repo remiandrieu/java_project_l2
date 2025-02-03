@@ -4,10 +4,11 @@ import game.board.*;
 import game.player.*;
 
 public class AresBuilding extends LandBuilding{
-    public boolean level; //Level of the building, false if army, true if camp
+    protected boolean level; //Level of the building, false if army, true if camp
     
     public AresBuilding(Player player, Land land, int numberWarriors){
         super(player, land, numberWarriors);
+        this.level = false;
     }
 
     /**
@@ -15,7 +16,7 @@ public class AresBuilding extends LandBuilding{
      * true if the building is a camp.
      * @return the state of the building.
      */
-    public boolean getLevel(){
+    public boolean isEvolved(){
         return level;
     }
 
@@ -34,6 +35,18 @@ public class AresBuilding extends LandBuilding{
      */
     public void addWarriors(int warriors){
         this.dimension += warriors;
+    }
+
+    /**
+     * The player who owns the building will collect the resources of the land.
+     * If the building is evolved, does it a second time.
+     */
+    public void playerCollectRessources() {
+        this.player.addResource(collectRessources());
+
+        if (this.isEvolved()){
+            this.player.addResource(collectRessources()); 
+        }
     }
 
 }
