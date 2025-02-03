@@ -260,9 +260,21 @@ Rémi, Tom: Rendre le livrable 1. Réflexion sur l'uml de objectif et implément
 
 ### Ce qui a été réalisé
 
+![image](images/week5_building_uml.png)
+
+#### Building :
+
+Création des classes **Port**, **AresBuilding** et **DemeterBuilding**. Nous avons aussi rajouté une méthode *playerCollectResources()* dans les classes **AresBuilding** et **DemeterBuilding** qui permet au joueur qui détient le building d'ajouter une ressource à l'aide de la méthode *addResource()* de la classe **Player**.
+
 ### Difficultés rencontrées
 
+Difficulté au niveau des variables dans **AresBuilding**. Pour la méthode *evolve()* de **DemeterBuilding**, nous avons eu du mal à définir les modalités d'évolution du bâtiment.
+
 ### Objectifs pour la semaine
+
+Andreï, Samuel: continuer l'implémentation de **DemeterBuilding**, réfléchir aux tests pour **AresBuilding** et **DemeterBuilding**.
+
+Rémi, Tom: 
 
 ## Semaine 6
 
