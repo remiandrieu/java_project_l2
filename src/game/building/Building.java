@@ -3,10 +3,18 @@ package game.building;
 import game.board.*;
 import game.player.*;
 
+/** a class to represent the buildings */
 public abstract class Building {
+
+    /* attributes */
     protected Player player;
     protected Land land;
 
+    /**
+     * creates a building with its player and land
+     * @param player the player who owns this building
+     * @param land the land where the building is standing
+     */
     public Building(Player player, Land land) {
         this.player = player;
         this.land = land;
