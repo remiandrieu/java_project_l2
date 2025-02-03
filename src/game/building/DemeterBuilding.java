@@ -14,5 +14,10 @@ public class DemeterBuilding extends LandBuilding {
     public DemeterBuilding(Player player, Land land, int dimension){
         super(player, land, dimension);
     }
+
+    public void evolve(){
+        
+    }
     
+
 }
