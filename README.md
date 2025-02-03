@@ -260,6 +260,9 @@ Rémi, Tom: Rendre le livrable 1. Réflexion sur l'uml de objectif et implément
 
 ### Ce qui a été réalisé
 
+Rémi, Tom: implémentation des actions, modification de l'uml action.
+
+
 ![image](images/week5_building_uml.png)
 
 #### Building :
@@ -268,13 +271,15 @@ Création des classes **Port**, **AresBuilding** et **DemeterBuilding**. Nous av
 
 ### Difficultés rencontrées
 
+Rémi, Tom: Player n'est pas encore implémenté, cela crée des erreurs et on ne peut pas implémenter certaines methodes. Masquage sur l'attribut label. Le type int n'est pas accepté dans la HashMap. Nous avons eu des doutes concernant le choix de la ressource à échanger fait par le joueur.
+
 Difficulté au niveau des variables dans **AresBuilding**. Pour la méthode *evolve()* de **DemeterBuilding**, nous avons eu du mal à définir les modalités d'évolution du bâtiment.
 
 ### Objectifs pour la semaine
 
 Andreï, Samuel: continuer l'implémentation de **DemeterBuilding**, réfléchir aux tests pour **AresBuilding** et **DemeterBuilding**.
 
-Rémi, Tom: 
+Rémi, Tom: Continuer l'implémentation des actions et commencer l'implémentation des joueurs. Réduire la taille de la fonction createBoard. Reféchir sur l'enum ressource.
 
 ## Semaine 6
 
