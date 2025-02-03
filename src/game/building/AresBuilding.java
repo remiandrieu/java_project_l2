@@ -5,7 +5,9 @@ import game.player.*;
 
 public class AresBuilding extends LandBuilding{
     protected boolean level; //Level of the building, false if army, true if camp
-    
+    // As the dimension is equal to the number of warriors,
+    // it seems intuitive to omit a variable numberOfWarriors and to use the dimension instead.
+
     public AresBuilding(Player player, Land land, int numberWarriors){
         super(player, land, numberWarriors);
         this.level = false;
