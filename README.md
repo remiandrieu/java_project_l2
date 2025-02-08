@@ -279,7 +279,7 @@ Difficulté au niveau des variables dans **AresBuilding**. Pour la méthode *evo
 
 Andreï, Samuel: continuer l'implémentation de **DemeterBuilding**, réfléchir aux tests pour **AresBuilding** et **DemeterBuilding**.
 
-Rémi, Tom: Continuer l'implémentation des actions et commencer l'implémentation des joueurs. Réduire la taille de la fonction createBoard. Reféchir sur l'enum ressource.
+Rémi, Tom: Continuer l'implémentation des actions et commencer l'implémentation des joueurs. Réduire la taille de la fonction createBoard. Reféchir sur l'enum ressource. Faire les tests des nouvelles methodes dans board. Penser à une formule qui calcul la proba en fonction de la taille du plateau.
 
 ## Semaine 6
 
