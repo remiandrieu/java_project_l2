@@ -7,5 +7,8 @@ public class Livrable2 {
         Board board = new Board(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
         board.createGrid();
         System.out.println(board.boardToString(false));
+        System.out.println(board);
+        
+
     }
 }

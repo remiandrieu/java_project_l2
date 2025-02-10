@@ -13,8 +13,8 @@ public class Port extends Building {
      */
     public Port(Player player, Land land){
         super(player, land);
-        this.ressources.put(Ressource.WOOD, 1);
-        this.ressources.put(Ressource.SHEEP, 2);
+        this.cost.put(Ressource.WOOD, 1);
+        this.cost.put(Ressource.SHEEP, 2);
     }
 
 }

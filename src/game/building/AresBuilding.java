@@ -12,9 +12,9 @@ public class AresBuilding extends LandBuilding{
     public AresBuilding(Player player, Land land, int numberWarriors){
         super(player, land, numberWarriors);
         this.level = false;
-        this.ressources.put(Ressource.WOOD, 1);
-        this.ressources.put(Ressource.SHEEP, 1);
-        this.ressources.put(Ressource.WHEAT, 1);
+        this.cost.put(Ressource.WOOD, 1);
+        this.cost.put(Ressource.SHEEP, 1);
+        this.cost.put(Ressource.WHEAT, 1);
     }
 
     /**
@@ -31,6 +31,9 @@ public class AresBuilding extends LandBuilding{
      */
     public void evolve(){
         this.level = true;
+        this.cost.clear();
+        this.cost.put(Ressource.WOOD, 2);
+        this.cost.put(Ressource.ORE, 3);
     }
 
     /**
