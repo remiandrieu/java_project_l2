@@ -1,5 +1,6 @@
 package game.building;
 import game.board.*;
+import game.board.util.Ressource;
 import game.player.*;
 
 /* a class to represent the buildings for Demeter Game */
@@ -15,6 +16,8 @@ public class DemeterBuilding extends LandBuilding {
      */
     public DemeterBuilding(Player player, Land land){
         super(player, land, 1);
+        this.ressources.put(Ressource.WOOD, 1);
+        this.ressources.put(Ressource.ORE, 1);
     }
 
     /**

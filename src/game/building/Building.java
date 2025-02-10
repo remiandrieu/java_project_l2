@@ -1,7 +1,13 @@
 package game.building;
 
+import java.util.Map;
+
 import game.board.*;
+import game.board.util.Ressource;
 import game.player.*;
+
+import java.util.*;
+import game.board.util.*;
 
 /* a class to represent the buildings */
 public abstract class Building {
@@ -9,6 +15,7 @@ public abstract class Building {
     /* attributes */
     protected Player player;
     protected Land land;
+    protected Map<Ressource, Integer> ressources;
 
     /**
      * creates a building with its player and land
@@ -34,6 +41,10 @@ public abstract class Building {
      */
     public Land getLand() {
         return this.land;
+    }
+
+    public Map<Ressource, Integer> getCost(){
+        return ressources;
     }
     
     /**

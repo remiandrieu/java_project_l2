@@ -1,6 +1,7 @@
 package game.building;
 
 import game.board.*;
+import game.board.util.Ressource;
 import game.player.*;
 
 public class AresBuilding extends LandBuilding{
@@ -11,6 +12,9 @@ public class AresBuilding extends LandBuilding{
     public AresBuilding(Player player, Land land, int numberWarriors){
         super(player, land, numberWarriors);
         this.level = false;
+        this.ressources.put(Ressource.WOOD, 1);
+        this.ressources.put(Ressource.SHEEP, 1);
+        this.ressources.put(Ressource.WHEAT, 1);
     }
 
     /**
