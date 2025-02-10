@@ -263,11 +263,12 @@ Rémi, Tom: Rendre le livrable 1. Réflexion sur l'uml de objectif et implément
 Rémi, Tom: implémentation des actions, modification de l'uml action.
 
 
-![image](images/week5_building_uml.png)
-
 #### Building :
 
-Création des classes **Port**, **AresBuilding** et **DemeterBuilding**. Nous avons aussi rajouté une méthode *playerCollectResources()* dans les classes **AresBuilding** et **DemeterBuilding** qui permet au joueur qui détient le building d'ajouter une ressource à l'aide de la méthode *addResource()* de la classe **Player**.
+Andreï, Samuel: Création des classes **Port**, **AresBuilding** et **DemeterBuilding**. Nous avons aussi rajouté une méthode *playerCollectResources()* dans les classes **AresBuilding** et **DemeterBuilding** qui permet au joueur qui détient le building d'ajouter une ressource à l'aide de la méthode *addResource()* de la classe **Player**.
+
+![image](images/week5_building_uml.png)
+
 
 ### Difficultés rencontrées
 
@@ -279,15 +280,34 @@ Difficulté au niveau des variables dans **AresBuilding**. Pour la méthode *evo
 
 Andreï, Samuel: continuer l'implémentation de **DemeterBuilding**, réfléchir aux tests pour **AresBuilding** et **DemeterBuilding**.
 
-Rémi, Tom: Continuer l'implémentation des actions et commencer l'implémentation des joueurs. Réduire la taille de la fonction createBoard. Reféchir sur l'enum ressource. Faire les tests des nouvelles methodes dans board. Penser à une formule qui calcul la proba en fonction de la taille du plateau.
+Rémi, Tom : Continuer l'implémentation des actions et commencer l'implémentation des joueurs. Réduire la taille de la fonction createBoard. Reféchir sur l'enum ressource. Faire les tests des nouvelles methodes dans board. Penser à une formule qui calcul la proba en fonction de la taille du plateau.
 
 ## Semaine 6
 
 ### Ce qui a été réalisé
 
+Rémi, Tom :
+
+Andreï, Samuel : 
+- Nous avons terminé l'implémentation des classes **AresBuilding** et **DemeterBuilding** en faisant quelques changements d'héritage etc...
+- Nous avons créé et complété les fichier de tests **AresBuildingTest** et **DemeterBuildingTest**. 
+
 ### Difficultés rencontrées
 
+Rémi, Tom :
+
+Andreï, Samuel : 
+ - Nous avions dû écrire les tests pour les classes du package Building sans pouvoir les exécuter dans le terminal car le contenu de la branch Player n'est pas encore terminé (et donc mergé) et nous avons besoin de la classe **Player** pour les exécuter.
+
+ - Gérer les dimensions d'un bâtiment pour le faire évoluer dans la classe **DemeterBuilding**.
+
+ - Délibérations de l'implémentation des méthodes `isEvolved()` et `evolve()` dans la classe mère abstraite **LandBuilding**. Finalement, nous avons décidé de ne pas le faire : si on rajoute un nouveau bâtiment, on n'est pas sûr qu'il aura besoin de ces méthodes i.e. le bâtiment ne peut pas évoluer.
+
 ### Objectifs pour la semaine
+
+Rémi, Tom :
+
+Andreï, Samuel : Vérifier le bon fonctionnement des tests de **AresBuildingTest** et **DemeterBuildingTest** après l'implémentation de **Player**. Compléter la partie [Livrable 2](#livrable-2) du README.
 
 ## Semaine 7
 
