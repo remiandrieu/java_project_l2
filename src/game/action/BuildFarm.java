@@ -1,11 +1,12 @@
 package game.action;
 
 import game.board.util.Ressource;
+import game.player.Player;
 
 public class BuildFarm extends DemeterAction {
 
-    public BuildFarm(String label){
-        super(label);
+    public BuildFarm(Player player){
+        super(player, "build a farm");
         this.cost.put(Ressource.WOOD, 1);
         this.cost.put(Ressource.ORE, 1);
     }

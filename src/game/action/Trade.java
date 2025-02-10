@@ -1,11 +1,12 @@
 package game.action;
 
 import game.board.util.Ressource;
+import game.player.Player;
 
 public class Trade extends CommonAction{
     
-    public Trade() {
-        super("trade");
+    public Trade(Player player) {
+        super(player, "trade");
     }
 
     public boolean isPossible() {

@@ -1,9 +1,11 @@
 package game.action;
 
+import game.player.Player;
+
 public abstract class DemeterAction extends Action {
 
-    public DemeterAction(String label){
-        super(label);
+    public DemeterAction(Player player, String label){
+        super(player, label);
     }
 
 }
