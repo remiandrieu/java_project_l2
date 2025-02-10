@@ -8,7 +8,7 @@ import game.board.*;
 import game.board.util.Ressource;
 import game.player.*;
 
-public class BuildingTest {
+public class AresBuildingTest {
     Player player = new Player();
     Land forest = new Forest();
     AresBuilding ares1;
