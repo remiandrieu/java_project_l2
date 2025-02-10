@@ -2,8 +2,8 @@ package game.action;
 
 public abstract class DemeterAction extends Action {
 
-    public DemeterAction(){
-        super("abstract DemeterAction");
+    public DemeterAction(String label){
+        super(label);
     }
 
 }
