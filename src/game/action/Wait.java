@@ -5,7 +5,7 @@ import game.player.Player;
 public class Wait extends CommonAction{
     protected String label = "abstract CommonAction";
 
-    public Wait(Player player){
+    public Wait(){
         super("wait");
     }
 

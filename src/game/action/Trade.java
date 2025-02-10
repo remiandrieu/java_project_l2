@@ -5,7 +5,7 @@ import game.player.Player;
 
 public class Trade extends CommonAction{
     
-    public Trade(Player player) {
+    public Trade() {
         super("trade");
     }
 
