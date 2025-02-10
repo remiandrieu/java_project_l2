@@ -9,7 +9,7 @@ import game.board.util.Ressource;
 import game.player.*;
 
 public class AresBuildingTest {
-    Player player = new Player();
+    Player player = new Player("player");
     Land forest = new Forest();
     AresBuilding ares1;
 
@@ -45,11 +45,11 @@ public class AresBuildingTest {
         // C'est normal si ça ne marche pas pour l'instant!
         // Le test devrait marcher quand la classe Player sera complétée.
         
-        assertEquals(0, (player.getResources()).get(Ressource.WOOD));
+        assertEquals(0, (player.getRessources()).get(Ressource.WOOD));
         ares1.playerCollectRessources();
-        assertEquals(1, (player.getResources()).get(Ressource.WOOD));
+        assertEquals(1, (player.getRessources()).get(Ressource.WOOD));
         ares1.evolve();
         ares1.playerCollectRessources();
-        assertEquals(3, (player.getResources()).get(Ressource.WOOD));
+        assertEquals(3, (player.getRessources()).get(Ressource.WOOD));
     }
 }

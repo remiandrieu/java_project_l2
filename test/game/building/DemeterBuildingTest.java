@@ -10,7 +10,7 @@ import game.player.*;
 
 
 public class DemeterBuildingTest {
-    Player player = new Player();
+    Player player = new Player("player");
     Land forest = new Forest();
     DemeterBuilding demeter1;
 
@@ -40,11 +40,11 @@ public class DemeterBuildingTest {
         // C'est normal si ça ne marche pas pour l'instant!
         // Le test devrait marcher quand la classe Player sera complétée.
         
-        assertEquals(0, (player.getResources()).get(Ressource.WOOD));
+        assertEquals(0, (player.getRessources()).get(Ressource.WOOD));
         demeter1.playerCollectRessources();
-        assertEquals(1, (player.getResources()).get(Ressource.WOOD));
+        assertEquals(1, (player.getRessources()).get(Ressource.WOOD));
         demeter1.evolve();
         demeter1.playerCollectRessources();
-        assertEquals(3, (player.getResources()).get(Ressource.WOOD));
+        assertEquals(3, (player.getRessources()).get(Ressource.WOOD));
     }
 }
