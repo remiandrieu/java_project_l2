@@ -44,10 +44,10 @@ public class AresBuilding extends LandBuilding{
      * If the building is evolved, does it a second time.
      */
     public void playerCollectRessources() {
-        this.player.addResource(collectRessources());
+        this.player.addResource(this.collectRessources());
 
         if (this.isEvolved()){
-            this.player.addResource(collectRessources()); 
+            this.player.addResource(this.collectRessources()); 
         }
     }
 

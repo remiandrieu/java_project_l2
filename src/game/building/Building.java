@@ -41,7 +41,7 @@ public abstract class Building {
      * @return a string representation for 
      */
     public String toString() {
-        return "";
+        return this.land.toString() + " " + this.player.toString();
     }
 
 }
