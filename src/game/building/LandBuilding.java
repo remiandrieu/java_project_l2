@@ -33,4 +33,11 @@ public abstract class LandBuilding extends Building {
     public Ressource collectRessources(){
         return this.land.produce();
     }
+
+    /**
+     * The player who owns the building will collect the resources of the land.
+     */
+    public void playerCollectRessources(){
+        this.player.addResource(this.collectRessources());
+    }
 }

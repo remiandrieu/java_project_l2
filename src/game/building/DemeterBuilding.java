@@ -35,5 +35,16 @@ public class DemeterBuilding extends LandBuilding {
         return level;
     }
     
+    /**
+     * The player who owns the building will collect the resources of the land.
+     * If the building is evolved, does it a second time.
+     */
+    public void playerCollectRessources() {
+        super.playerCollectRessources();
+
+        if (this.isEvolved()){
+            super.playerCollectRessources(); 
+        }
+    }
 
 }
