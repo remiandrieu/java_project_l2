@@ -287,6 +287,16 @@ Rémi, Tom : Continuer l'implémentation des actions et commencer l'implémentat
 ### Ce qui a été réalisé
 
 Rémi, Tom :
+- uml Action:
+![image](images/week6_uml_action.png)
+
+- modif des classes dans le package action
+
+- encapsulation de la methode createGrid
+
+- test des nouvelles méthodes de board
+
+- creation de la classe Player
 
 Andreï, Samuel : 
 - Nous avons terminé l'implémentation des classes **AresBuilding** et **DemeterBuilding** en faisant quelques changements d'héritage etc...
@@ -295,6 +305,7 @@ Andreï, Samuel :
 ### Difficultés rencontrées
 
 Rémi, Tom :
+- Pas de gros problèmes rencontrés. Léger doutes sur la position de Player en paramètre des methodes act et isPossible ou en attribut.
 
 Andreï, Samuel : 
  - Nous avions dû écrire les tests pour les classes du package Building sans pouvoir les exécuter dans le terminal car le contenu de la branch Player n'est pas encore terminé (et donc mergé) et nous avons besoin de la classe **Player** pour les exécuter.
@@ -305,7 +316,7 @@ Andreï, Samuel :
 
 ### Objectifs pour la semaine
 
-Rémi, Tom :
+Rémi, Tom : Continuer l'implémentation des actions.
 
 Andreï, Samuel : Vérifier le bon fonctionnement des tests de **AresBuildingTest** et **DemeterBuildingTest** après l'implémentation de **Player**. Compléter la partie [Livrable 2](#livrable-2) du README.
 
