@@ -26,9 +26,7 @@ public class AresBuilding extends LandBuilding{
      * Evolves the building into an army. If the building is already an army, it does nothing.
      */
     public void evolve(){
-        if (!this.level){
-            this.level = true;
-        }
+        this.level = true;
     }
 
     /**

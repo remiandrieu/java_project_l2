@@ -12,45 +12,39 @@ import game.player.*;
 public class DemeterBuildingTest {
     Player player = new Player();
     Land forest = new Forest();
-    AresBuilding ares1;
+    DemeterBuilding demeter1;
 
     @BeforeEach
     public void init(){
-        ares1 = new AresBuilding(player, forest, 0);
+        demeter1 = new DemeterBuilding(player, forest);
     }
 
     @Test
-    void testAresBuildingGetters(){
-        assertEquals(player, ares1.getPlayer());
-        assertEquals(forest, ares1.getLand());
-        assertFalse(ares1.isEvolved());
+    void testDemeterBuildingGetters(){
+        assertEquals(player, demeter1.getPlayer());
+        assertEquals(forest, demeter1.getLand());
+        assertFalse(demeter1.isEvolved());
     }
 
     @Test
-    void testAresBuildingAddWarriors(){
-        ares1.addWarriors(5);
-        assertEquals(5, ares1.getDimension());
+    void testDemeterBuildingEvolve(){
+        assertFalse(demeter1.isEvolved());
+        demeter1.evolve();
+        assertTrue(demeter1.isEvolved());
+        demeter1.evolve();
+        assertTrue(demeter1.isEvolved());
     }
 
     @Test
-    void testAresBuildingEvolve(){
-        assertFalse(ares1.isEvolved());
-        ares1.evolve();
-        assertTrue(ares1.isEvolved());
-        ares1.evolve();
-        assertTrue(ares1.isEvolved());
-    }
-
-    @Test
-    void testAresPlayerCollectResources(){
+    void testDemeterPlayerCollectResources(){
         // C'est normal si ça ne marche pas pour l'instant!
         // Le test devrait marcher quand la classe Player sera complétée.
         
         assertEquals(0, (player.getResources()).get(Ressource.WOOD));
-        ares1.playerCollectRessources();
+        demeter1.playerCollectRessources();
         assertEquals(1, (player.getResources()).get(Ressource.WOOD));
-        ares1.evolve();
-        ares1.playerCollectRessources();
+        demeter1.evolve();
+        demeter1.playerCollectRessources();
         assertEquals(3, (player.getResources()).get(Ressource.WOOD));
     }
 }

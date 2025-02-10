@@ -4,7 +4,8 @@ import game.player.*;
 
 /* a class to represent the buildings for Demeter Game */
 public class DemeterBuilding extends LandBuilding {
-    protected boolean level; //Level of the building, false if farm, true if cultivation
+    // The dimension can replace the level: if it's equal to 1
+    // it is not evolved, if it's equal to 2, it is.
 
     /**
      * creates a building used in Demeter Game
@@ -12,18 +13,15 @@ public class DemeterBuilding extends LandBuilding {
      * @param land the land where the building is placed
      * @param dimension the dimension of the building
      */
-    public DemeterBuilding(Player player, Land land, int dimension){
-        super(player, land, dimension);
-        this.level = false;
+    public DemeterBuilding(Player player, Land land){
+        super(player, land, 1);
     }
 
     /**
      * Evolves the farm into a cultivation. If the building is already an exploitation, it does nothing.
      */
     public void evolve(){
-        if (!this.level){
-            this.level = true;
-        }
+        this.dimension = 2;
     }
 
     /**
@@ -32,7 +30,7 @@ public class DemeterBuilding extends LandBuilding {
      * @return the state of the building.
      */
     public boolean isEvolved(){
-        return level;
+        return this.dimension == 2;
     }
     
     /**
