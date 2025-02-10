@@ -17,6 +17,9 @@ public abstract class Player {
     public Player(String name){
         this.name = name;
         this.ressources = new HashMap<>();
+        for (Ressource r : Ressource.values()){
+            this.ressources.put(r, 0);
+        }
     }
 
     /**
@@ -33,6 +36,40 @@ public abstract class Player {
      */
     public Map<Ressource, Integer> getRessources() {
         return ressources;
+    }
+
+    /**
+     * Add a ressource to the player ressources
+     * @param r a Ressource
+     */
+    public void addRessoure(Ressource r) {
+        this.ressources.put(r, this.ressources.get(r)+1);
+    }
+
+    /**
+     * Add a ressource to the player ressources
+     * @param r a Ressource
+     * @param value the number of ressources to add
+     */
+    public void addRessoure(Ressource r, int value) {
+        this.ressources.put(r, this.ressources.get(r)+value);
+    }
+
+    /**
+     * Add a ressource to the player ressources
+     * @param r a Ressource
+     */
+    public void removeRessoure(Ressource r) {
+        this.ressources.put(r, this.ressources.get(r)-1);
+    }
+
+    /**
+     * Add a ressource to the player ressources
+     * @param r a Ressource
+     * @param value the number of ressources to add
+     */
+    public void removeRessoure(Ressource r, int value) {
+        this.ressources.put(r, this.ressources.get(r)-value);
     }
 
 
