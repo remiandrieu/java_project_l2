@@ -6,14 +6,14 @@ import game.player.Player;
 public class Trade extends CommonAction{
     
     public Trade(Player player) {
-        super(player, "trade");
+        super("trade");
     }
 
-    public boolean isPossible() {
+    public boolean isPossible(Player player) {
         return true;
     }
 
-    public void act() {
+    public void act(Player player) {
     }
 
     public Ressource[] availableRessources(){

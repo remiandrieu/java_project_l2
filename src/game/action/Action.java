@@ -6,17 +6,15 @@ import game.player.Player;
 public abstract class Action {
     
     protected Map<Ressource,Integer> cost = new HashMap<>();
-    protected Player player;
     protected String label;
 
-    public Action(Player player ,String label) {
-        this.player = player;
+    public Action(String label) {
         this.label = label;
     }
 
-    public abstract boolean isPossible();
+    public abstract boolean isPossible(Player player);
 
-    public abstract void act();
+    public abstract void act(Player player);
 
     public String getLabel(){
         return this.label;

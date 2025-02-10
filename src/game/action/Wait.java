@@ -6,14 +6,14 @@ public class Wait extends CommonAction{
     protected String label = "abstract CommonAction";
 
     public Wait(Player player){
-        super(player, "wait");
+        super("wait");
     }
 
-    public boolean isPossible() {
+    public boolean isPossible(Player player) {
         return true;
     }
 
-    public void act() {
+    public void act(Player player) {
     }
 
 }

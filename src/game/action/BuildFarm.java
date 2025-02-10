@@ -5,17 +5,17 @@ import game.player.Player;
 
 public class BuildFarm extends DemeterAction {
 
-    public BuildFarm(Player player){
-        super(player, "build a farm");
+    public BuildFarm(){
+        super("build a farm");
         this.cost.put(Ressource.WOOD, 1);
         this.cost.put(Ressource.ORE, 1);
     }
 
-    public boolean isPossible(){
+    public boolean isPossible(Player player){
         return true;
     }
 
-    public void act(){
+    public void act(Player player){
     }
 
 }
