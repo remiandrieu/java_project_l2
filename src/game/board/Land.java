@@ -6,9 +6,21 @@ import game.building.*;
 public abstract class Land extends Tile {
     protected Building building;
 
+    /**
+     * Changes the building of the land.
+     * @param building
+     */
     public void changeBuilding(Building building){
         this.building = building;
     }
+
+    /**
+     * Return true if the land has a building
+     * @return true if the land has a building.
+     */
+    public boolean hasBuilding(){
+        return building != null;
+    } 
 
     /** creates an abstract method to produce the different ressources of the board
      * @return the ressource
