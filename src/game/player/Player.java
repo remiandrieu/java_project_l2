@@ -3,7 +3,7 @@ import java.util.*;
 import game.board.util.*;
 
 /** a class to model a player */
-public abstract class Player {
+public class Player {
 
     protected String name;
     protected Map<Ressource, Integer> ressources;
