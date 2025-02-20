@@ -23,6 +23,7 @@ public abstract class Building {
         this.player = player;
         this.land = land;
         this.cost =  new HashMap<>();
+        land.changeBuilding(this);
     }
 
     /**
