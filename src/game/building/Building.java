@@ -1,11 +1,10 @@
 package game.building;
 
-import java.util.Map;
-
 import game.board.*;
 import game.board.util.Ressource;
 import game.player.*;
 
+import java.util.*;
 
 /* a class to represent the buildings */
 public abstract class Building {
@@ -23,6 +22,7 @@ public abstract class Building {
     public Building(Player player, Land land) {
         this.player = player;
         this.land = land;
+        this.cost =  new HashMap<>();
     }
 
     /**
