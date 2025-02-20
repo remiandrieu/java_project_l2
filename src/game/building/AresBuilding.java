@@ -42,6 +42,9 @@ public class AresBuilding extends LandBuilding{
      */
     public void addWarriors(int warriors){
         this.dimension += warriors;
+        if(this.dimension > 5 && !this.isEvolved()){
+            this.evolve();
+        } 
     }
 
     /**

@@ -1,6 +1,7 @@
 package game.building;
 
 import game.board.*;
+import game.player.Player;
 
 public class Livrable2 {
     public static void main(String[] args) throws InvalidPositionException {
@@ -12,6 +13,9 @@ public class Livrable2 {
         }
         Board board = new Board(length, width);
         board.createGrid();
+        Player player = new Player("player");
+        Land land;
+        Building ares1 = new AresBuilding(player, land, 0);
         System.out.println(board.boardToString(true));
     }
 }
