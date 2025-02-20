@@ -85,7 +85,58 @@ Nous n'avons pas trouvé de moyen pour que si un nouveau type de terrain est ajo
 
 ### Atteinte des objectifs
 
+La classe abstraite Building représente l'ensemble des bâtiments.
+Un building est caractérisé par le joueur possédant ce building, la case sur laquelle est implémenté ce building et son coût de création.  
+La classe Port hérite de la classe Building. Elle permet de représenter un port. Quand le jeu sera implémenté, un port ne pourra être posé qu'à côté d'une case Sea.
+La classe LandBuilding hérite de la classe Building. Elle possède deux attribut supplémentaire : sa dimension et son coût d'évolution. 
+La méthode collectRessources récupère la ressource associée à la case de ce bâtiment, et la méthode playerCollectRessources ajoute cette ressource aux ressources possédées par le joueur.  
+Les classes AresBuilding et DemeterBuilding représentent les batiments des différents jeux.  
+Pour DemeterBuilding : un batiment de dimension 1 représente une ferme et un batiment de dimension 2 représente une exploitation.  
+Pour AresBuilding : la dimension du batiment correspond aux nombre de guerriers. Une armée évolue en camp à partir de 6 guerriers ou en utilisant des ressources.
+Dans ces deux classes, la méthode evolve permet de faire évoluer le batiment, isEvolved permet de savoir si un batiment est évolué, et playerCollectRessources collecte la ressource (2 fois si le batiment est évolué, 1 fois sinon).  
+La méthode addWarriors de la classe AresBuilding ajoute le nombre de guerriers passé en paramètre.  
+Dans la classe Land, un attribut building indique le bâtiment présent sur la case, et la méthode changeBuilding permet de changer le bâtiment.
+____
+
+#### UML:
+
+![Board](images/livrable2_uml_board.png)
+
+![Building](images/livrable2_uml_building.png)
+
+![Player](images/livrable2_uml_player.png)
+
+![Action](images/livrable2_uml_action.png)
+
+![Objective](images/livrable2_uml_objective.png)
+
+____
+
+#### commandes
+
+Pour générer la documentation :  
+```javadoc -sourcepath ./src -d ./docs -subpackages game game.board game.board.util game.player game.building```
+
+Pour consulter la documentation, ouvrez `index.html` situé dans le dossier `docs`
+
+Pour compiler :
+```javac -sourcepath src src/game/building/*.java src/game/player/*.java src/game/board/*.java src/game/board/util/*.java -d classes```
+
+
+Pour créer un jar exécutable `livrable2.jar` :
+```jar cvfe livrable2.jar game.board.Livrable2 -C classes game```
+
+Pour exécuter `livrable2.jar` :
+```java -jar livrable2.jar```
+
+
+Pour compiler et exécuter les tests :  
+```javac -classpath junit-console.jar:classes -sourcepath test test/game/board/*.java && java -jar junit-console.jar -classpath test:classes -scan-classpath```
+
 ### Difficultés restant à résoudre
+
+On pourrait trouver une meilleure méthode pour vérifier si une case possède un bâtiment.
+Lors de notre première implémentation, le coût d'évolution n'était présent que dans la méthode evolve. Un attribut costEvolution a été créé pour pouvoir afficher le coût d'évolution et permettre la vérification des ressources du joueur lors de l'évolution (ces deux aspects seront implémentées quand les actions seront créées).
 
 ## Livrable 3
 
