@@ -242,7 +242,7 @@ public class Board {
 
     /**
      * Get a String representation of the board
-     * @param buildings true to print buildings
+     * @param buildings true to include buildings in the representation
      * @return a String representation of the board
      * @throws InvalidPositionException 
     */

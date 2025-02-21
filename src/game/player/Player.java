@@ -3,10 +3,12 @@ import java.util.*;
 import game.board.util.*;
 
 /** a class to model a player */
-public abstract class Player {
+public class Player {
 
     protected String name;
     protected Map<Ressource, Integer> ressources;
+    protected final int id;
+    private static int currentId = 0;
     // protected List<Building> buildings;
     // protected Objective objective;
 
@@ -15,8 +17,11 @@ public abstract class Player {
      * @param name the name of the player
      */
     public Player(String name){
+        currentId++;
         this.name = name;
         this.ressources = new HashMap<>();
+        this.id = currentId;
+
         for (Ressource r : Ressource.values()){
             this.ressources.put(r, 0);
         }
@@ -27,7 +32,7 @@ public abstract class Player {
      * @return the name of the player
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -35,7 +40,15 @@ public abstract class Player {
      * @return the ressources of the player
      */
     public Map<Ressource, Integer> getRessources() {
-        return ressources;
+        return this.ressources;
+    }
+
+    /**
+     * Get the id of the player
+     * @return the id of the player
+     */
+    public int getId() {
+        return this.id;
     }
 
     /**
