@@ -45,13 +45,19 @@ public abstract class Building {
     public Map<Ressource, Integer> getCost(){
         return cost;
     }
-    
-    /**
-     * Returns the string presentation for the board.
-     * @return a string representation for 
+
+    /** collects the ressources produced by this building's landland
+     * @return the ressource produced
      */
-    public String toString() {
-        return this.land.toString() + " " + this.player.toString();
+    public Ressource collectRessources(){
+        return this.land.produce();
+    }
+
+    /**
+     * The player who owns the building will collect the resources of the land.
+     */
+    public void playerCollectRessources(){
+        this.player.addRessoure(this.collectRessources());
     }
 
 }

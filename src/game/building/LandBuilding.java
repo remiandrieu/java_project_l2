@@ -26,18 +26,4 @@ public abstract class LandBuilding extends Building {
     public int getDimension() {
         return this.dimension;
     }
-
-    /** collects the ressources produced by this building's landland
-     * @return the ressource produced
-     */
-    public Ressource collectRessources(){
-        return this.land.produce();
-    }
-
-    /**
-     * The player who owns the building will collect the resources of the land.
-     */
-    public void playerCollectRessources(){
-        this.player.addRessoure(this.collectRessources());
-    }
 }
