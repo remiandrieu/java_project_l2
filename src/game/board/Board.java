@@ -252,10 +252,12 @@ public class Board {
             for (int y = 0; y < this.WIDTH; y++){
                 Tile tile = this.getTile(x, y);
                 if (tile instanceof Sea){
-                    res += ". ";
+                    res += ".  ";
+                } else if (buildings && tile.hasBuilding()){
+                    res += tile.toString().charAt(0) + tile.building.toString().charAt(0) + tile.building.player.getId();
                 } else {
-                    res += tile.toString().charAt(0) + " ";
-                }
+                    res += tile.toString().charAt(0) + "  ";
+                }      
             }
             res += '\n';
         }
