@@ -253,6 +253,8 @@ public class Board {
                 Tile tile = this.getTile(x, y);
                 if (tile instanceof Sea){
                     res += ".  ";
+                } else if (buildings && tile.hasBuilding()){
+                    res += tile.toString().charAt(0) + tile.building.toString().charAt(0) + tile.building.player.getId();
                 } else {
                     res += tile.toString().charAt(0) + "  ";
                 }      
