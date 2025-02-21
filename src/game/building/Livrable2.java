@@ -7,10 +7,18 @@ public class Livrable2 {
     public static void main(String[] args) throws InvalidPositionException {
         int length = 10;
         int width = 10;
-        if (args.length >= 2){
+        if (args.length == 2){
             length = Integer.parseInt(args[0]);
             width = Integer.parseInt(args[1]);
         }
+        else if (args.length == 1 || args.length > 2){
+            System.out.println("How to use :");
+            System.out.println("Livrable2.java <length> <width>");
+            System.out.println("<length> : length of the board >= 3");
+            System.out.println("<width> : width of the board >= 3");
+            return;
+        }
+        
         Board board = new Board(length, width);
         board.createGrid();
 
