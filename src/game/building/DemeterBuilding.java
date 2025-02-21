@@ -52,4 +52,12 @@ public class DemeterBuilding extends LandBuilding {
         }
     }
 
+    public String toString() {
+        if (this.isEvolved()){
+            return "Big farm";
+        }else{
+            return "Farm";
+        } 
+    }
+
 }

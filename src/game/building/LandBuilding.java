@@ -26,4 +26,7 @@ public abstract class LandBuilding extends Building {
     public int getDimension() {
         return this.dimension;
     }
+
+    /** Creates a string representation of the building */
+    public abstract String toString();
 }

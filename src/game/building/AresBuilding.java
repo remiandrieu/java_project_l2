@@ -59,4 +59,13 @@ public class AresBuilding extends LandBuilding{
         }
     }
 
+    public String toString() {
+        if (this.isEvolved()){
+            return "Army";
+        }else{
+            return "Camp";
+        } 
+
+    }
+
 }

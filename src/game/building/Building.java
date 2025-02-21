@@ -60,4 +60,7 @@ public abstract class Building {
         this.player.addRessoure(this.collectRessources());
     }
 
+    /** Creates a string representation of the building */
+    public abstract String toString();
+
 }
