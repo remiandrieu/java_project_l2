@@ -10,17 +10,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.lang.model.util.Elements;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import game.board.Board;
 import game.board.util.Ressource;
 import game.player.Player;
 import listchooser.util.Input;
@@ -66,16 +62,16 @@ public class TradeTest {
 
     @Test
     void testAct() {
-		player.addRessoure(Ressource.ORE);
-        player.addRessoure(Ressource.ORE);
-        player.addRessoure(Ressource.ORE);
-        player.addRessoure(Ressource.SHEEP);
-        player.addRessoure(Ressource.SHEEP);
-        player.addRessoure(Ressource.SHEEP);
-        this.simulateInput("0");
-        this.simulateInput("0");
-        trade.act(player);
-        assertSame(0, player.getRessources().get(Ressource.ORE));
+		  player.addRessoure(Ressource.ORE);
+      player.addRessoure(Ressource.ORE);
+      player.addRessoure(Ressource.ORE);
+      player.addRessoure(Ressource.SHEEP);
+      player.addRessoure(Ressource.SHEEP);
+      player.addRessoure(Ressource.SHEEP);
+      this.simulateInput("0");
+      this.simulateInput("0");
+      trade.act(player);
+      assertSame(0, player.getRessources().get(Ressource.ORE));
 
     }
 
