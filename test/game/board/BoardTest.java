@@ -120,4 +120,49 @@ public class BoardTest {
             this.board.setTile(LENGTH, 2, forest);
         });
     }
+
+    @Test
+    void testFillWithSea() throws InvalidPositionException{
+        this.board.fillWithSea();
+        for(int x = 0 ; x < LENGTH ; x++){
+            for(int y = 0 ; y < WIDTH ; y++){
+                assertTrue(this.board.getTile(x, y) instanceof Sea);
+            }
+        }
+    }
+
+    @Test
+    void testLandNeighbour() throws InvalidPositionException{
+        this.board.fillWithSea();
+        assertFalse(this.board.landNeighbour(0, 0)[0]);
+        assertFalse(this.board.landNeighbour(0, 0)[1]);
+        
+        Tile forest = new Forest();
+        this.board.setTile(0, 1, forest);
+        assertTrue(this.board.landNeighbour(0, 0)[0]);
+        assertFalse(this.board.landNeighbour(0, 0)[1]);
+
+        this.board.setTile(1, 0, forest);
+        assertTrue(this.board.landNeighbour(0, 0)[0]);
+        assertTrue(this.board.landNeighbour(0, 0)[1]);
+    }
+
+    @Test
+    void testRandomSeaNeighbour() throws InvalidPositionException{
+        this.board.fillWithSea();
+        Tile forest = new Forest();
+        this.board.setTile(0, 1, forest);
+        this.board.setTile(1, 0, forest);
+        for (int i = 0; i < 100; i++){
+            int[] coordinates = this.board.randomSeaNeighbour(1, 1);
+            assertTrue(this.board.getTile(coordinates[0], coordinates[1]) instanceof Sea);
+            boolean found = false;
+            for(Tile tile : this.board.getNeighbourTiles(1, 1)){
+                if(this.board.getTile(coordinates[0], coordinates[1]) == tile){
+                    found = true;
+                }
+            }
+            assertTrue(found);
+        }
+    }
 }
