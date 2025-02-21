@@ -2,9 +2,6 @@ package game.action;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.lang.model.util.Elements;
-
 import game.board.util.Ressource;
 import game.player.Player;
 import listchooser.InteractiveListChooser;
@@ -30,7 +27,7 @@ public class Trade extends CommonAction{
             l.add(r);
         }
         Ressource chosenRessource2 = lc.choose("Which ressource do you want ?", l);
-		System.out.println("You've chosen : " + chosenRessource);
+		System.out.println("You've chosen : " + chosenRessource2);
         player.addRessoure(chosenRessource2);
     }
 
