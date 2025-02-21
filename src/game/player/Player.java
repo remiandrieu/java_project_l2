@@ -69,7 +69,7 @@ public class Player {
     }
 
     /**
-     * Add a ressource to the player ressources
+     * Removes a ressource from the player ressources
      * @param r a Ressource
      */
     public void removeRessoure(Ressource r) {
@@ -77,9 +77,9 @@ public class Player {
     }
 
     /**
-     * Add a ressource to the player ressources
+     * Removes a given amount of ressources from the player ressources
      * @param r a Ressource
-     * @param value the number of ressources to add
+     * @param value the number of ressources to remove
      */
     public void removeRessoure(Ressource r, int value) {
         this.ressources.put(r, this.ressources.get(r)-value);
