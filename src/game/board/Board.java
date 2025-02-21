@@ -11,7 +11,7 @@ public class Board {
     protected Tile[][] grid;
     protected final int LENGTH;
     protected final int WIDTH;
-    protected final double PROBABILITY_PICKING_NEW_LOCATION = 0.35;
+    protected final double PROBABILITY_PICKING_NEW_LOCATION = 0.5;
 
     /**
      * Create a board with a length and a width
@@ -132,17 +132,64 @@ public class Board {
     }
 
     /**
-     * Create a new grid according to the rules of the game
-     * @throws InvalidPositionException 
-    */
-    public void createGrid() throws InvalidPositionException{
-        // At first, fill the grid with Sea tiles
+     * fill the grid with Sea tiles
+     * @throws InvalidPositionException
+     */
+    public void fillWithSea() throws InvalidPositionException{
         for (int i = 0; i < this.LENGTH; i++){
             for (int j = 0; j < this.WIDTH; j++){
                 this.setTile(i, j, new Sea());
             }
         }
+    }
 
+    /**
+     * check if there is no land or no sea around
+     * @param x the line number
+     * @param y the column number
+     * @return a array of 2 booleans hasLandNeighbour and allLandNeighbour
+     * @throws InvalidPositionException
+     */
+    public boolean[] landNeighbour(int x, int y) throws InvalidPositionException{
+        Tile[] neighbours = this.getNeighbourTiles(x, y);
+        boolean hasLandNeighbour = false;
+        boolean allLandNeighbour = true;
+        for (Tile neighbourTile : neighbours){
+            if (neighbourTile instanceof Sea){
+                allLandNeighbour = false;
+            }
+            if (neighbourTile instanceof Land){
+                hasLandNeighbour = true;
+            }
+        }
+        boolean[] res = {hasLandNeighbour,allLandNeighbour};
+        return res;
+    }
+
+    /**
+     * Pick the location of a random neighboring tile that is a sea
+     * @param x the line number
+     * @param y the column number
+     * @return the coordinates of the neighboring tile
+     * @throws InvalidPositionException
+     */
+    public int[] randomSeaNeighbour(int x, int y) throws InvalidPositionException{
+        int[] randomNeighbourCoordinates = {-1,-1};
+        while (!this.isCorrectLocation(randomNeighbourCoordinates[0], randomNeighbourCoordinates[1]) || !(this.getTile(randomNeighbourCoordinates[0], randomNeighbourCoordinates[1]) instanceof Sea)){
+            randomNeighbourCoordinates = getRandomCoordinatesNeighbour(x, y);
+        }
+        return randomNeighbourCoordinates;
+    }
+
+    /**
+     * Create a new grid according to the rules of the game
+     * @throws InvalidPositionException 
+    */
+    public void createGrid() throws InvalidPositionException{
+        
+        // Fill the grid with Sea tiles
+        fillWithSea();
+        
         Random random = new Random();
 
         // Choose a random number of land to place. This number is between 1/4 and 1/3 of the total number of tiles
@@ -152,6 +199,7 @@ public class Board {
         int x = random.nextInt(this.LENGTH);
         int y = random.nextInt(this.WIDTH);
         boolean hasLandNeighbour = false;
+        
         // While there are lands to place
         while (numberOfLand > 1 || !hasLandNeighbour) {
 
@@ -166,17 +214,9 @@ public class Board {
                 numberOfLand--;
 
                 // Get the neighboring tiles and check if there is land
-                Tile[] neighbours = this.getNeighbourTiles(x, y);
-                hasLandNeighbour = false;
-                boolean allLandNeighbour = true;
-                for (Tile neighbourTile : neighbours){
-                    if (neighbourTile instanceof Sea){
-                        allLandNeighbour = false;
-                    }
-                    if (neighbourTile instanceof Land){
-                        hasLandNeighbour = true;
-                    }
-                }
+                boolean[] booleanLandNeighbour = landNeighbour(x, y);
+                hasLandNeighbour = booleanLandNeighbour[0];
+                boolean allLandNeighbour = booleanLandNeighbour[1];
 
                 /**
                  * If there isn't land in the neighboring tiles, you must place another tile next to it
@@ -185,26 +225,13 @@ public class Board {
                  * Otherwise pick an other random location
                  */
                 if (!hasLandNeighbour || (!allLandNeighbour && (random.nextDouble() < this.PROBABILITY_PICKING_NEW_LOCATION))){
-                    
-                    int neighbouringX = -1;
-                    int neighbouringY = -1;
-                    int[] randomNeighbourCoordinates;
-                    
-                    // Pick the location of a random neighboring tile that is not already a land tile
-                    while (!this.isCorrectLocation(neighbouringX, neighbouringY) || !(this.getTile(neighbouringX, neighbouringY) instanceof Sea)){
-                        randomNeighbourCoordinates = getRandomCoordinatesNeighbour(x, y);
-                        neighbouringX = randomNeighbourCoordinates[0];
-                        neighbouringY = randomNeighbourCoordinates[1];
-                    }
-                    x = neighbouringX;
-                    y = neighbouringY;
-
+                    int[] coordinates = randomSeaNeighbour(x, y);
+                    x = coordinates[0];
+                    y = coordinates[1];
                     chooseRandomLocation = false;
-
                 } 
 
             }
-
             if (chooseRandomLocation){
                 // Pick a random location on the board
                 x = random.nextInt(this.LENGTH);
@@ -215,7 +242,7 @@ public class Board {
 
     /**
      * Get a String representation of the board
-     * @param buildings true to print buildings
+     * @param buildings true to include buildings in the representation
      * @return a String representation of the board
      * @throws InvalidPositionException 
     */
@@ -225,10 +252,10 @@ public class Board {
             for (int y = 0; y < this.WIDTH; y++){
                 Tile tile = this.getTile(x, y);
                 if (tile instanceof Sea){
-                    res += ". ";
+                    res += ".  ";
                 } else {
-                    res += tile.toString().charAt(0) + " ";
-                }
+                    res += tile.toString().charAt(0) + "  ";
+                }      
             }
             res += '\n';
         }

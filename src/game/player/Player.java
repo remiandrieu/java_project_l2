@@ -7,6 +7,10 @@ public class Player {
 
     protected String name;
     protected Map<Ressource, Integer> ressources;
+
+    protected final int id;
+    private static int currentId = 0;
+
     // protected List<Building> buildings;
     // protected Objective objective;
 
@@ -15,8 +19,11 @@ public class Player {
      * @param name the name of the player
      */
     public Player(String name){
+        currentId++;
         this.name = name;
         this.ressources = new HashMap<>();
+        this.id = currentId;
+
         for (Ressource r : Ressource.values()){
             this.ressources.put(r, 0);
         }
@@ -27,7 +34,7 @@ public class Player {
      * @return the name of the player
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -35,7 +42,15 @@ public class Player {
      * @return the ressources of the player
      */
     public Map<Ressource, Integer> getRessources() {
-        return ressources;
+        return this.ressources;
+    }
+
+    /**
+     * Get the id of the player
+     * @return the id of the player
+     */
+    public int getId() {
+        return this.id;
     }
 
     /**
@@ -56,7 +71,7 @@ public class Player {
     }
 
     /**
-     * Add a ressource to the player ressources
+     * Removes a ressource from the player ressources
      * @param r a Ressource
      */
     public void removeRessoure(Ressource r) {
@@ -64,9 +79,9 @@ public class Player {
     }
 
     /**
-     * Add a ressource to the player ressources
+     * Removes a given amount of ressources from the player ressources
      * @param r a Ressource
-     * @param value the number of ressources to add
+     * @param value the number of ressources to remove
      */
     public void removeRessoure(Ressource r, int value) {
         this.ressources.put(r, this.ressources.get(r)-value);
