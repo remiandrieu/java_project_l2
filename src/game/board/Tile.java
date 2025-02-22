@@ -7,12 +7,4 @@ public abstract class Tile {
      * @return true if the tile has a building.
      */
     public abstract boolean hasBuilding();
-
-    /**
-     * Returns position of the tile on the board it's associated with
-     * @return the position of this tile
-     */
-    public int[] getPosition(){ //A FAIRE
-        return new int[2]; 
-    }  
 }
