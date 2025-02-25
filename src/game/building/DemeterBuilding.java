@@ -12,7 +12,6 @@ public class DemeterBuilding extends LandBuilding {
      * creates a building used in Demeter Game
      * @param player the player who owns this building
      * @param land the land where the building is placed
-     * @param dimension the dimension of the building
      */
     public DemeterBuilding(Player player, Land land){
         super(player, land, 1);
