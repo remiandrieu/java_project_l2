@@ -131,9 +131,7 @@ Pour exécuter `livrable2.jar` :
 
 
 Pour compiler et exécuter les tests :  
-```javac -classpath junit-console.jar:classes -sourcepath test test/game/board/*.java && java -jar junit-console.jar -classpath test:classes -scan-classpath```
-
-```javac -classpath junit-console.jar:classes -sourcepath test test/game/building/*.java && java -jar junit-console.jar -classpath test:classes -scan-classpath```
+```javac -classpath junit-console.jar:classes -sourcepath test test/game/board/*.java test/game/building/*.java && java -jar junit-console.jar -classpath test:classes -scan-classpath```
 
 ### Difficultés restant à résoudre
 
