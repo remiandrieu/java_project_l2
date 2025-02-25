@@ -71,8 +71,8 @@ public class Livrable2 {
             posX = 0;
             posY = 0;
             Tile tile = board.getTile(0, 0);
-            while(x < length && ((tile instanceof Sea) || !(tile instanceof Sea) && tile.hasBuilding())){
-                while(y < width && ((tile instanceof Sea) || !(tile instanceof Sea) && tile.hasBuilding())){
+            while(x < length && ((tile instanceof Sea) || !(tile instanceof Sea) && ((Land) tile).hasBuilding())){
+                while(y < width && ((tile instanceof Sea) || !(tile instanceof Sea) && ((Land) tile).hasBuilding())){
                     posX = x;
                     posY = y;
                     tile = board.getTile(x, y);

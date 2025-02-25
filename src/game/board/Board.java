@@ -252,11 +252,11 @@ public class Board {
             for (int y = 0; y < this.WIDTH; y++){
                 Tile tile = this.getTile(x, y);
                 if (tile instanceof Sea){
-                    res += ".  ";
+                    res += ".   ";
                 } else if (buildings && ((Land) tile).hasBuilding()){
-                    res += tile.toString().charAt(0) + ((Land) tile).getBuilding().toString().charAt(0) + ((Land) tile).getBuilding().getPlayer().getId();
+                    res += "" + tile.toString().charAt(0) + ((Land) tile).getBuilding().toString().charAt(0) + ((Land) tile).getBuilding().getPlayer().getId() + " ";
                 } else {
-                    res += tile.toString().charAt(0) + "  ";
+                    res += tile.toString().charAt(0) + "   ";
                 }      
             }
             res += '\n';

@@ -88,7 +88,7 @@ Nous n'avons pas trouvé de moyen pour que si un nouveau type de terrain est ajo
 La classe abstraite Building représente l'ensemble des bâtiments.
 Un building est caractérisé par le joueur possédant ce building, la case sur laquelle est implémenté ce building et son coût de création.  
 La classe Port hérite de la classe Building. Elle permet de représenter un port. Quand le jeu sera implémenté, un port ne pourra être posé qu'à côté d'une case Sea.
-La classe LandBuilding hérite de la classe Building. Elle possède deux attribut supplémentaire : sa dimension et son coût d'évolution. 
+La classe LandBuilding hérite de la classe Building. Elle possède un attribut supplémentaire : sa dimension. 
 La méthode collectRessources récupère la ressource associée à la case de ce bâtiment, et la méthode playerCollectRessources ajoute cette ressource aux ressources possédées par le joueur.  
 Les classes AresBuilding et DemeterBuilding représentent les batiments des différents jeux.  
 Pour DemeterBuilding : un batiment de dimension 1 représente une ferme et un batiment de dimension 2 représente une exploitation.  
@@ -135,8 +135,7 @@ Pour compiler et exécuter les tests :
 
 ### Difficultés restant à résoudre
 
-On pourrait trouver une meilleure méthode pour vérifier si une case possède un bâtiment.
-Lors de notre première implémentation, le coût d'évolution n'était présent que dans la méthode evolve. Un attribut costEvolution a été créé pour pouvoir afficher le coût d'évolution et permettre la vérification des ressources du joueur lors de l'évolution (ces deux aspects seront implémentées quand les actions seront créées).
+Le coût d'évolution n'est présent que dans la méthode evolve. Un attribut costEvolution poura être créé pour pouvoir afficher le coût d'évolution et permettre la vérification des ressources du joueur lors de l'évolution (ces deux aspects seront implémentées quand les actions seront créées).
 
 ## Livrable 3
 
