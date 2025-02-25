@@ -124,7 +124,7 @@ Pour compiler :
 
 
 Pour créer un jar exécutable `livrable2.jar` :
-```jar cvfe livrable2.jar game.board.Livrable2 -C classes game```
+```jar cvfe livrable2.jar game.building.Livrable2 -C classes game```
 
 Pour exécuter `livrable2.jar` :
 ```java -jar livrable2.jar```
@@ -132,6 +132,8 @@ Pour exécuter `livrable2.jar` :
 
 Pour compiler et exécuter les tests :  
 ```javac -classpath junit-console.jar:classes -sourcepath test test/game/board/*.java && java -jar junit-console.jar -classpath test:classes -scan-classpath```
+
+```javac -classpath junit-console.jar:classes -sourcepath test test/game/building/*.java && java -jar junit-console.jar -classpath test:classes -scan-classpath```
 
 ### Difficultés restant à résoudre
 
