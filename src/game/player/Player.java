@@ -7,8 +7,10 @@ public class Player {
 
     protected String name;
     protected Map<Ressource, Integer> ressources;
+
     protected final int id;
     private static int currentId = 0;
+
     // protected List<Building> buildings;
     // protected Objective objective;
 
