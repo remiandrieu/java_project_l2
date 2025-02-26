@@ -12,7 +12,16 @@ public abstract class Action {
         this.label = label;
     }
 
-    public abstract boolean isPossible(Player player);
+    public boolean isPossible(Player player){
+        boolean res = true;
+        for(Ressource key: cost.keySet()){
+            if (player.getRessources().get(key) < cost.get(key)){
+                res = false;
+            }
+        }
+        return res;
+    }
+
 
     public abstract void act(Player player);
 

@@ -107,7 +107,7 @@ public class Livrable2 {
                     System.out.println(building.toString() + " rapporte 2 " + building.collectRessources());
                 } else {
                     System.out.println(building.toString() + " rapporte 1 " + building.collectRessources());
-                } 
+                }
             } else {
                 DemeterBuilding demeterBuilding = (DemeterBuilding) building;
                 if (demeterBuilding.isEvolved()){
