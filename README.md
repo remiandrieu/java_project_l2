@@ -374,9 +374,17 @@ Andreï, Samuel : Vérifier le bon fonctionnement des tests de **AresBuildingTes
 
 ### Ce qui a été réalisé
 
+Création d'**EvolveFarm**, **EvolveArmy**, **BuildFarm**, **BuildArmy**.  
+En début de séance, nous avons continué de travailler sur les actions, notamment les méthodes `isPossible()` et `act()`.
+
 ### Difficultés rencontrées
 
+Au début de la séance, nous voulions ajouter les conditions d'exécution d'action dans chaque classe d'action. Finalement, comme les actions s'exécutent uniquement grâce à leur coût et que l'on a accès à cette information dans la classe **Action**, nous pouvons juste implémenter `isPossible()` dans **action** et ne pas avoir à le refaire pour chaque nouvelles classes d'action.  
+Dans certaines méthodes, nous avons besoin d'attributs et de méthodes qui n'ont pas encore été implémentées. Par exemple, dans **BuildArmy**, nous avons besoin du numberOfWarriors que le player possède, et pour ça nous avons besoin de **AresPlayer** qui n'existe pas encore.
+
 ### Objectifs pour la semaine
+
+Continuer l'implémentation des différentes actions.
 
 ## Semaine 8
 
