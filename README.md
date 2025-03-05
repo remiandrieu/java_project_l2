@@ -389,10 +389,38 @@ Continuer l'implémentation des différentes actions.
 ## Semaine 8
 
 ### Ce qui a été réalisé
-
+Tom:  
+    Ajout et modification dans buildFarm, buildArmy, ActionMain.  
+    Création de AresPLayer.  
+Andreï:  
+    Méthodes `act()` de **EvolveArmy** et **EvolveFarm**  
+    Ajout de getters dans **Board**  
+Samuel/Rémi:  
+    Début de la méthode detectIslands et getNeighbourCoordinates dans Board
 ### Difficultés rencontrées
+Tom:  
+    Difficulté pour les test des méthodes avec des inputs.  
+    Difficulté pour l'ajout d'un batiment sur le board dabs ActionMain.  
+Andreï:  
+    Difficultés vis à vis des coordonnées des tiles dans les méthodes act, résolution du problème en utilisant des tableaux.  
+    Les méthodes `isEvolved()` et `evolve()` n'étant pas définies dans **Building**, on doit effectuer souvent des Cast ce qui peut rendre le code plus confus.  
+Samuel/Rémi:  
+    Lors de la création de `detectIslands()`, nous nous demandions si il serait interéssant de renvoyer un ensemble d'ensemble (car chaque île / coordonnées de tuile dans un île est unique).
+    Il a fallu nous remémorer comment déclarer un ensemble.  
+    Ensuite, il a fallu gérer les problèmes de types (choisir entre `Land` et `Tile` le plus souvent). 
 
 ### Objectifs pour la semaine
+Tom:    
+    Corriger le ActionMain pour l'ajout d'un batiment afin de tester act sur une tuile avec un batiment.
+    Modifier les tests de TradeTest en encapsulant les parties sans input.
+    Finir BuildArmy.
+    Faire les tests pour BuildFarm et BuildArmy.
+    Tester BuildArmy dans le ActionMain.
+    Faire la documentation.
+Andreï:  
+    Faire les tests pour les méthodes `act()` de **EvolveArmy** et **EvolveFarm**.  
+Samuel/Rémi:  
+    Terminer l'implémentation de la méthode `detectIslands()` et la tester (nous n'avions pas pu le faire en raison d'un bug sur les PCs du M5).
 
 ## Semaine 9
 
