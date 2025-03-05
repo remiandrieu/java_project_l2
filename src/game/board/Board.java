@@ -66,6 +66,38 @@ public class Board {
     }
 
     /**
+     * Get the coordinates of the neighbours of the tile at line x and column y
+     * @param x the line number
+     * @param y the column number
+     * @return The coordinates of the neighbours of the tile at position (x, y)
+     * @throws InvalidPositionException if x y out of grid
+    */
+    public int[][] getNeighbourCoordinates(int x, int y) throws InvalidPositionException{
+        if (!isCorrectLocation(x, y)){
+            throw new InvalidPositionException("coordinates " + x + ", " + y + " out of grid");
+        }
+        int[][] res = new int[4][];
+        
+        if (x-1 >= 0){
+            int[] co = {x-1, y};
+            res[0] = co;
+        }
+        if (y+1 < this.WIDTH){
+            int[] co = {x-1, y+1};
+            res[1] = co;
+        }
+        if (x+1 < this.LENGTH){
+            int[] co = {x+1, y};
+            res[2] = co;
+        }
+        if (y-1 >= 0){
+            int[] co = {x, y-1};
+            res[3] = co;
+        }
+        return res;
+    }
+
+    /**
      * Checks if a location is on the grid
      * @param x the line number
      * @param y the column number
