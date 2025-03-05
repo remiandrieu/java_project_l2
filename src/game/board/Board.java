@@ -1,6 +1,6 @@
 package game.board;
 
-import java.util.Random;
+import java.util.*;
 
 import game.board.util.Ressource;
 
@@ -271,6 +271,43 @@ public class Board {
             }
         }
     }
+
+    /**
+     * Detects the island of this board
+     * @return a set of sets (islands) of lists of coordinates
+     * @throws InvalidPositionException
+     */
+    public Set<Set<int[]>> detectIslands() throws InvalidPositionException {
+        Set<Set<int[]>> res = new HashSet<>();
+        Queue<int[]> file = new LinkedList<>();
+        Set<int[]> visitees = new HashSet<>();
+        for(int i = 0; i < this.LENGTH; i++){
+            for(int j = 0; j < this.WIDTH; j++){
+                Tile current = this.getTile(i, j);
+                int[] coordinates = {i, j};
+                if (current instanceof Land && !(visitees.contains(coordinates))){
+                    file.add(coordinates);
+                    visitees.add(coordinates);
+                }
+                if (file.size() != 0){
+                    Set<int[]> current_island = new HashSet<>();
+                    while(file.size() != 0){
+                        int[] tuile = file.remove();
+                        current_island.add(tuile);
+                        int[][] neighbourCoordinates = this.getNeighbourCoordinates(tuile[0], tuile[1]);
+                        for(int[] voisin : neighbourCoordinates){
+                            if (this.getTile(voisin[0], voisin[1]) instanceof Land && !(visitees.contains(voisin))){
+                                file.add(voisin);
+                            }
+                        }
+                    }
+                    res.add(current_island);                  
+                }
+            }
+        }
+        return res;
+    }
+
 
     /**
      * Get a String representation of the board
