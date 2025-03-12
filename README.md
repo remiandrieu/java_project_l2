@@ -440,9 +440,29 @@ Terminer l'implémentation de la méthode `detectIslands()` et la tester (nous n
 
 ### Ce qui a été réalisé
 
+- L'action `BuyWarriors` et diverses classes de tests pour les actions.
+- L'action `PlayThief`. 
+- Correction des méthodes `detectIslands()` et `getNeighbourTiles()` par l'ajout d'une nouvelle classe pour représenter des coordonnées.
+- Améliorations de BuildFarm et BuildArmy.
+
 ### Difficultés rencontrées
 
+#### Tom :
+
+#### Andreï :
+
+#### Rémi / Samuel :
+
+Pour réaliser `detectIslands()` il a fallu créer une nouvelle classe `Coordinates` car on ne pouvait pas comparer deux mêmes coordonnées.
+Nous avons finalement remplacé les HashSets par des ArrayLists pour plus de simplicité.
+
 ### Objectifs pour la semaine
+
+#### Rémi :
+- Regarder si la classe `Coordinates` peut être utilisée à d'autres endroits.
+- Continuer l'action `BuildPort`.
+
+#### Tom :
 
 ## Semaine 10
 
