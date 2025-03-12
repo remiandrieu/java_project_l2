@@ -464,6 +464,9 @@ Nous avons finalement remplacé les HashSets par des ArrayLists pour plus de sim
 
 #### Tom :
 
+#### Andreï / Samuel :
+
+
 ## Semaine 10
 
 ### Ce qui a été réalisé
