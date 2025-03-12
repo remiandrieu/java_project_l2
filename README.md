@@ -440,14 +440,17 @@ Terminer l'implémentation de la méthode `detectIslands()` et la tester (nous n
 
 ### Ce qui a été réalisé
 
-- L'action `BuyWarriors` et diverses classes de tests pour les actions.
+- L'action `BuyWarriors`.
 - L'action `PlayThief`. 
 - Correction des méthodes `detectIslands()` et `getNeighbourTiles()` par l'ajout d'une nouvelle classe pour représenter des coordonnées.
-- Améliorations de BuildFarm et BuildArmy.
+- Correction de BuildFarm.
+- Correction dans l'héritage des actions.
+- Ajout de tests.
 
 ### Difficultés rencontrées
 
 #### Tom :
+Probleme avec le type de player dans la signiature de act().
 
 #### Andreï :
 
@@ -463,6 +466,8 @@ Nous avons finalement remplacé les HashSets par des ArrayLists pour plus de sim
 - Continuer l'action `BuildPort`.
 
 #### Tom :
+- Faire les tests de BuildFarm et BuildArmy
+- Finir BuildArmy
 
 #### Andreï / Samuel :
 
