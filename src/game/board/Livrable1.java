@@ -13,7 +13,9 @@ public class Livrable1 {
                 Board board = new Board(length, width);
                 board.createGrid();
                 System.out.println(board.boardToString(false));
+                System.out.println(board.detectIslands());
             } catch (Exception e){
+                System.out.println(e);
                 error = true;
             }
         } else {

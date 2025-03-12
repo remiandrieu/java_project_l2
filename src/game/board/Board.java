@@ -72,26 +72,28 @@ public class Board {
      * @return The coordinates of the neighbours of the tile at position (x, y)
      * @throws InvalidPositionException if x y out of grid
     */
-    public int[][] getNeighbourCoordinates(int x, int y) throws InvalidPositionException{
+    public Coordinates[] getNeighbourCoordinates(Coordinates tuile) throws InvalidPositionException{
+        int x = tuile.getX();
+        int y = tuile.getY();
         if (!isCorrectLocation(x, y)){
             throw new InvalidPositionException("coordinates " + x + ", " + y + " out of grid");
         }
-        int[][] res = new int[4][];
+        Coordinates[] res = new Coordinates[4];
         
         if (x-1 >= 0){
-            int[] co = {x-1, y};
+            Coordinates co = new Coordinates(x-1, y);
             res[0] = co;
         }
         if (y+1 < this.WIDTH){
-            int[] co = {x-1, y+1};
+            Coordinates co = new Coordinates(x, y+1);
             res[1] = co;
         }
         if (x+1 < this.LENGTH){
-            int[] co = {x+1, y};
+            Coordinates co = new Coordinates(x+1, y);
             res[2] = co;
         }
         if (y-1 >= 0){
-            int[] co = {x, y-1};
+            Coordinates co = new Coordinates(x, y-1);
             res[3] = co;
         }
         return res;
@@ -274,34 +276,35 @@ public class Board {
 
     /**
      * Detects the island of this board
-     * @return a set of sets (islands) of lists of coordinates
+     * @return a list of list (islands) of coordinates
      * @throws InvalidPositionException
      */
-    public Set<Set<int[]>> detectIslands() throws InvalidPositionException {
-        Set<Set<int[]>> res = new HashSet<>();
-        Queue<int[]> file = new LinkedList<>();
-        Set<int[]> visitees = new HashSet<>();
+    public ArrayList<ArrayList<Coordinates>> detectIslands() throws InvalidPositionException {
+        ArrayList<ArrayList<Coordinates>> res = new ArrayList<>();
+        Queue<Coordinates> file = new LinkedList<>();
+        ArrayList<Coordinates> visitees = new ArrayList<>();
         for(int i = 0; i < this.LENGTH; i++){
             for(int j = 0; j < this.WIDTH; j++){
                 Tile current = this.getTile(i, j);
-                int[] coordinates = {i, j};
+                Coordinates coordinates = new Coordinates(i, j);
                 if (current instanceof Land && !(visitees.contains(coordinates))){
                     file.add(coordinates);
                     visitees.add(coordinates);
                 }
                 if (file.size() != 0){
-                    Set<int[]> current_island = new HashSet<>();
+                    ArrayList<Coordinates> current_island = new ArrayList<>();
                     while(file.size() != 0){
-                        int[] tuile = file.remove();
+                        Coordinates tuile = file.remove();
                         current_island.add(tuile);
-                        int[][] neighbourCoordinates = this.getNeighbourCoordinates(tuile[0], tuile[1]);
-                        for(int[] voisin : neighbourCoordinates){
-                            if (this.getTile(voisin[0], voisin[1]) instanceof Land && !(visitees.contains(voisin))){
+                        visitees.add(tuile);
+                        Coordinates[] neighbourCoordinates = this.getNeighbourCoordinates(tuile);
+                        for(Coordinates voisin : neighbourCoordinates){
+                            if ((voisin != null) && (this.getTile(voisin.getX(), voisin.getY())) instanceof Land && (!(visitees.contains(voisin))) && (!(file.contains(voisin)))){
                                 file.add(voisin);
                             }
                         }
                     }
-                    res.add(current_island);                  
+                    res.add(current_island);
                 }
             }
         }
@@ -315,7 +318,7 @@ public class Board {
      * @return a String representation of the board
      * @throws InvalidPositionException 
     */
-        public String boardToString(boolean buildings) throws InvalidPositionException{
+    public String boardToString(boolean buildings) throws InvalidPositionException{
         String res = "";
         for (int x = 0; x < this.LENGTH; x++){
             for (int y = 0; y < this.WIDTH; y++){
