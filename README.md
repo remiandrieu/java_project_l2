@@ -322,42 +322,44 @@ Andreï, Samuel: Création des classes **Port**, **AresBuilding** et **DemeterBu
 
 ### Difficultés rencontrées
 
-Rémi, Tom: Player n'est pas encore implémenté, cela crée des erreurs et on ne peut pas implémenter certaines methodes. Masquage sur l'attribut label. Le type int n'est pas accepté dans la HashMap. Nous avons eu des doutes concernant le choix de la ressource à échanger fait par le joueur.
-
+#### Rémi / Tom: 
+Player n'est pas encore implémenté, cela crée des erreurs et on ne peut pas implémenter certaines methodes. Masquage sur l'attribut label. Le type int n'est pas accepté dans la HashMap. Nous avons eu des doutes concernant le choix de la ressource à échanger fait par le joueur.
 Difficulté au niveau des variables dans **AresBuilding**. Pour la méthode *evolve()* de **DemeterBuilding**, nous avons eu du mal à définir les modalités d'évolution du bâtiment.
 
 ### Objectifs pour la semaine
 
-Andreï, Samuel: continuer l'implémentation de **DemeterBuilding**, réfléchir aux tests pour **AresBuilding** et **DemeterBuilding**.
+#### Andreï / Samuel : 
+continuer l'implémentation de **DemeterBuilding**, réfléchir aux tests pour **AresBuilding** et **DemeterBuilding**.
 
-Rémi, Tom : Continuer l'implémentation des actions et commencer l'implémentation des joueurs. Réduire la taille de la fonction createBoard. Reféchir sur l'enum ressource. Faire les tests des nouvelles methodes dans board. Penser à une formule qui calcul la proba en fonction de la taille du plateau.
+#### Rémi / Tom : 
+Continuer l'implémentation des actions et commencer l'implémentation des joueurs. Réduire la taille de la fonction createBoard. Reféchir sur l'enum ressource. Faire les tests des nouvelles methodes dans board. Penser à une formule qui calcul la proba en fonction de la taille du plateau.
 
 ## Semaine 6
 
 ### Ce qui a été réalisé
 
-Rémi, Tom :
-- uml Action:
+#### Rémi / Tom :
+- UML Action:
 ![image](images/week6_uml_action.png)
 
-- modif des classes dans le package action
+- Modification des classes dans le package action
 
-- encapsulation de la methode createGrid
+- Encapsulation de la méthode `createGrid()`
 
-- test des nouvelles méthodes de board
+- Test des nouvelles méthodes de `Board`
 
-- creation de la classe Player
+- Création de la classe `Player`
 
-Andreï, Samuel : 
+Andreï / Samuel : 
 - Nous avons terminé l'implémentation des classes **AresBuilding** et **DemeterBuilding** en faisant quelques changements d'héritage etc...
 - Nous avons créé et complété les fichier de tests **AresBuildingTest** et **DemeterBuildingTest**. 
 
 ### Difficultés rencontrées
 
-Rémi, Tom :
-- Pas de gros problèmes rencontrés. Léger doutes sur la position de Player en paramètre des methodes act et isPossible ou en attribut.
+#### Rémi / Tom :
+- Pas de gros problèmes rencontrés. Légers doutes sur la position de Player en paramètre des méthodes act et isPossible ou en attribut.
 
-Andreï, Samuel : 
+#### Andreï / Samuel : 
  - Nous avions dû écrire les tests pour les classes du package Building sans pouvoir les exécuter dans le terminal car le contenu de la branch Player n'est pas encore terminé (et donc mergé) et nous avons besoin de la classe **Player** pour les exécuter.
 
  - Gérer les dimensions d'un bâtiment pour le faire évoluer dans la classe **DemeterBuilding**.
@@ -366,9 +368,11 @@ Andreï, Samuel :
 
 ### Objectifs pour la semaine
 
-Rémi, Tom : Continuer l'implémentation des actions.
+#### Rémi / Tom : 
+- Continuer l'implémentation des actions.
 
-Andreï, Samuel : Vérifier le bon fonctionnement des tests de **AresBuildingTest** et **DemeterBuildingTest** après l'implémentation de **Player**. Compléter la partie [Livrable 2](#livrable-2) du README.
+#### Andreï / Samuel : 
+- Vérifier le bon fonctionnement des tests de **AresBuildingTest** et **DemeterBuildingTest** après l'implémentation de **Player**. Compléter la partie [Livrable 2](#livrable-2) du README.
 
 ## Semaine 7
 
@@ -389,38 +393,48 @@ Continuer l'implémentation des différentes actions.
 ## Semaine 8
 
 ### Ce qui a été réalisé
-Tom:  
-    Ajout et modification dans buildFarm, buildArmy, ActionMain.  
-    Création de AresPLayer.  
-Andreï:  
-    Méthodes `act()` de **EvolveArmy** et **EvolveFarm**  
-    Ajout de getters dans **Board**  
-Samuel/Rémi:  
-    Début de la méthode detectIslands et getNeighbourCoordinates dans Board
+
+#### Tom :  
+- Ajout et modification dans buildFarm, buildArmy, ActionMain.  
+- Création de AresPlayer
+
+#### Andreï :  
+- Méthodes `act()` de **EvolveArmy** et **EvolveFarm**  
+- Ajout de getters dans **Board**  
+
+#### Samuel/Rémi:  
+
+- Début de la méthode detectIslands et getNeighbourCoordinates dans **Board**
+
 ### Difficultés rencontrées
-Tom:  
-    Difficulté pour les test des méthodes avec des inputs.  
-    Difficulté pour l'ajout d'un batiment sur le board dabs ActionMain.  
-Andreï:  
-    Difficultés vis à vis des coordonnées des tiles dans les méthodes act, résolution du problème en utilisant des tableaux.  
-    Les méthodes `isEvolved()` et `evolve()` n'étant pas définies dans **Building**, on doit effectuer souvent des Cast ce qui peut rendre le code plus confus.  
-Samuel/Rémi:  
-    Lors de la création de `detectIslands()`, nous nous demandions si il serait interéssant de renvoyer un ensemble d'ensemble (car chaque île / coordonnées de tuile dans un île est unique).
-    Il a fallu nous remémorer comment déclarer un ensemble.  
-    Ensuite, il a fallu gérer les problèmes de types (choisir entre `Land` et `Tile` le plus souvent). 
+
+#### Tom:  
+- Difficulté pour les tests des méthodes avec des inputs.  
+- Difficulté pour l'ajout d'un batiment sur le board dans ActionMain.  
+
+#### Andreï:  
+Difficultés vis à vis des coordonnées des tiles dans les méthodes act, résolution du problème en utilisant des tableaux.  
+Les méthodes `isEvolved()` et `evolve()` n'étant pas définies dans **Building**, on doit effectuer souvent des Cast ce qui peut rendre le code plus confus.  
+
+#### Samuel/Rémi:  
+Lors de la création de `detectIslands()`, nous nous demandions si il serait interéssant de renvoyer un ensemble d'ensemble (car chaque île / coordonnées de tuile dans un île est unique).
+Il a fallu nous remémorer comment déclarer un ensemble.  
+Ensuite, il a fallu gérer les problèmes de types (choisir entre `Land` et `Tile` le plus souvent). 
 
 ### Objectifs pour la semaine
-Tom:    
-    Corriger le ActionMain pour l'ajout d'un batiment afin de tester act sur une tuile avec un batiment.
-    Modifier les tests de TradeTest en encapsulant les parties sans input.
-    Finir BuildArmy.
-    Faire les tests pour BuildFarm et BuildArmy.
-    Tester BuildArmy dans le ActionMain.
-    Faire la documentation.
-Andreï:  
-    Faire les tests pour les méthodes `act()` de **EvolveArmy** et **EvolveFarm**.  
-Samuel/Rémi:  
-    Terminer l'implémentation de la méthode `detectIslands()` et la tester (nous n'avions pas pu le faire en raison d'un bug sur les PCs du M5).
+#### Tom:    
+- Corriger le ActionMain pour l'ajout d'un batiment afin de tester act sur une tuile avec un batiment.
+- Modifier les tests de TradeTest en encapsulant les parties sans input.
+- Finir BuildArmy.
+- Faire les tests pour BuildFarm et BuildArmy.
+- Tester BuildArmy dans le ActionMain.
+- Faire la documentation.  
+
+#### Andreï:  
+Faire les tests pour les méthodes `act()` de **EvolveArmy** et **EvolveFarm**. 
+
+#### Samuel/Rémi:  
+Terminer l'implémentation de la méthode `detectIslands()` et la tester (nous n'avions pas pu le faire en raison d'un bug sur les PCs du M5).
 
 ## Semaine 9
 
