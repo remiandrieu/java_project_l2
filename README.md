@@ -454,6 +454,8 @@ Probleme avec le type de player dans la signiature de act().
 
 #### Andreï :
 
+Difficultés au niveau des tests pour les actions `evolveFarm()` et `evolveArmy()`, finalement réalisés dans `ActionMain`. 
+
 #### Rémi / Samuel :
 
 Pour réaliser `detectIslands()` il a fallu créer une nouvelle classe `Coordinates` car on ne pouvait pas comparer deux mêmes coordonnées.
@@ -471,7 +473,7 @@ Nous avons finalement remplacé les HashSets par des ArrayLists pour plus de sim
 
 #### Andreï / Samuel :
 
--
+- Commencer à réfléchir sur l'implémentation des actions restantes.
 
 ## Semaine 10
 
