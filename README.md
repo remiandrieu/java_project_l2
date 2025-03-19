@@ -481,7 +481,8 @@ Nous avons finalement remplacé les HashSets par des ArrayLists pour plus de sim
 
 #### Samuel :
 
-Ecriture des classes de tests `BuyThiefTest` et `PlayThiefTest`.
+- Écriture des classes de tests `BuyThiefTest` et `PlayThiefTest`.
+- Début de l'implémentation de l'action `PlaceWarrior`.
 
 ### Difficultés rencontrées
 
@@ -494,6 +495,7 @@ Les ressources des joueurs étant stockées dans une HashMap, je ne me souvenais
 ### Objectifs pour la semaine
 
 Continuer et terminer l'implémentation des tests du package action.
+Finir l'implémentation de l'action `PlaceWarrior`.
 
 ## Semaine 11
 
