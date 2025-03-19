@@ -1,6 +1,7 @@
 package game.player;
 import java.util.*;
 import game.board.util.*;
+import game.building.*;
 
 /** a class to model a player */
 public class Player {
@@ -10,18 +11,18 @@ public class Player {
 
     protected final int id;
     private static int currentId = 0;
-
-    // protected List<Building> buildings;
+    protected List<Building> buildings;
     // protected Objective objective;
 
     /**
-     * Create a board with a name and an empty HashMap for ressources
+     * Create a player with a name, an empty HashMap for ressources and an empty ArrayList for buildings
      * @param name the name of the player
      */
     public Player(String name){
         currentId++;
         this.name = name;
         this.ressources = new HashMap<>();
+        this.buildings = new ArrayList<>();
         this.id = currentId;
 
         for (Ressource r : Ressource.values()){
@@ -43,6 +44,14 @@ public class Player {
      */
     public Map<Ressource, Integer> getRessources() {
         return this.ressources;
+    }
+
+    /**
+     * Get the buildings of the player
+     * @return the buildings of the player
+     */
+    public List<Building> getBuildings() {
+        return this.buildings;
     }
 
     /**
