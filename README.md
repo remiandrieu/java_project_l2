@@ -479,9 +479,21 @@ Nous avons finalement remplacé les HashSets par des ArrayLists pour plus de sim
 
 ### Ce qui a été réalisé
 
+#### Samuel :
+
+Ecriture des classes de tests `BuyThiefTest` et `PlayThiefTest`.
+
 ### Difficultés rencontrées
 
+#### Samuel :
+
+Problème quand la méthode `act` à tester contient des inputs. Il a fallu encapsuler la méthode `act` dans une autre méthode à part et ne lui laisser que les inputs. Grâce à ça, on peut tester la méthode à part car elle ne contient pas d'input.
+Dans la méthode `PlayThief`, on vole certaines ressources des joueurs victimes, ce qui veut dire que ces ressources après le vol seront remises à 0. Dans le test, il faut donc vérifier que ces ressources sont bien passées à zéro.  
+Les ressources des joueurs étant stockées dans une HashMap, je ne me souvenais plus de la méthode permettant de récupérer une valeur à partir de sa clé.
+
 ### Objectifs pour la semaine
+
+Continuer et terminer l'implémentation des tests du package action.
 
 ## Semaine 11
 
