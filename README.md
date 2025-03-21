@@ -484,6 +484,12 @@ Nous avons finalement remplacé les HashSets par des ArrayLists pour plus de sim
 - Écriture des classes de tests `BuyThiefTest` et `PlayThiefTest`.
 - Début de l'implémentation de l'action `PlaceWarrior`.
 
+#### Tom :
+
+- encapsulation et test de BuildFfarm et BuildArmy. 
+- modif de isPossible pour tester la présence d'un Land sans Building.
+- implémentation de BuildArmy terminé.
+
 ### Difficultés rencontrées
 
 #### Samuel :
