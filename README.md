@@ -141,6 +141,35 @@ Le coût d'évolution n'est présent que dans la méthode evolve. Un attribut co
 
 ### Atteinte des objectifs
 
+### UML
+
+#### commandes
+
+Pour générer la documentation :  
+```javadoc -sourcepath ./src -d ./docs -subpackages game game.board game.board.util game.player game.building game.action listchooser listchooser.util```
+
+Pour consulter la documentation, ouvrez `index.html` situé dans le dossier `docs`
+
+Pour compiler :
+```javac -sourcepath src src/game/building/*.java src/game/player/*.java src/game/board/*.java src/game/board/util/*.java src/game/action/*.java src/listchooser/*.java src/listchooser/util/*.java -d classes```
+
+
+Pour créer un jar exécutable `livrable3demeter.jar` :
+```jar cvfe livrable3demeter.jar game.action.Livrable3demeter -C classes game```
+
+Pour exécuter `livrable3demeter.jar` :
+```java -jar livrable3demeter.jar```
+
+Pour créer un jar exécutable `livrable3ares.jar` :
+```jar cvfe livrable3ares.jar game.action.Livrable3ares -C classes game```
+
+Pour exécuter `livrable3ares.jar` :
+```java -jar livrable3ares.jar```
+
+
+Pour compiler et exécuter les tests :  
+```javac -classpath junit-console.jar:classes -sourcepath test test/game/board/*.java test/game/building/*.java test/game/action/*.java test/listchooser/util/*.java && java -jar junit-console.jar -classpath test:classes -scan-classpath```
+
 ### Difficultés restant à résoudre
 
 ## Livrable 4
