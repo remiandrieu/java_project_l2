@@ -24,6 +24,14 @@ public class Board {
         this.grid = new Tile[LENGTH][WIDTH];
     }
 
+    public int getLength() {
+        return LENGTH;
+    }
+
+    public int getWidth() {
+        return WIDTH;
+    }
+
     /**
      * Get the tile at line x and column y
      * @param x the line number
@@ -129,19 +137,19 @@ public class Board {
      * Get a random type of Land 
      * @return a random type of Land
      */
-    public Land getRandomTypeOfLand(){
+    public Land getRandomTypeOfLand(int x, int y){
         Random random = new Random();
         Ressource[] ressources = Ressource.values();
         Ressource randomRessource = ressources[random.nextInt(ressources.length)];
         switch(randomRessource){
             case WHEAT: 
-                return new Fields();
+                return new Fields(x, y);
             case SHEEP:
-                return new Pasture();
+                return new Pasture(x, y);
             case ORE:
-                return new Mountain();
+                return new Mountain(x, y);
             default:
-                return new Forest();
+                return new Forest(x, y);
         }
     }
 
@@ -172,7 +180,7 @@ public class Board {
     public void fillWithSea() throws InvalidPositionException{
         for (int i = 0; i < this.LENGTH; i++){
             for (int j = 0; j < this.WIDTH; j++){
-                this.setTile(i, j, new Sea());
+                this.setTile(i, j, new Sea(i, j));
             }
         }
     }
@@ -243,7 +251,7 @@ public class Board {
             if (this.getTile(x, y) instanceof Sea) {
                 
                 // Choose a random type of Land, place it and decrease the number lands to place by 1.
-                Land randomLand = this.getRandomTypeOfLand();
+                Land randomLand = this.getRandomTypeOfLand(x, y);
                 this.setTile(x, y, randomLand);
                 numberOfLand--;
 

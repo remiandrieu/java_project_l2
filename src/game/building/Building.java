@@ -42,6 +42,10 @@ public abstract class Building {
         return this.land;
     }
 
+    /**
+     * Returns the cost of creation of the building
+     * @return the cost of creation of the building
+     */
     public Map<Ressource, Integer> getCost(){
         return cost;
     }

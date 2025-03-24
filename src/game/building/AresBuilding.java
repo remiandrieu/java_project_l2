@@ -12,9 +12,13 @@ public class AresBuilding extends LandBuilding{
     public AresBuilding(Player player, Land land, int numberWarriors){
         super(player, land, numberWarriors);
         this.level = false;
+
         this.cost.put(Ressource.WOOD, 1);
         this.cost.put(Ressource.SHEEP, 1);
         this.cost.put(Ressource.WHEAT, 1);
+
+        this.evolveCost.put(Ressource.WOOD, 2);
+        this.evolveCost.put(Ressource.ORE, 3);
     }
 
     /**
@@ -31,9 +35,6 @@ public class AresBuilding extends LandBuilding{
      */
     public void evolve(){
         this.level = true;
-        this.cost.clear();
-        this.cost.put(Ressource.WOOD, 2);
-        this.cost.put(Ressource.ORE, 3);
     }
 
     /**
@@ -46,6 +47,23 @@ public class AresBuilding extends LandBuilding{
             this.evolve();
         } 
     }
+
+    /**
+     * Removes one warrior from the building.
+     */
+    public void removeWarrior(){
+        this.dimension -= 1;
+        if(this.dimension <= 5 && this.isEvolved()){
+            this.devolve();
+        } 
+    } 
+
+    /**
+     * Devolves the army into a camp.
+     */
+    public void devolve(){
+        this.level = false;
+    } 
 
     /**
      * The player who owns the building will collect the resources of the land.
@@ -61,9 +79,9 @@ public class AresBuilding extends LandBuilding{
 
     public String toString() {
         if (this.isEvolved()){
-            return "Army";
+            return "Camp("+ this.dimension + " warriors)";
         }else{
-            return "Camp";
+            return "Army("+ this.dimension + " warriors)";
         } 
 
     }

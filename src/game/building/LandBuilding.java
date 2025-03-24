@@ -1,5 +1,9 @@
 package game.building;
+import java.util.HashMap;
+import java.util.Map;
+
 import game.board.*;
+import game.board.util.Ressource;
 import game.player.*;
 
 /* a class to represent the classic buildings */
@@ -7,6 +11,7 @@ public abstract class LandBuilding extends Building {
 
     /* attributes */
     protected int dimension;
+    protected Map<Ressource, Integer> evolveCost;
 
     /**
      * creates a building with its player, land and dimension
@@ -17,6 +22,7 @@ public abstract class LandBuilding extends Building {
     public LandBuilding(Player player, Land land, int dimension){
         super(player, land);
         this.dimension = dimension;
+        this.evolveCost = new HashMap<>();
     }
 
     /** gets the dimension of this building
@@ -24,6 +30,14 @@ public abstract class LandBuilding extends Building {
      */
     public int getDimension() {
         return this.dimension;
+    }
+
+    /**
+     * Returns the cost of evolution of the building
+     * @return the cost of evolution of the building
+     */
+    public Map<Ressource, Integer> getEvolveCost() {
+        return this.evolveCost;
     }
 
     /** Creates a string representation of the building */

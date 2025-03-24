@@ -15,8 +15,13 @@ public class DemeterBuilding extends LandBuilding {
      */
     public DemeterBuilding(Player player, Land land){
         super(player, land, 1);
+
         this.cost.put(Ressource.WOOD, 1);
         this.cost.put(Ressource.ORE, 1);
+
+        this.evolveCost.put(Ressource.WOOD, 2);
+        this.evolveCost.put(Ressource.WHEAT, 1);
+        this.evolveCost.put(Ressource.SHEEP, 1);
     }
 
     /**
@@ -24,10 +29,6 @@ public class DemeterBuilding extends LandBuilding {
      */
     public void evolve(){
         this.dimension = 2;
-        this.cost.clear();
-        this.cost.put(Ressource.WOOD, 2);
-        this.cost.put(Ressource.WHEAT, 1);
-        this.cost.put(Ressource.SHEEP, 1);
     }
 
     /**

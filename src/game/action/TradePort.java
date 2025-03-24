@@ -5,19 +5,21 @@ import java.util.List;
 
 import game.board.Board;
 import game.board.util.Ressource;
+import game.building.Building;
+import game.building.Port;
 import game.player.Player;
 import listchooser.InteractiveListChooser;
 import listchooser.ListChooser;
 
 /* a class to model trading action */
-public class Trade extends CommonAction{
+public class TradePort extends CommonAction{
     
     /**
      * creates a class for trading
      * @param board
      */
-    public Trade(Board board) {
-        super("trade", board);
+    public TradePort(Board board) {
+        super("trade port", board);
     }
 
     /**
@@ -26,7 +28,14 @@ public class Trade extends CommonAction{
      * @return true if the player can trade, else false
      */
     public boolean isPossible(Player player) {
-        return this.availableRessources(player).size() > 0;
+        boolean hasPort = false;
+        for (Building b : player.getBuildings()){
+            if(b instanceof Port){
+                hasPort = true;
+                break;
+            }
+        }
+        return hasPort && this.availableRessources(player).size() > 0;
     }
 
     /**
@@ -34,7 +43,7 @@ public class Trade extends CommonAction{
      * @param player the player
      */
     public void act(Player player) {
-        System.out.println(player + " trades some ressources.");
+        System.out.println(player + " trades some ressources using their port.");
         ListChooser<Ressource> lc = new InteractiveListChooser<>();
         Ressource chosenRessource = lc.choose("Which ressource do you spend ?", this.availableRessources(player));
         System.out.println("You've chosen : " + chosenRessource);
@@ -42,7 +51,7 @@ public class Trade extends CommonAction{
         Ressource chosenRessource2 = lc.choose("Which ressource do you want ?", l);
         System.out.println("You've chosen : " + chosenRessource2);
 		this.buy(player, chosenRessource2);
-        System.out.println(player + " has exchanged 3 " + chosenRessource + " for 1 " + chosenRessource2 + "\n");
+        System.out.println(player + " has exchanged 2 " + chosenRessource + " for 1 " + chosenRessource2 + "\n");
     }
 
     public void buy(Player player, Ressource chosenRessource2) {
@@ -50,7 +59,7 @@ public class Trade extends CommonAction{
     }
 
     public List<Ressource> spend(Player player, Ressource chosenRessource) {
-        player.removeRessoure(chosenRessource, 3);
+        player.removeRessoure(chosenRessource, 2);
         List<Ressource> l = new ArrayList<>();
 		for (Ressource r : Ressource.values()){
             l.add(r);
@@ -66,7 +75,7 @@ public class Trade extends CommonAction{
     public List<Ressource> availableRessources(Player player){
         ArrayList<Ressource> ressources = new ArrayList<>();
         for (Ressource r: Ressource.values()){
-            if (player.getRessources().containsKey(r) && player.getRessources().get(r)>=3){
+            if (player.getRessources().containsKey(r) && player.getRessources().get(r)>=2){
                 ressources.add(r);
             }
         }

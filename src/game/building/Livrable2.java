@@ -64,7 +64,7 @@ public class Livrable2 {
      * @return the first available land tile on the board
     */
     public static Land firstAvailableLand(Board board, int length, int width){
-        Land land = new Forest(); // Définition de base de land, la fonction ne fonctionne pas si on ne définit pas cette variable 
+        Land land = new Forest(0,0); // Définition de base de land, la fonction ne fonctionne pas si on ne définit pas cette variable 
         try{
             int x = 0;
             int y = 0;
@@ -93,8 +93,8 @@ public class Livrable2 {
      */
     public static void displayBuilding(Building building){
         System.out.println(building.toString() + " est placé sur la case (" + posX + ", " + posY + ")");
-        System.out.println(building.toString() + " coûte " + building.getCost());
         if (building instanceof Port){
+            System.out.println(building.toString() + " coûte " + building.getCost());
             System.out.println(building.toString() + " rapporte 1 " + building.collectRessources());
         } else {
             if (building instanceof AresBuilding){
@@ -104,16 +104,20 @@ public class Livrable2 {
                 // Par exemple, créer une classe "EvolvedBuilding".
                 AresBuilding aresBuilding = (AresBuilding) building;
                 if (aresBuilding.isEvolved()){
-                    System.out.println(building.toString() + " rapporte 2 " + building.collectRessources());
+                    System.out.println(aresBuilding.toString() + " coûte " + aresBuilding.getEvolveCost());
+                    System.out.println(aresBuilding.toString() + " rapporte 2 " + aresBuilding.collectRessources());
                 } else {
-                    System.out.println(building.toString() + " rapporte 1 " + building.collectRessources());
+                    System.out.println(aresBuilding.toString() + " coûte " + aresBuilding.getCost());
+                    System.out.println(aresBuilding.toString() + " rapporte 1 " + aresBuilding.collectRessources());
                 }
             } else {
                 DemeterBuilding demeterBuilding = (DemeterBuilding) building;
                 if (demeterBuilding.isEvolved()){
-                    System.out.println(building.toString() + " rapporte 2 " + building.collectRessources());
+                    System.out.println(demeterBuilding.toString() + " coûte " + demeterBuilding.getEvolveCost());
+                    System.out.println(demeterBuilding.toString() + " rapporte 2 " + demeterBuilding.collectRessources());
                 } else {
-                    System.out.println(building.toString() + " rapporte 1 " + building.collectRessources());
+                    System.out.println(demeterBuilding.toString() + " coûte " + demeterBuilding.getCost());
+                    System.out.println(demeterBuilding.toString() + " rapporte 1 " + demeterBuilding.collectRessources());
                 } 
             }
         } 

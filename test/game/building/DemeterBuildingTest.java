@@ -11,7 +11,7 @@ import game.player.*;
 
 public class DemeterBuildingTest {
     Player player = new Player("player");
-    Land forest = new Forest();
+    Land forest = new Forest(0, 0);
     DemeterBuilding demeter1;
 
     @BeforeEach

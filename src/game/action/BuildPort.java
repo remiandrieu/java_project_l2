@@ -1,25 +1,27 @@
 package game.action;
 
 import game.board.Board;
+import game.board.Coordinates;
 import game.board.InvalidPositionException;
 import game.board.Land;
 import game.board.Sea;
 import game.board.util.Ressource;
-import game.building.DemeterBuilding;
+import game.building.Port;
+import game.player.AresPlayer;
 import game.player.Player;
 import listchooser.util.Input;
 
-/* a class to model the BuildFarm action in Ares Game */
-public class BuildFarm extends DemeterAction {
+/* a class to model the BuildPort action in Ares Game */
+public class BuildPort extends CommonAction {
 
     /**
      * Create the BuildFarm action
      * @param board the board
      */
-    public BuildFarm(Board board){
-        super("build a farm", board);
+    public BuildPort(Board board){
+        super("build a port", board);
         this.cost.put(Ressource.WOOD, 1);
-        this.cost.put(Ressource.ORE, 1);
+        this.cost.put(Ressource.SHEEP, 2);
     }
 
     /**
@@ -31,7 +33,7 @@ public class BuildFarm extends DemeterAction {
         for (int x = 0; x < this.board.getLength(); x++){
             for (int y = 0; y < this.board.getWidth(); y++){
                 try {
-                    if(this.board.getTile(x, y) instanceof Land && !((Land) this.board.getTile(x, y)).hasBuilding()){
+                    if(this.board.getTile(x, y) instanceof Land && !((Land) this.board.getTile(x, y)).hasBuilding() && !(this.board.landNeighbour(x, y)[1]) && (!(player instanceof AresPlayer) || ((AresPlayer) player).islandsConditions(this.board, new Coordinates(x, y)))){
                         return super.isPossible(player);
                     }
                 } catch (InvalidPositionException e) {
@@ -50,8 +52,7 @@ public class BuildFarm extends DemeterAction {
         int y = -1;
 		boolean correct = false;
         try {
-            System.out.println(player + " wants to build a farm.\nAt which coordinates ?");
-
+            System.out.println(player + " wants to build a port.\nAt which coordinates ?");
             while (!correct) {
             	correct = true;
                 System.out.println("enter the x coordinate: ");
@@ -82,18 +83,28 @@ public class BuildFarm extends DemeterAction {
                     System.out.println("tile already has a building");
                     correct = false;
                 }
+                else if (this.board.landNeighbour(x, y)[1]){
+                    System.out.println("tile not next to a sea tile");
+                    correct = false;
+                }
+                else if (player instanceof AresPlayer && !((AresPlayer) player).islandsConditions(this.board, new Coordinates(x, y))){
+                    System.out.println("Is not a valid position");
+                    correct = false;
+                }
             }
         } catch (InvalidPositionException e) {
         }
-
-        System.out.println(player + " builds a farm at (" + x + ", " + y + ")\n");
+        
         build(player, x, y);
+        System.out.println(player + " builds a port at (" + x + ", " + y + ")\n");
+        
+
     }
 
     public void build(Player player, int x, int y) {
         super.act(player);
         try {
-            player.getBuildings().add(new DemeterBuilding(player, (Land) this.board.getTile(x, y)));
+            player.getBuildings().add(new Port(player, (Land) this.board.getTile(x, y)));
         } catch (InvalidPositionException e) {
         }
     }

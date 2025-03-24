@@ -10,7 +10,8 @@ import game.building.Building;
 import game.building.Port;
 
 public class AresPlayer extends Player {
-    
+
+    protected int nbSecretWeapons;
     protected int nbWarrior;
 
     /**
@@ -20,10 +21,23 @@ public class AresPlayer extends Player {
     public AresPlayer(String name){
         super(name);
         this.nbWarrior = 0;
+        this.nbSecretWeapons = 0;
     }
 
+    public int getNbSecretWeapons(){
+        return this.nbSecretWeapons;
+    }
+
+    public void addSecretWeapon(){
+        this.nbSecretWeapons += 1;
+    }
+
+    public void removeSecretWeapon(){
+        this.nbSecretWeapons -= 1;
+    } 
+
     public int getNbWarrior() {
-        return nbWarrior;
+        return this.nbWarrior;
     }
 
     public void addWarrior(int n){
@@ -49,7 +63,7 @@ public class AresPlayer extends Player {
         loop1 :
         for (ArrayList<Coordinates> island : islands){
             for(Coordinates c : island){
-                if (c == co){
+                if (c.equals(co)){
                     break loop1;
                 }
             }
@@ -76,6 +90,7 @@ public class AresPlayer extends Player {
             return true;
         
         int i;
+        boolean isFirstBuilding = true;
         boolean otherIslandsConditions = true;
         boolean isOccupyingOtherIsland;
         boolean hasTwoBuilding;
@@ -90,6 +105,7 @@ public class AresPlayer extends Player {
                     if (land.hasBuilding()){
                         Building building = land.getBuilding();
                         if (building.getPlayer().getId() == this.id){
+                            isFirstBuilding = true;
                             if(isOccupyingOtherIsland)
                                 hasTwoBuilding = true;
                             isOccupyingIsland = true;
@@ -105,9 +121,12 @@ public class AresPlayer extends Player {
                 }
             }
         }
-
+        if (isFirstBuilding) return true;
         return otherIslandsConditions && hasPort;
     }
     
+    public String toString() {
+        return super.toString() + "(" + this.nbWarrior + " warriors)";
+    }
     
 }

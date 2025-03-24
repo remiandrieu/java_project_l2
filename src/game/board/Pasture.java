@@ -4,6 +4,15 @@ import game.board.util.Ressource;
 /** a class to model Pasture */
 public class Pasture extends Land {
 
+    /**
+     * creates a pasture with coordinates
+     * @param x the x coordinate
+     * @param y the y coordinate
+     */
+    public Pasture(int x, int y){
+        super(x, y);
+    }
+
     /** produces the SHEEP ressource
      * @return the ressource SHEEP
      */

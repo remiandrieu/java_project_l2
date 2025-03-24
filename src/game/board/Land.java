@@ -7,6 +7,15 @@ public abstract class Land extends Tile {
     protected Building building;
 
     /**
+     * creates a land with coordinates
+     * @param x the x coordinate
+     * @param y the y coordinate
+     */
+    public Land(int x, int y){
+        super(x, y);
+    }
+
+    /**
      * Changes the building of the land.
      * @param building
      */

@@ -13,7 +13,7 @@ public class BoardTest {
     
     @Test
     void testGetRandomTypeOfLand(){
-        Land randomLand = this.board.getRandomTypeOfLand();
+        Land randomLand = this.board.getRandomTypeOfLand(0, 0);
         for(int i =0 ; i<100 ; i++){
             assertTrue(randomLand instanceof Forest || randomLand instanceof Pasture || randomLand instanceof Mountain || randomLand instanceof Fields);
         }
@@ -64,10 +64,10 @@ public class BoardTest {
 
     @Test
     void testGetNeighbourTiles() {
-        Tile forest = new Forest();
-        Tile sea = new Sea();
-        Tile sea2 = new Sea();
-        Tile sea3 = new Sea();
+        Tile forest = new Forest(0, 1);
+        Tile sea = new Sea(1, 0);
+        Tile sea2 = new Sea(2, 1);
+        Tile sea3 = new Sea(1, 2);
         try {
             this.board.setTile(0, 1, forest);
             this.board.setTile(1, 0, sea);
@@ -101,7 +101,7 @@ public class BoardTest {
 
     @Test
     void testSetTile() throws InvalidPositionException {
-        Tile forest = new Forest();
+        Tile forest = new Forest(2, 3);
         try {
             this.board.setTile(2, 3, forest);
         } catch (InvalidPositionException e) {
@@ -112,7 +112,7 @@ public class BoardTest {
 
     @Test
     void testSetTileError() {
-        Tile forest = new Forest();
+        Tile forest = new Forest(0, 0);
         assertThrows(InvalidPositionException.class , ()->{
             this.board.setTile(-1, 2, forest);
         });
@@ -137,7 +137,7 @@ public class BoardTest {
         assertFalse(this.board.landNeighbour(0, 0)[0]);
         assertFalse(this.board.landNeighbour(0, 0)[1]);
         
-        Tile forest = new Forest();
+        Tile forest = new Forest(0, 0);
         this.board.setTile(0, 1, forest);
         assertTrue(this.board.landNeighbour(0, 0)[0]);
         assertFalse(this.board.landNeighbour(0, 0)[1]);
@@ -150,7 +150,7 @@ public class BoardTest {
     @Test
     void testRandomSeaNeighbour() throws InvalidPositionException{
         this.board.fillWithSea();
-        Tile forest = new Forest();
+        Tile forest = new Forest(0, 0);
         this.board.setTile(0, 1, forest);
         this.board.setTile(1, 0, forest);
         for (int i = 0; i < 100; i++){

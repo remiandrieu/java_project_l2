@@ -96,5 +96,14 @@ public class Player {
         this.ressources.put(r, this.ressources.get(r)-value);
     }
 
+    
+    public String toString() {
+        String inventory = "";
+        for (Ressource r : Ressource.values()){
+            inventory += r.toString() + "(" + this.ressources.get(r) + ") ";
+        }
+        return this.name + ": [ " + inventory + "]";
+    }
+
 
 }

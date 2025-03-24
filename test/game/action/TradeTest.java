@@ -5,74 +5,40 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintStream;
-
-
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import game.board.Board;
 import game.board.util.Ressource;
 import game.player.Player;
-import listchooser.util.Input;
 
 public class TradeTest {
 
     private Player player = new Player("Timoleon");
-    private Trade trade = new Trade();
-
-   
-    private static InputStream systemIn;
-    private static PrintStream systemOut;
-   
-    @BeforeAll // sauvegarde de System.in et System.out
-    public static void changeSystemOut() {
-      System.out.println("tests begin");
-      systemIn = System.in;
-      systemOut = System.out;
-      System.setOut(new PrintStream(new ByteArrayOutputStream()));   // détourne System.out
-      System.out.println("NE SERA PAS VISIBLE SUR LA SORTIE STANDARD");
-    }
-   
-    @AfterAll // restauration de System.in et System.out
-    public static void restoreSystemInOut() throws IOException {
-      System.setIn(systemIn);
-      System.setOut(systemOut);
-      System.out.println("tests end");
-    }
-   
-    @BeforeEach 
-    public void init() {
-      new Input();
-    }
-
-   
-    /** permet de simuler une saisie au clavier en fournissant la chaine qui serait saisie
-    * @param input la chaine saisie, qui sera donc récupérée par un scanner qui lirait sur Scanner.in  
-    */
-    private void simulateInput(String input) {   
-      InputStream in = new ByteArrayInputStream(input.getBytes()); 
-      System.setIn(in);  // détourne System.in vers in
-    }
+    private Board board = new Board(10, 10);
+    private Trade trade = new Trade(board);
 
     @Test
-    void testAct() {
-		  player.addRessoure(Ressource.ORE);
+    void testSpend() {
       player.addRessoure(Ressource.ORE);
       player.addRessoure(Ressource.ORE);
-      player.addRessoure(Ressource.SHEEP);
-      player.addRessoure(Ressource.SHEEP);
-      player.addRessoure(Ressource.SHEEP);
-      this.simulateInput("0");
-      this.simulateInput("0");
-      trade.act(player);
+      player.addRessoure(Ressource.ORE);
+      player.addRessoure(Ressource.ORE);
+      player.addRessoure(Ressource.ORE);
+      player.addRessoure(Ressource.ORE);
+      assertSame(6, player.getRessources().get(Ressource.ORE));
+      trade.spend(player, Ressource.ORE);
+      assertSame(3, player.getRessources().get(Ressource.ORE));
+      trade.spend(player, Ressource.ORE);
       assertSame(0, player.getRessources().get(Ressource.ORE));
-
+    }
+    
+    @Test
+    void testBuy() {
+      assertSame(0, player.getRessources().get(Ressource.WOOD));
+      trade.buy(player, Ressource.WOOD);
+      assertSame(1, player.getRessources().get(Ressource.WOOD));
+      trade.buy(player, Ressource.WOOD);
+      assertSame(2, player.getRessources().get(Ressource.WOOD));
     }
 
     @Test
