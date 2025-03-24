@@ -538,6 +538,11 @@ Nous avons finalement remplacé les HashSets par des ArrayLists pour plus de sim
 - modif de isPossible pour tester la présence d'un Land sans Building.
 - implémentation de BuildArmy terminé.
 
+#### Andreï:
+
+- Création action `Attack`
+- Test `BuildArmy` et `BuildFarm`
+
 ### Difficultés rencontrées
 
 #### Samuel :
