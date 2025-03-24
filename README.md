@@ -141,7 +141,26 @@ Le coût d'évolution n'est présent que dans la méthode evolve. Un attribut co
 
 ### Atteinte des objectifs
 
+La classe abstraite Action représente l'ensemble des actions, et est représentée par le titre de l'action et le plateau sur lequel elle est appliquée.  
+De cette classe découlent trois autres classes abstraites : AresAction qui représente les actions du jeu Ares, DemeterAction qui représente les actions du jeu Demeter et CommonAction qui représente les actions communes aux deux jeux.  
+
+Chaque action possède au moins deux méthodes :  
+- La méthode isPossible détermine si le joueur passé en paramètre peut effectuer l'action. Elle vérifie que toutes les conditions nécessaires sont réunies (le joueur possède assez de ressources, le joueur possède au moins un bâtiment d'un certain type, etc).  
+- La méthode act déclenche l'action pour le joueur passé en paramètre. Pour la plupart des actions, un input est demandé au joueur. 
+
+Une nouvelle classe Coordinates a été ajoutée, permettant de représenter une paire de coordonées. Elle est notamment utilisée dans la classe Tile, qui possède maintenant un nouvel attribut pour connaître ses coordonées sur le plateau.
+
 ### UML
+
+![Board](images/livrable3_uml_board.png)
+
+![Building](images/livrable3_uml_building.png)
+
+![Player](images/livrable3_uml_player.png)
+
+![Action](images/livrable3_uml_action.png)
+
+![Objective](images/livrable3_uml_objective.png)
 
 #### commandes
 
