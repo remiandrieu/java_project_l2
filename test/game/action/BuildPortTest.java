@@ -8,13 +8,15 @@ import java.io.*;
 import org.junit.jupiter.api.*;
 
 import game.board.Board;
+import game.board.Forest;
 import game.board.InvalidPositionException;
 import game.board.Land;
 import game.board.Sea;
-import game.board.Tile;
 import game.board.util.Ressource;
+import game.building.AresBuilding;
 import game.building.DemeterBuilding;
 import game.building.Port;
+import game.player.AresPlayer;
 import game.player.Player;
 
 public class BuildPortTest {
@@ -37,7 +39,6 @@ public class BuildPortTest {
         
         Board seaBoard = new Board(2, 2);
         try {
-            // Make all tiles Sea
             for (int i = 0; i < 2; i++) {
                 for (int j = 0; j < 2; j++) {
                     seaBoard.setTile(i, j, new Sea(i, j));
@@ -46,7 +47,6 @@ public class BuildPortTest {
             BuildPort seaBuildPort = new BuildPort(seaBoard);
             assertFalse(seaBuildPort.isPossible(player));
         } catch (InvalidPositionException e) {
-            // Ignore exceptions for test
         }
     }
     
@@ -62,7 +62,6 @@ public class BuildPortTest {
         }
         
         try {
-            // Occupy all land tiles with buildings
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     if (smallBoard.getTile(i, j) instanceof Land) {
@@ -73,7 +72,6 @@ public class BuildPortTest {
             BuildPort occupiedBuildPort = new BuildPort(smallBoard);
             assertFalse(occupiedBuildPort.isPossible(player));
         } catch (InvalidPositionException e) {
-            // Ignore exceptions for test
         }
     }
     
@@ -104,72 +102,61 @@ public class BuildPortTest {
     @Test
     public void testBuild() throws IOException {        
         try {
-            board.createGrid();
+            board.fillWithSea();
+            board.setTile(1, 1, new Forest(1, 1));
+            board.setTile(2, 1, new Forest(2, 1));
+            board.setTile(3, 1, new Forest(3, 3));
         } catch (InvalidPositionException e) {
         }
-        int[] coord = firstAvailableCoord(board, 10, 10);
-        Land land = firstAvailableLand(board, 10, 10);
-
         player.addRessoure(Ressource.WOOD, 1);
         player.addRessoure(Ressource.SHEEP, 2);
 
-        buildPort.build(player, coord[0], coord[1]);
+        buildPort.build(player,2, 1);
 
         assertEquals(0, player.getRessources().get(Ressource.WOOD));
         assertEquals(0, player.getRessources().get(Ressource.SHEEP));
-        assertTrue(land.hasBuilding());
+        try {
+            assertTrue(((Land) board.getTile(2,1)).hasBuilding());
+        } catch (InvalidPositionException e) {
+        }
         assertTrue(player.getBuildings().get(0) instanceof Port);
     }
 
-    /**
-     * Returns the first available land tile on the board i.e. the first tile that isn't a sea and doesn't have a building
-     * @param board the board we want the land on
-     * @param length the length of the board
-     * @param width the width of the board
-     * @return the first available land tile on the board
-    */
-    public static int[] firstAvailableCoord(Board board, int length, int width){
-        int x = 0;
-        int y = 0;
-        try{
-            Tile tile = board.getTile(0, 0);
-            while(x < length && ((tile instanceof Sea) || !(tile instanceof Sea) && ((Land) tile).hasBuilding())){
-                while(y < width && ((tile instanceof Sea) || !(tile instanceof Sea) && ((Land) tile).hasBuilding())){
-                    tile = board.getTile(x, y);
-                    if(!(y < width && ((tile instanceof Sea) || !(tile instanceof Sea) && ((Land) tile).hasBuilding()))){
-                        int[] coordonnees = {x, y};
-                        return coordonnees;
-                    }
-                    y += 1;
+     @Test
+    void testBuildPortOnlyOnLandNextToSea() throws InvalidPositionException {
+        Board landBoard = new Board(2, 2);
+        try {
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < 2; j++) {
+                    landBoard.setTile(i, j, new Forest(i, j));
                 }
-                x += 1;
-                y = 0;
             }
-        } catch(InvalidPositionException e){
+            BuildPort buildPort = new BuildPort(landBoard);
+            player.addRessoure(Ressource.WOOD, 1);
+            player.addRessoure(Ressource.SHEEP, 2);
+            assertFalse(buildPort.isPossible(player));
+        } catch (InvalidPositionException e) {
         }
-        int[] coordonnees = {x, y};
-        return coordonnees;
     }
 
-    /**
-     * Returns the first available land tile on the board i.e. the first tile that isn't a sea and doesn't have a building
-     * @param board the board we want the land on
-     * @param length the length of the board
-     * @param width the width of the board
-     * @return the first available land tile on the board
-    */
-    public static Land firstAvailableLand(Board board, int length, int width) {
-        for (int x = 0; x < length; x++) {
-            for (int y = 0; y < width; y++) {
-                try {
-                    Tile tile = board.getTile(x, y);
-                    if (tile instanceof Land && !((Land) tile).hasBuilding()) {
-                        return (Land) tile;
-                    }
-                } catch (InvalidPositionException e) {
-                }
-            }
-        }
-        return null;
+    @Test
+    void testBuildPortAresPlayerIslandConditions() throws InvalidPositionException {
+        board.fillWithSea();
+        
+        // Première île
+        AresPlayer aresPlayer = new AresPlayer("aresPlayer");
+        Land land1 = new Forest(1, 1);
+        Land land2 = new Forest(2, 1);
+        board.setTile(1, 1, land1);
+        board.setTile(2, 1, land2);
+        new AresBuilding(aresPlayer, land1, 2);
+        Land newLand = new Forest(5, 5);
+        board.setTile(5, 5, newLand);
+        
+        player.addRessoure(Ressource.WOOD, 1);
+        player.addRessoure(Ressource.SHEEP, 2);
+        assertFalse(buildPort.isPossible(aresPlayer));
+        assertTrue(buildPort.isPossible(player));
     }
+
 }

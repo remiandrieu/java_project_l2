@@ -21,7 +21,6 @@ import listchooser.util.Input;
 public class AttackTest {
     private static InputStream systemIn;
     private static PrintStream systemOut;
-    private ByteArrayOutputStream testOut;
 
     private Board board;
     private AresPlayer player1;
