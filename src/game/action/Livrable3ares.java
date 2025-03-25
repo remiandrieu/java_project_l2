@@ -58,7 +58,7 @@ public class Livrable3ares {
         player.addWarrior(30);
 
         BuildArmy a1 = new BuildArmy(board);
-        Coordinates co = firstAvailableCoord(board, false);
+        Coordinates co = firstAvailableCoord(board, false, player);
         String inputString = co.getX() + "\n" + co.getY();
         simulateInput(inputString + "\n3");
         a1.act(player);
@@ -77,7 +77,7 @@ public class Livrable3ares {
         a4.act(player);
 
         BuildPort a5 = new BuildPort(board);
-        co = firstAvailableCoord(board, true);
+        co = firstAvailableCoord(board, true, player);
         inputString = co.getX() + "\n" + co.getY();
         simulateInput(inputString);
         a5.act(player);
@@ -110,7 +110,7 @@ public class Livrable3ares {
      * @param width the width of the board
      * @return the first available land tile on the board
     */
-    public static Coordinates firstAvailableCoord(Board board, boolean needsSeaNeighbour){
+    public static Coordinates firstAvailableCoord(Board board, boolean needsSeaNeighbour, AresPlayer player){
         int x = 0;
         int y = -1;
         boolean stop = false;
@@ -128,7 +128,8 @@ public class Livrable3ares {
                     land = (Land) tile;
                     if (!land.hasBuilding()){
                         if (!needsSeaNeighbour || !board.landNeighbour(x, y)[1])
-                            stop = true;
+                            if (player.islandsConditions(board, new Coordinates(x, y)))
+                                stop = true;
                     }
                 }
             } catch (InvalidPositionException e) {}

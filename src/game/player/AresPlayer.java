@@ -105,7 +105,7 @@ public class AresPlayer extends Player {
                     if (land.hasBuilding()){
                         Building building = land.getBuilding();
                         if (building.getPlayer().getId() == this.id){
-                            isFirstBuilding = true;
+                            isFirstBuilding = false;
                             if(isOccupyingOtherIsland)
                                 hasTwoBuilding = true;
                             isOccupyingIsland = true;

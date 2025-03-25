@@ -174,13 +174,13 @@ Pour compiler :
 
 
 Pour créer un jar exécutable `livrable3demeter.jar` :
-```jar cvfe livrable3demeter.jar game.action.Livrable3demeter -C classes game```
+```jar cvfe livrable3demeter.jar game.action.Livrable3demeter -C classes .```
 
 Pour exécuter `livrable3demeter.jar` :
 ```java -jar livrable3demeter.jar```
 
 Pour créer un jar exécutable `livrable3ares.jar` :
-```jar cvfe livrable3ares.jar game.action.Livrable3ares -C classes game```
+```jar cvfe livrable3ares.jar game.action.Livrable3ares -C classes .```
 
 Pour exécuter `livrable3ares.jar` :
 ```java -jar livrable3ares.jar```
