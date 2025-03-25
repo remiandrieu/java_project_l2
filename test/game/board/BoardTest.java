@@ -2,6 +2,8 @@ package game.board;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.*;
 
 public class BoardTest {
@@ -164,5 +166,43 @@ public class BoardTest {
             }
             assertTrue(found);
         }
+    }
+
+    @Test
+    void testDetectIslands() throws InvalidPositionException {
+        Board testBoard = new Board(5, 5);
+        testBoard.fillWithSea();
+
+        testBoard.setTile(1, 1, new Forest(1, 1));
+        testBoard.setTile(1, 2, new Forest(1, 2));
+        testBoard.setTile(2, 1, new Forest(2, 1));
+
+        testBoard.setTile(3, 3, new Fields(3, 3));
+        testBoard.setTile(4, 3, new Fields(4, 3));
+
+        ArrayList<ArrayList<Coordinates>> islands = testBoard.detectIslands();
+
+        assertEquals(2, islands.size());
+
+        ArrayList<Coordinates> firstIsland = islands.get(0);
+        assertTrue(firstIsland.contains(new Coordinates(1, 1)));
+        assertTrue(firstIsland.contains(new Coordinates(1, 2)));
+        assertTrue(firstIsland.contains(new Coordinates(2, 1)));
+        assertEquals(3, firstIsland.size());
+
+        ArrayList<Coordinates> secondIsland = islands.get(1);
+        assertTrue(secondIsland.contains(new Coordinates(3, 3)));
+        assertTrue(secondIsland.contains(new Coordinates(4, 3)));
+        assertEquals(2, secondIsland.size());
+    }
+
+    @Test
+    void testDetectIslandsNoIslands() throws InvalidPositionException {
+        Board testBoard = new Board(4, 4);
+        testBoard.fillWithSea();
+
+        ArrayList<ArrayList<Coordinates>> islands = testBoard.detectIslands();
+
+        assertEquals(0, islands.size());
     }
 }

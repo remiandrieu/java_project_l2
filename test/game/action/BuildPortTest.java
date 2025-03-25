@@ -59,8 +59,6 @@ public class BuildPortTest {
         try {
             smallBoard.createGrid();
         } catch (InvalidPositionException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
         
         try {
@@ -87,8 +85,6 @@ public class BuildPortTest {
         try {
             board.createGrid();
         } catch (InvalidPositionException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
         assertTrue(buildPort.isPossible(player));
     }
@@ -101,8 +97,6 @@ public class BuildPortTest {
         try {
             board.createGrid();
         } catch (InvalidPositionException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
         assertFalse(buildPort.isPossible(player));
     }
@@ -112,8 +106,6 @@ public class BuildPortTest {
         try {
             board.createGrid();
         } catch (InvalidPositionException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
         int[] coord = firstAvailableCoord(board, 10, 10);
         Land land = firstAvailableLand(board, 10, 10);
