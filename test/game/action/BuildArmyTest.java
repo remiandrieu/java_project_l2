@@ -15,7 +15,6 @@ import game.player.*;
 public class BuildArmyTest {
     private static InputStream systemIn;
     private static PrintStream systemOut;
-    private ByteArrayOutputStream testOut;
 
     Board board;
     AresPlayer player;
@@ -72,7 +71,7 @@ public class BuildArmyTest {
         player.addRessoure(Ressource.WHEAT);
         player.addWarrior(10);
         Land land = firstAvailableLand(board, 10, 10);
-        Port port = new Port(player, land);
+        new Port(player, land);
         
         land = firstAvailableLand(board, 10, 10);
 
@@ -96,7 +95,7 @@ public class BuildArmyTest {
         Land land = firstAvailableLand(board, 10, 10);
         while(land != null){
             assertTrue(action.isPossible(player));
-            Port port = new Port(player, land);
+            new Port(player, land);
             land = firstAvailableLand(board, 10, 10);
                
         }

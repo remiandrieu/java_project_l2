@@ -18,7 +18,7 @@ public class ActionMain {
         
 
         /*-------------------------------------------------------------- Trade ---------------------------------------------------------------*/
-        /*System.out.println("--------------------- Trade --------------------");
+        System.out.println("--------------------- Trade --------------------");
         Board tradeBoard = new Board(10, 10);
         Trade trade = new Trade(tradeBoard);
         DemeterPlayer tradePlayer = new DemeterPlayer("Timoleon");
@@ -36,30 +36,30 @@ public class ActionMain {
         System.out.println("WHEAT: " + tradePlayer.getRessources().get(Ressource.WHEAT));
         System.out.println("SHEEP: " + tradePlayer.getRessources().get(Ressource.SHEEP));
         System.out.println("ORE: " + tradePlayer.getRessources().get(Ressource.ORE));
-        System.out.println("WOOD: " + tradePlayer.getRessources().get(Ressource.WOOD));*/
+        System.out.println("WOOD: " + tradePlayer.getRessources().get(Ressource.WOOD));
 
         /*-------------------------------------------------------------- TradePort ---------------------------------------------------------------*/
-        /*System.out.println("--------------------- TradePort --------------------");
+        System.out.println("--------------------- TradePort --------------------");
         Board tpBoard = new Board(10, 10);
         TradePort tradePort = new TradePort(tpBoard);
-        DemeterPlayer tradePlayer = new DemeterPlayer("Timoleon");
-        tradePlayer.addRessoure(Ressource.ORE);
-        tradePlayer.addRessoure(Ressource.ORE);
-        tradePlayer.addRessoure(Ressource.SHEEP);
-        tradePlayer.addRessoure(Ressource.SHEEP);
-        tradePlayer.addRessoure(Ressource.WOOD);
-        System.out.println("WHEAT: " + tradePlayer.getRessources().get(Ressource.WHEAT));
-        System.out.println("SHEEP: " + tradePlayer.getRessources().get(Ressource.SHEEP));
-        System.out.println("ORE: " + tradePlayer.getRessources().get(Ressource.ORE));
-        System.out.println("WOOD: " + tradePlayer.getRessources().get(Ressource.WOOD));
-        tradePort.act(tradePlayer);
-        System.out.println("WHEAT: " + tradePlayer.getRessources().get(Ressource.WHEAT));
-        System.out.println("SHEEP: " + tradePlayer.getRessources().get(Ressource.SHEEP));
-        System.out.println("ORE: " + tradePlayer.getRessources().get(Ressource.ORE));
-        System.out.println("WOOD: " + tradePlayer.getRessources().get(Ressource.WOOD));*/
+        DemeterPlayer tpPlayer = new DemeterPlayer("Timoleon");
+        tpPlayer.addRessoure(Ressource.ORE);
+        tpPlayer.addRessoure(Ressource.ORE);
+        tpPlayer.addRessoure(Ressource.SHEEP);
+        tpPlayer.addRessoure(Ressource.SHEEP);
+        tpPlayer.addRessoure(Ressource.WOOD);
+        System.out.println("WHEAT: " + tpPlayer.getRessources().get(Ressource.WHEAT));
+        System.out.println("SHEEP: " + tpPlayer.getRessources().get(Ressource.SHEEP));
+        System.out.println("ORE: " + tpPlayer.getRessources().get(Ressource.ORE));
+        System.out.println("WOOD: " + tpPlayer.getRessources().get(Ressource.WOOD));
+        tradePort.act(tpPlayer);
+        System.out.println("WHEAT: " + tpPlayer.getRessources().get(Ressource.WHEAT));
+        System.out.println("SHEEP: " + tpPlayer.getRessources().get(Ressource.SHEEP));
+        System.out.println("ORE: " + tpPlayer.getRessources().get(Ressource.ORE));
+        System.out.println("WOOD: " + tpPlayer.getRessources().get(Ressource.WOOD));
 
         /*-------------------------------------------------------------- BuildFarm ---------------------------------------------------------------*/
-        /*System.out.println("--------------------- BuildFarm --------------------");
+        System.out.println("--------------------- BuildFarm --------------------");
         Board bfBoard = new Board(10, 10);
         bfBoard.createGrid();
         DemeterPlayer bfPlayer = new DemeterPlayer("Timoleon");
@@ -78,7 +78,7 @@ public class ActionMain {
         System.out.println("ORE: " + bfPlayer.getRessources().get(Ressource.ORE));
         System.out.println("WOOD: " + bfPlayer.getRessources().get(Ressource.WOOD));
         System.out.println("buildings: " + bfPlayer.getBuildings());
-        System.out.println(bfBoard.boardToString(true));*/
+        System.out.println(bfBoard.boardToString(true));
 
         /*-------------------------------------------------------------- BuildArmy ---------------------------------------------------------------*/
         System.out.println("--------------------- BuildArmy --------------------");
@@ -121,7 +121,7 @@ public class ActionMain {
         System.out.println(baBoard.boardToString(true));
 
         /*-------------------------------------------------------------- EvolveFarm ---------------------------------------------------------------*/
-        /*System.out.println("--------------------- EvolveFarm --------------------");
+        System.out.println("--------------------- EvolveFarm --------------------");
         Board efBoard = new Board(10, 10);
         efBoard.createGrid();
         DemeterPlayer efPlayer = new DemeterPlayer("Timoleon");
@@ -154,10 +154,10 @@ public class ActionMain {
         System.out.println("SHEEP: " + efPlayer.getRessources().get(Ressource.SHEEP));
         System.out.println("ORE: " + efPlayer.getRessources().get(Ressource.ORE));
         System.out.println("WOOD: " + efPlayer.getRessources().get(Ressource.WOOD));
-        System.out.println(efBoard.boardToString(true));*/
+        System.out.println(efBoard.boardToString(true));
 
         /*-------------------------------------------------------------- EvolveArmy ---------------------------------------------------------------*/
-        /*System.out.println("--------------------- EvolveArmy --------------------");
+        System.out.println("--------------------- EvolveArmy --------------------");
         Board eaBoard = new Board(10, 10);
         eaBoard.createGrid();
         DemeterPlayer eaPlayer = new DemeterPlayer("Timoleon");
@@ -189,7 +189,7 @@ public class ActionMain {
         System.out.println("SHEEP: " + eaPlayer.getRessources().get(Ressource.SHEEP));
         System.out.println("ORE: " + eaPlayer.getRessources().get(Ressource.ORE));
         System.out.println("WOOD: " + eaPlayer.getRessources().get(Ressource.WOOD));
-        System.out.println(eaBoard.boardToString(true));*/
+        System.out.println(eaBoard.boardToString(true));
 
         /*-------------------------------------------------------------- BuildPort ---------------------------------------------------------------*/
         System.out.println("--------------------- BuildPort --------------------");
@@ -225,7 +225,7 @@ public class ActionMain {
         System.out.println(bpBoard.boardToString(true));
 
          /*-------------------------------------------------------------- BuyThief ---------------------------------------------------------------*/
-         /*System.out.println("--------------------- BuyThief --------------------");
+         System.out.println("--------------------- BuyThief --------------------");
          Board btBoard = new Board(10, 10);
          DemeterPlayer btPlayer = new DemeterPlayer("Timoleon");
          BuyThief bt = new BuyThief(btBoard);
@@ -242,30 +242,10 @@ public class ActionMain {
          System.out.println("SHEEP: " + btPlayer.getRessources().get(Ressource.SHEEP));
          System.out.println("ORE: " + btPlayer.getRessources().get(Ressource.ORE));
          System.out.println("WOOD: " + btPlayer.getRessources().get(Ressource.WOOD));
-         System.out.println("Has thief: " + btPlayer.hasThief());*/
- 
-         /*-------------------------------------------------------------- BuyWarriors ---------------------------------------------------------------*/
-         /*System.out.println("--------------------- BuyWarriors --------------------");
-         Board bwBoard = new Board(10, 10);
-         AresPlayer bwPlayer = new AresPlayer("Timoleon");
-         BuyWarriors bw = new BuyWarriors(bwBoard);
-         bwPlayer.addRessoure(Ressource.ORE);
-         bwPlayer.addRessoure(Ressource.SHEEP, 2);
-         bwPlayer.addRessoure(Ressource.WHEAT, 2);
-         System.out.println("WHEAT: " + bwPlayer.getRessources().get(Ressource.WHEAT));
-         System.out.println("SHEEP: " + bwPlayer.getRessources().get(Ressource.SHEEP));
-         System.out.println("ORE: " + bwPlayer.getRessources().get(Ressource.ORE));
-         System.out.println("WOOD: " + bwPlayer.getRessources().get(Ressource.WOOD));
-         System.out.println("nbWarriors: " + bwPlayer.getNbWarrior());
-         bw.act(bwPlayer);
-         System.out.println("WHEAT: " + bwPlayer.getRessources().get(Ressource.WHEAT));
-         System.out.println("SHEEP: " + bwPlayer.getRessources().get(Ressource.SHEEP));
-         System.out.println("ORE: " + bwPlayer.getRessources().get(Ressource.ORE));
-         System.out.println("WOOD: " + bwPlayer.getRessources().get(Ressource.WOOD));
-         System.out.println("nbWarriors: " + bwPlayer.getNbWarrior());*/
+         System.out.println("Has thief: " + btPlayer.hasThief());
 
         /*-------------------------------------------------------------- PlayThief ---------------------------------------------------------------*/
-        /*System.out.println("--------------------- PlayThief --------------------");
+        System.out.println("--------------------- PlayThief --------------------");
         Board ptBoard = new Board(10, 10);
         DemeterPlayer ptPlayer = new DemeterPlayer("Timoleon");
         // Créer des joueurs à voler
@@ -290,10 +270,10 @@ public class ActionMain {
         System.out.println("Player WHEAT: " + ptPlayer.getRessources().get(Ressource.WHEAT));
         System.out.println("Victim1 WHEAT: " + victim1.getRessources().get(Ressource.WHEAT));
         System.out.println("Victim2 WHEAT: " + victim2.getRessources().get(Ressource.WHEAT));
-        System.out.println("Player has thief: " + ptPlayer.hasThief());*/
+        System.out.println("Player has thief: " + ptPlayer.hasThief());
         
         /*-------------------------------------------------------------- Attack ---------------------------------------------------------------*/
-        /*System.out.println("--------------------- Attack --------------------");
+        System.out.println("--------------------- Attack --------------------");
         Board attBoard = new Board(10, 10);
         attBoard.createGrid();
         AresPlayer attPlayer1 = new AresPlayer("Timoleon1");
@@ -325,10 +305,10 @@ public class ActionMain {
         System.out.println();
         System.out.println(attBoard.boardToString(true));
         System.out.println("Player nb secret weapons: " + attPlayer2.getNbSecretWeapons());
-        System.out.println("Player nb secret weapons: " + attPlayer3.getNbSecretWeapons());*/
+        System.out.println("Player nb secret weapons: " + attPlayer3.getNbSecretWeapons());
 
         /*-------------------------------------------------------------- PlaceWarriors ---------------------------------------------------------------*/
-        /*System.out.println("--------------------- PlaceWarriors --------------------");
+        System.out.println("--------------------- PlaceWarriors --------------------");
         Board pwBoard = new Board(10, 10);
         pwBoard.createGrid();
         AresPlayer pwPlayer = new AresPlayer("Timoleon");
@@ -356,8 +336,8 @@ public class ActionMain {
         System.out.println("ORE: " + pwPlayer.getRessources().get(Ressource.ORE));
         System.out.println("WOOD: " + pwPlayer.getRessources().get(Ressource.WOOD));
         System.out.println("nbWarriors: " + pwPlayer.getNbWarrior());
-        for (Building building : pwPlayer.getBuildings()){
-            System.out.println("building: " + building + ", nbWarriors:" + ((building instanceof AresBuilding)?((LandBuilding) building).getDimension():0));
+        for (Building b : pwPlayer.getBuildings()){
+            System.out.println("building: " + b + ", nbWarriors:" + ((b instanceof AresBuilding)?((LandBuilding) b).getDimension():0));
         }
         System.out.println(pwBoard.boardToString(true));
         pw.act(pwPlayer);
@@ -366,13 +346,13 @@ public class ActionMain {
         System.out.println("ORE: " + pwPlayer.getRessources().get(Ressource.ORE));
         System.out.println("WOOD: " + pwPlayer.getRessources().get(Ressource.WOOD));
         System.out.println("nbWarriors: " + pwPlayer.getNbWarrior());
-        for (Building building : pwPlayer.getBuildings()){
-            System.out.println("building: " + building + ", nbWarriors:" + ((building instanceof AresBuilding)?((LandBuilding) building).getDimension():0));
+        for (Building b: pwPlayer.getBuildings()){
+            System.out.println("building: " + b + ", nbWarriors:" + ((b instanceof AresBuilding)?((LandBuilding) b).getDimension():0));
         }
-        System.out.println(pwBoard.boardToString(true));*/
+        System.out.println(pwBoard.boardToString(true));
 
         /*-------------------------------------------------------------- BuySecretWeapon ---------------------------------------------------------------*/
-        /*System.out.println("--------------------- BuySecretWeapon --------------------");
+        System.out.println("--------------------- BuySecretWeapon --------------------");
         Board bswBoard = new Board(10, 10);
         bswBoard.createGrid();
         AresPlayer bswPlayer = new AresPlayer("Timoleon");
@@ -403,7 +383,7 @@ public class ActionMain {
         System.out.println("ORE: " + bswPlayer.getRessources().get(Ressource.ORE));
         System.out.println("WOOD: " + bswPlayer.getRessources().get(Ressource.WOOD));
         System.out.println("nbSecretWeapons: " + bswPlayer.getNbSecretWeapons());
-        System.out.println(bswBoard.boardToString(true));*/
+        System.out.println(bswBoard.boardToString(true));
 
         /*-------------------------------------------------------------- BuyWarriors ---------------------------------------------------------------*/
         System.out.println("--------------------- BuyWarriors --------------------");
