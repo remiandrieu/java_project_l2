@@ -81,7 +81,7 @@ public class ActionMain {
         System.out.println(bfBoard.boardToString(true));*/
 
         /*-------------------------------------------------------------- BuildArmy ---------------------------------------------------------------*/
-        /*System.out.println("--------------------- BuildArmy --------------------");
+        System.out.println("--------------------- BuildArmy --------------------");
         Board baBoard = new Board(10, 10);
         baBoard.createGrid();
         AresPlayer baPlayer = new AresPlayer("Timoleon");
@@ -118,7 +118,7 @@ public class ActionMain {
         for (Building building : baPlayer.getBuildings()){
             System.out.println("building: " + building + ", nbWarriors:" + ((building instanceof AresBuilding)?((LandBuilding) building).getDimension():0));
         }
-        System.out.println(baBoard.boardToString(true));*/
+        System.out.println(baBoard.boardToString(true));
 
         /*-------------------------------------------------------------- EvolveFarm ---------------------------------------------------------------*/
         /*System.out.println("--------------------- EvolveFarm --------------------");

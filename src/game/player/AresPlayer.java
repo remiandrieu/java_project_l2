@@ -59,70 +59,68 @@ public class AresPlayer extends Player {
      */
     public boolean islandsConditions(Board board, Coordinates co) throws InvalidPositionException {
         ArrayList<ArrayList<Coordinates>> islands = board.detectIslands();
-        int islandIndex = 0;
-        loop1 :
-        for (ArrayList<Coordinates> island : islands){
-            for(Coordinates c : island){
-                if (c.equals(co)){
-                    break loop1;
-                }
+
+        int islandIndex = -1;
+        for (int i = 0; i < islands.size(); i++) {
+            if (islands.get(i).contains(co)) {
+                islandIndex = i;
+                break;
             }
-            islandIndex++;
         }
-        if (islandIndex == islands.size()){
+        
+        if (islandIndex == -1) {
             throw new InvalidPositionException("coordinates doesn't correspond to any island");
         }
-
-        boolean isOccupyingIsland = false;
-        loop2:
-        for (Coordinates c : islands.get(islandIndex)){
+        
+        boolean occupiesTargetIsland = false;
+        for (Coordinates c : islands.get(islandIndex)) {
             Land land = (Land) board.getTile(c.getX(), c.getY());
-            if (land.hasBuilding()){
-                Building building = land.getBuilding();
-                if (building.getPlayer().getId() == this.id){
-                    isOccupyingIsland = true;
-                    break loop2;
-                }
+            if (land.hasBuilding() && land.getBuilding().getPlayer().getId() == this.id) {
+                occupiesTargetIsland = true;
+                break;
             }
         }
-
-        if (isOccupyingIsland)
-            return true;
         
-        int i;
-        boolean isFirstBuilding = true;
-        boolean otherIslandsConditions = true;
-        boolean isOccupyingOtherIsland;
-        boolean hasTwoBuilding;
+        if (occupiesTargetIsland) {
+            return true;
+        }
+        
+        int totalPlayerBuildings = 0;
         boolean hasPort = false;
-        loop3 :
-        for (i = 0; i < islands.size(); i++){
-            if (i != islandIndex){
-                isOccupyingOtherIsland = false;
-                hasTwoBuilding = false;
-                for(Coordinates c : islands.get(i)){
-                    Land land = (Land) board.getTile(c.getX(), c.getY());
-                    if (land.hasBuilding()){
-                        Building building = land.getBuilding();
-                        if (building.getPlayer().getId() == this.id){
-                            isFirstBuilding = false;
-                            if(isOccupyingOtherIsland)
-                                hasTwoBuilding = true;
-                            isOccupyingIsland = true;
-                        }
-                        if (building instanceof Port){
+        boolean allOccupiedIslandsHaveTwoBuildings = true;
+        
+        for (int i = 0; i < islands.size(); i++) {
+            int islandPlayerBuildings = 0;
+            boolean islandHasPlayerBuilding = false;
+            
+            for (Coordinates c : islands.get(i)) {
+                Land land = (Land) board.getTile(c.getX(), c.getY());
+                if (land.hasBuilding()) {
+                    Building building = land.getBuilding();
+                    if (building.getPlayer().getId() == this.id) {
+                        islandPlayerBuildings++;
+                        islandHasPlayerBuilding = true;
+                        
+                        if (building instanceof Port) {
                             hasPort = true;
                         }
                     }
                 }
-                if (isOccupyingIsland && !hasTwoBuilding){
-                    otherIslandsConditions = false;
-                    break loop3;
-                }
+            }
+            
+            totalPlayerBuildings += islandPlayerBuildings;
+            
+            if (islandHasPlayerBuilding && islandPlayerBuildings < 2) {
+                allOccupiedIslandsHaveTwoBuildings = false;
+                break;
             }
         }
-        if (isFirstBuilding) return true;
-        return otherIslandsConditions && hasPort;
+
+        if (totalPlayerBuildings == 0) {
+            return true;
+        }
+        
+        return allOccupiedIslandsHaveTwoBuildings && hasPort;
     }
     
     public String toString() {
