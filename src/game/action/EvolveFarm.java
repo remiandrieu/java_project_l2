@@ -16,7 +16,7 @@ public class EvolveFarm extends DemeterAction {
 
     /**
      * Create the EvolveFarm action with its label
-     * @param label the label of the action
+     * @param board the board
      */
     public EvolveFarm(Board board){
         super("evolve farm to big farm", board);

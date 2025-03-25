@@ -10,7 +10,7 @@ import game.board.*;
 import game.board.util.Ressource;
 import game.building.Building;
 import game.player.DemeterPlayer;
-import listchooser.util.Input;
+import listchooser.util.*;
 
 public class Livrable3demeter {
 
@@ -101,8 +101,7 @@ public class Livrable3demeter {
     /**
      * Returns the first available land tile on the board i.e. the first tile that isn't a sea and doesn't have a building
      * @param board the board we want the land on
-     * @param length the length of the board
-     * @param width the width of the board
+     * @param needsSeaNeighbour if we want to have a land next to the sea
      * @return the first available land tile on the board
     */
     public static Coordinates firstAvailableCoord(Board board, boolean needsSeaNeighbour){

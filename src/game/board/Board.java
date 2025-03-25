@@ -74,9 +74,8 @@ public class Board {
     }
 
     /**
-     * Get the coordinates of the neighbours of the tile at line x and column y
-     * @param x the line number
-     * @param y the column number
+     * Get the coordinates of the neighbours of the tile at some coordinates
+     * @param tuile the coordinates of the tile
      * @return The coordinates of the neighbours of the tile at position (x, y)
      * @throws InvalidPositionException if x y out of grid
     */
