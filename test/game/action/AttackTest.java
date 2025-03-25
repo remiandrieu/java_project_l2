@@ -2,7 +2,6 @@ package game.action;
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.*;
-import java.util.ArrayList;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -17,6 +16,7 @@ import game.board.util.Ressource;
 import game.building.AresBuilding;
 import game.building.Port;
 import game.player.AresPlayer;
+import listchooser.util.Input;
 
 public class AttackTest {
     private static InputStream systemIn;
@@ -30,23 +30,21 @@ public class AttackTest {
     private Attack action;
 
     @BeforeClass // sauvegarde de System.in et System.out
-    public static void changeSystemOut() {
-        System.out.println("tests begin");
+    public static void storeSystemIn() {
         systemIn = System.in;
         systemOut = System.out;
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
     }
 
-    @AfterClass // restauration de System.in et System.out
-    public static void restoreSystemInOut() throws IOException {
+    @AfterClass
+    public static void restoreSystemIn() throws IOException {
         System.setIn(systemIn);
         System.setOut(systemOut);
-        System.out.println("tests end");
     }
 
-    public void simulateInput(String input) {   
-        InputStream in = new ByteArrayInputStream(input.getBytes()); 
-        System.setIn(in);
+    public static void simulateInput(String input) {   
+        InputStream in = new ByteArrayInputStream((input + "\n").getBytes()); 
+        Input.setInputStream(in);
     }
 
     @BeforeEach
@@ -148,23 +146,83 @@ public class AttackTest {
     }
 
     @Test
-    public void testCheckAndAskForSecretWeaponNo(){
+    public void testCheckAndAskForSecretWeapon(){
         assertFalse(action.checkAndAskForSecretWeapon(player1));
 
         this.player1.addSecretWeapon();
-        this.simulateInput("n");
+        simulateInput("n");
         boolean res = this.action.checkAndAskForSecretWeapon(this.player1);
         assertFalse(res);
-    }
 
-    @Test
-    public void testCheckAndAskForSecretWeaponYes(){
-        this.player1.addSecretWeapon();
-        this.simulateInput("y");
-        boolean res = this.action.checkAndAskForSecretWeapon(this.player1);
+        simulateInput("y");
+        res = this.action.checkAndAskForSecretWeapon(this.player1);
         assertTrue(res);
 
         assertEquals(0, this.player1.getNbSecretWeapons());
+    }
+
+    @Test
+    public void testThrowDice(){
+        Land land = firstAvailableLand(this.board, 10, 10);
+        AresBuilding building = new AresBuilding(this.player1, land, 1);
+        Coordinates coor = land.getCoordinates();
+
+        //1 Soldat et pas d'armes secrètes = 1 dé
+        for(int i = 0; i < 10; i ++){
+            int score = action.scoreThrowingDice(coor, false);
+            assertTrue(1 <= score && score <= 6);
+        }
+
+        //1 Soldat et 1 arme secrète = 2 dés
+        for(int i = 0; i < 10; i ++){
+            int score = action.scoreThrowingDice(coor, true);
+            assertTrue(2 <= score && score <= 12);
+        }
+
+        building.addWarriors(3);
+
+        //4 Soldat et pas d'armes secrètes = 2 dés
+        for(int i = 0; i < 10; i ++){
+            int score = action.scoreThrowingDice(coor, false);
+            assertTrue(2 <= score && score <= 12);
+        }
+
+        building.addWarriors(4);
+
+        //8 Soldats et pas d'armes secrètes = 3 dés
+        for(int i = 0; i < 10; i ++){
+            int score = action.scoreThrowingDice(coor, false);
+            assertTrue(3 <= score && score <= 18);
+        }
+
+        //8 Soldats et une arme secrète = 4 dés
+        for(int i = 0; i < 10; i ++){
+            int score = action.scoreThrowingDice(coor, true);
+            assertTrue(5 <= score && score <= 24);
+        }
+    }
+
+    @Test
+    public void testRemovesWarriors(){
+        Land land = firstAvailableLand(this.board, 10, 10);
+        AresBuilding building = new AresBuilding(this.player1, land, 2);
+        this.player1.getBuildings().add(building);
+        Coordinates coor = land.getCoordinates();
+
+        this.action.removesWarriorsBuilding(this.player1, coor);
+
+        assertEquals(1, building.getDimension());
+
+        this.action.removesWarriorsBuilding(this.player1, coor);
+
+        assertFalse(land.hasBuilding());
+        assertTrue(this.player1.getBuildings().isEmpty());
+
+        AresBuilding newBuilding = new AresBuilding(this.player1, land, 2);
+        this.player1.getBuildings().add(newBuilding);
+
+        assertTrue(land.hasBuilding());
+        assertFalse(this.player1.getBuildings().isEmpty());
     }
 
     /**
