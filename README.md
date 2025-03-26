@@ -150,6 +150,8 @@ Chaque action possède au moins deux méthodes :
 
 Une nouvelle classe Coordinates a été ajoutée, permettant de représenter une paire de coordonées. Elle est notamment utilisée dans la classe Tile, qui possède maintenant un nouvel attribut pour connaître ses coordonées sur le plateau.
 
+Nous avons choisi qu'un joueur de Demeter ne puisse acheter qu'au plus voleur. Il n'y a donc pas de limite sur le nombre de voleurs, chaque joueur peut posséder ou non un voleur.
+
 ### UML
 
 ![Board](images/livrable3_uml_board.png)
@@ -190,6 +192,8 @@ Pour compiler et exécuter les tests :
 ```javac -classpath junit-console.jar:classes -sourcepath test test/game/board/*.java test/game/building/*.java test/game/action/*.java test/listchooser/util/*.java && java -jar junit-console.jar -classpath test:classes -scan-classpath```
 
 ### Difficultés restant à résoudre
+
+Certains tests pourraient être retravaillés pour être plus clairs et compréhensibles. 
 
 ## Livrable 4
 
