@@ -1,9 +1,7 @@
 package game.action;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
 
 import game.board.*;
 import game.board.util.Ressource;
@@ -32,15 +30,9 @@ public class EvolveArmy extends AresAction {
     public boolean isPossible(Player player){
         boolean res = super.isPossible(player);
         
-        List<Building> availableBuildings = player.getBuildings();
-        boolean allBuildingsEvolved = true;
-
-        for(Building building: availableBuildings) {
-            if (building instanceof AresBuilding && !((AresBuilding) building).isEvolved()){
-                allBuildingsEvolved = false;
-            }
-        }
-        return res && !allBuildingsEvolved;
+        ArrayList<Coordinates> availableArmies = buildingsThatCanEvolve(player);
+        
+        return res && !availableArmies.isEmpty();
     }
 
     /**
@@ -48,74 +40,24 @@ public class EvolveArmy extends AresAction {
      * @param player the player who wants to evolve his army
     **/
     public void act(Player player){
-        int x = -1;
-        int y = -1;
         // On récupère tout les bâtiments non évolués dans un dictionnaire avec leurs coordonnées comme valeurs.
-        HashMap<AresBuilding, int[]> availableArmies = new HashMap<>();
-        try{
-            System.out.println(player + " wants to upgrade an army.");
-            for(int i=0; i < this.board.getLength(); i++){
-                for(int j = 0; j < this.board.getWidth(); j++){
-                    Tile tile = this.board.getTile(i, j);
-                    if (!(tile instanceof Sea) && ((Land) tile).hasBuilding() && ((Land) tile).getBuilding() instanceof AresBuilding){
-                        AresBuilding building = (AresBuilding) ((Land) tile).getBuilding();
-                        if (! building.isEvolved() && player.getBuildings().contains(building)){
-                            int[] coord = {i, j};
-                            availableArmies.put(building, coord);
-                        }
-                    }
-                }
-            }
-        }
-        catch(Exception e){
-        }
-        //On affiche les bâtiments.
+        ArrayList<Coordinates> availableArmies = buildingsThatCanEvolve(player);
+
+        System.out.println(player + " wants to upgrade an army.");
+
+	    //On affiche les bâtiments.
         System.out.println("Available Armies:");
-        Set<AresBuilding> keys = availableArmies.keySet();
-        Iterator<AresBuilding> it = keys.iterator();
+        Iterator<Coordinates> it = availableArmies.iterator();
         while(it.hasNext()){
-            AresBuilding aresBuilding = it.next();
-            System.out.println("X: " + availableArmies.get(aresBuilding)[0] + ", Y: " + availableArmies.get(aresBuilding)[1]);
+            Coordinates coor = it.next();
+            System.out.println("X: " + coor.getX() + ", Y: " + coor.getY());
         }
 
-	    boolean correct = false;
-        boolean res = false;
-        while (!correct) {
-            correct = true;
-            System.out.println("enter the x coordinate: ");
-        	try {
-        		x = Input.readInt();
-            } catch (java.io.IOException e) {
-            	System.out.println("Please, enter a number");
-                correct = false;
-                continue;
-        	}
-            System.out.println("enter the y coordinate: ");
-            try {
-        		y = Input.readInt();
-        	} catch (java.io.IOException e) {
-            	System.out.println("Please, enter a number");
-                correct = false;
-                continue;
-        	}
-            int[] coord = {x, y};
-
-            res = false;
-            it = keys.iterator();
-            while(it.hasNext() && !res){
-                AresBuilding aresBuilding = it.next();
-                res = (coord[0] == availableArmies.get(aresBuilding)[0]) && (coord[1] == availableArmies.get(aresBuilding)[1]);
-            }
-
-            if (!res){
-                System.out.println("This tile doesn't have an army.");
-                correct = false;
-           }
-        }
+        Coordinates coor = askCoordinates(availableArmies);
         
         super.act(player);
         try {
-            Land land = (Land) this.board.getTile(x, y);
+            Land land = (Land) this.board.getTile(coor.getX(), coor.getY());
             AresBuilding building = (AresBuilding) land.getBuilding();
             String oldBuildingString = building.toString();
             building.evolve();
@@ -123,5 +65,71 @@ public class EvolveArmy extends AresAction {
         } catch (InvalidPositionException e) {
         }
     }
-    
+
+    /**
+     * Asks the player for coordinates, doesn't stop until the coordinates are in the list.
+     * @param list the list the coordinates must belong to
+     * @return the coordinates given by the player
+     */
+    public Coordinates askCoordinates(ArrayList<Coordinates> list){  
+        int x = -1;
+        int y = -1;
+		boolean correct = false;
+        Coordinates coor = new Coordinates(x, y);
+        
+        while (!correct) {
+            correct = true;
+            System.out.println("enter the x coordinate: ");
+        	try {
+        		x = Input.readInt();
+            } catch (java.io.IOException e) {
+        		System.out.println("Please, enter a number");
+                correct = false;
+                continue;
+            }
+            System.out.println("enter the y coordinate: ");
+            try {
+        		y = Input.readInt();
+            } catch (java.io.IOException e) {
+        		System.out.println("Please, enter a number");
+                correct = false;
+                continue;
+            }
+
+            coor = new Coordinates(x, y);
+
+            if (! list.contains(coor)){
+                System.out.println("Incorrect Position");
+                correct = false;
+            }
+        }
+        return coor;
+    }
+
+    /**
+     * Returns an array of all the coordinates of the player's buildings that can evolve
+     * @param player the player's buildings to check
+     * @return an array of all the coordinates of the player's buildings that can evolve
+     */
+    public ArrayList<Coordinates> buildingsThatCanEvolve(Player player){
+        ArrayList<Coordinates> buildingsThatCanEvolveCoordinates = new ArrayList<>(); 
+
+        for (int x = 0; x < this.board.getLength(); x++) {
+            for (int y = 0; y < this.board.getWidth(); y++) {
+                try {
+                    Tile tile = board.getTile(x, y);
+                    if (tile instanceof Land && ((Land) tile).hasBuilding() && ((Land) tile).getBuilding() instanceof AresBuilding) {
+                        Land land = (Land) tile;
+                        AresBuilding building = (AresBuilding) land.getBuilding();
+
+                        if(building.getPlayer() == player && !building.isEvolved()){
+                           buildingsThatCanEvolveCoordinates.add(new Coordinates(x, y));
+                        } 
+                    }
+                } catch (InvalidPositionException e) {
+                }
+            }
+        }
+        return buildingsThatCanEvolveCoordinates;
+    }
 }
