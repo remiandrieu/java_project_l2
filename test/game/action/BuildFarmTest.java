@@ -85,6 +85,19 @@ public class BuildFarmTest {
     }
 
     @Test
+    public void testAct() throws InvalidPositionException {
+        player.addRessoure(Ressource.ORE);
+        player.addRessoure(Ressource.WOOD);
+
+        int[] coord = firstAvailableCoord(board, 10, 10);
+        String input = coord[0] + "\n" + coord[1];
+        simulateInput(input);
+        action.act(player);
+        assertTrue(((Land) board.getTile(coord[0], coord[1])).hasBuilding());
+        assertTrue(player.getBuildings().get(0) instanceof DemeterBuilding);
+    }
+
+    @Test
     public void testFullBoard(){
         player.addRessoure(Ressource.ORE);
         Land land = firstAvailableLand(board, 10, 10);

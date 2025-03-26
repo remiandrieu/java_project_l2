@@ -9,6 +9,7 @@ import org.junit.jupiter.api.*;
 
 import game.board.*;
 import game.board.util.Ressource;
+import game.building.AresBuilding;
 import game.building.Port;
 import game.player.*;
 
@@ -101,6 +102,50 @@ public class BuildArmyTest {
         }
 
         assertFalse(action.isPossible(player));        
+    }
+
+    @Test
+    public void testAct() throws InvalidPositionException {
+        player.addRessoure(Ressource.ORE);
+        player.addRessoure(Ressource.WOOD);
+        player.addWarrior(10);
+
+        int[] coord = firstAvailableCoord(board, 10, 10);
+        String input = coord[0] + "\n" + coord[1] + "\n3";
+        simulateInput(input);
+        action.act(player);
+        assertTrue(((Land) board.getTile(coord[0], coord[1])).hasBuilding());
+        assertTrue(player.getBuildings().get(0) instanceof AresBuilding);
+    }
+
+    /**
+     * Returns the first available land tile on the board i.e. the first tile that isn't a sea and doesn't have a building
+     * @param board the board we want the land on
+     * @param length the length of the board
+     * @param width the width of the board
+     * @return the first available land tile on the board
+    */
+    public static int[] firstAvailableCoord(Board board, int length, int width){
+        int x = 0;
+        int y = 0;
+        try{
+            Tile tile = board.getTile(0, 0);
+            while(x < length && ((tile instanceof Sea) || !(tile instanceof Sea) && ((Land) tile).hasBuilding())){
+                while(y < width && ((tile instanceof Sea) || !(tile instanceof Sea) && ((Land) tile).hasBuilding())){
+                    tile = board.getTile(x, y);
+                    if(!(y < width && ((tile instanceof Sea) || !(tile instanceof Sea) && ((Land) tile).hasBuilding()))){
+                        int[] coordonnees = {x, y};
+                        return coordonnees;
+                    }
+                    y += 1;
+                }
+                x += 1;
+                y = 0;
+            }
+        } catch(InvalidPositionException e){
+        }
+        int[] coordonnees = {x, y};
+        return coordonnees;
     }
 
     /**
