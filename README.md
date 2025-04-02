@@ -572,6 +572,13 @@ Finir l'implémentation de l'action `PlaceWarrior`.
 
 ### Ce qui a été réalisé
 
+- Début de création des objectifs. Les classes `Objective`, `AresObjective`, `DemeterObjective`, `EnoughPoints` et `AresConquerIsland` ont été réalisées.
+- Début de certains tests
+
 ### Difficultés rencontrées
 
+- Fixer les règles des objectifs
+
 ### Objectifs pour finaliser le projet
+
+- Finir les objectifs et les tester
