@@ -13,7 +13,7 @@ public abstract class Objective {
 
     /**
      * Create an objective 
-     * @param player who has the objective
+     * @param player which must achieve the objective
      * @param board the board
      * @param description the description of the objective
      */
