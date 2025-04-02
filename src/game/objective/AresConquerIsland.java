@@ -2,11 +2,16 @@ package game.objective;
 
 import game.player.Player;
 import game.board.*;
-
 import java.util.*;
 
+/* a class to model the conquer island objective for Ares Game */
 public class AresConquerIsland extends AresObjective {
 
+    /**
+     * Create the ConquerIsland objective
+     * @param player the player which must achieve this objective
+     * @param board the board
+     */
     public AresConquerIsland(Player player, Board board){
         super(player, board, "Conquer an entire island (Have a building on every tile of any island)");
     }
@@ -17,18 +22,15 @@ public class AresConquerIsland extends AresObjective {
      */
     public boolean isAchieved(){
         ArrayList<ArrayList<Coordinates>> islands = null;
-
         try{
             islands = this.board.detectIslands();
         } catch(Exception e){
         }
-
         for (ArrayList<Coordinates> island : islands) {
             if (isIslandConquered(island)){
                 return true;
             }
         }
-
         return false;
     }
 
