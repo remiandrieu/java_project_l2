@@ -13,6 +13,7 @@ import game.board.util.Ressource;
 import game.building.DemeterBuilding;
 import game.building.Port;
 import game.player.*;
+import listchooser.util.Input;
 
 public class BuildFarmTest {
     private static InputStream systemIn;
@@ -39,8 +40,8 @@ public class BuildFarmTest {
     }
 
     public static void simulateInput(String input) {   
-        InputStream in = new ByteArrayInputStream(input.getBytes()); 
-        System.setIn(in);
+        InputStream in = new ByteArrayInputStream((input + "\n").getBytes()); 
+        Input.setInputStream(in);
     }
 
     @BeforeEach
