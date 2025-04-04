@@ -564,21 +564,39 @@ Finir l'implémentation de l'action `PlaceWarrior`.
 
 ### Ce qui a été réalisé
 
+- Implémentation et correction des dernières actions
+- Réalisation du livrable3ares et livrable3demeter
+- Implémentation des tests pas encore réalisés.
+
 ### Difficultés rencontrées
+Nous avons eu des difficultés à simuler les inputs pour tester les méthodes act des actions.
+Nous avons eu aussi des difficultés à vérifier que pour construire une armée ou un port sur une île qu’on n’occupe pas encore, il faut disposer d’au moins un port sur une île qu’on occupe déjà. De plus il faudra disposer d’au moins 2 bâtiments sur chacune des îles
+qu’on occupe déjà.
 
 ### Objectifs pour la semaine
+
+- Terminer le livrable 3.
 
 ## Semaine 12
 
 ### Ce qui a été réalisé
 
 - Début de création des objectifs. Les classes `Objective`, `AresObjective`, `DemeterObjective`, `EnoughPoints` et `AresConquerIsland` ont été réalisées.
-- Début de certains tests
+- Début de certains tests.
+- Début de l'implémentation de Game.
+- Getion de la probabilité de génération de tuiles afin d'avoir un nombre d'iles raisonnables et des iles de tailles proportionnelles à la taille du plateau.
+- Getion de la taille du plateau en fonction du nombre de joueurs.
 
 ### Difficultés rencontrées
 
 - Fixer les règles des objectifs
+- Obtenir une bonnne formule pour avoir la taille du plateau en fonction du nombre de joueurs
+- Trouver les bonnes probabilitées pour toutes les tailles de plateau.
 
 ### Objectifs pour finaliser le projet
 
-- Finir les objectifs et les tester
+- Finir les objectifs et les tester.
+- Finir l'implémentation de Game et tester ses méthodes.
+- Faire un diapo pour la soutenance.
+- Préparer la soustenance.
+- Faire livrable 4.
