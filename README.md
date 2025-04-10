@@ -150,7 +150,7 @@ Chaque action possède au moins deux méthodes :
 
 Une nouvelle classe Coordinates a été ajoutée, permettant de représenter une paire de coordonées. Elle est notamment utilisée dans la classe Tile, qui possède maintenant un nouvel attribut pour connaître ses coordonées sur le plateau.
 
-Nous avons choisi qu'un joueur de Demeter ne puisse acheter qu'au plus voleur. Il n'y a donc pas de limite sur le nombre de voleurs, chaque joueur peut posséder ou non un voleur.
+Nous avons choisi qu'un joueur de Demeter ne puisse acheter qu'au plus un voleur. Il n'y a donc pas de limite sur le nombre de voleurs, chaque joueur peut posséder ou non un voleur.
 
 ### UML
 
