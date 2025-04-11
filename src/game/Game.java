@@ -50,6 +50,8 @@ public abstract class Game {
                 playerName = Input.readString();
                 if(playerName == ""){
                     System.out.println("Your name can't be empty");
+                    correct = false;
+                    continue;
                 }
                 for(Player player : this.players){
                     if(player.getName()==playerName){
