@@ -16,7 +16,7 @@ public abstract class Game {
     protected Board board;
     protected List<Action> actions;
 
-    public abstract Player createPlayer(String playerName);
+    protected abstract Player createPlayer(String playerName);
 
     public void initPlayers(){
         int nbPlayers = -1;
@@ -65,7 +65,7 @@ public abstract class Game {
         }
     }
 
-    public abstract StartAction startBuilding();
+    protected abstract StartAction startBuilding();
 
     public void placeFirstBuildings() throws InvalidPositionException{
         int i;
@@ -100,7 +100,7 @@ public abstract class Game {
         }
     }
 
-    public void collectRessources(Player player){
+    protected void collectRessources(Player player){
         for (Building b : player.getBuildings()){
             b.playerCollectRessources();
         }

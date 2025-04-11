@@ -1,12 +1,11 @@
 package game;
 
 import game.action.*;
-import game.action.StartAction;
 import game.player.*;
 
 public class DemeterGame extends Game {
 
-    public Player createPlayer(String playerName){
+    protected Player createPlayer(String playerName){
         return new DemeterPlayer(playerName);
     };
 
@@ -18,7 +17,7 @@ public class DemeterGame extends Game {
         this.actions.add(new PlayThief(board));
     }
 
-    public StartAction startBuilding(){
+    protected StartAction startBuilding(){
         return new BuildFarmStart(board);
     }
 

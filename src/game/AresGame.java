@@ -5,7 +5,7 @@ import game.player.*;
 
 public class AresGame extends Game {
 
-    public Player createPlayer(String playerName){
+    protected Player createPlayer(String playerName){
         AresPlayer player = new AresPlayer(playerName);
         player.addWarrior(30);
         return player;
@@ -21,7 +21,7 @@ public class AresGame extends Game {
         this.actions.add(new BuySecretWeapon(board));
     }
 
-    public StartAction startBuilding(){
+    protected StartAction startBuilding(){
         return new BuildArmyStart(board);
     }
 
