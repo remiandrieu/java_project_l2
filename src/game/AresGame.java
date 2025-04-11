@@ -6,7 +6,9 @@ import game.player.*;
 public class AresGame extends Game {
 
     public Player createPlayer(String playerName){
-        return new AresPlayer(playerName);
+        AresPlayer player = new AresPlayer(playerName);
+        player.addWarrior(30);
+        return player;
     };
 
     public void initActions(){
