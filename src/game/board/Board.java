@@ -11,7 +11,7 @@ public class Board {
     protected Tile[][] grid;
     protected final int LENGTH;
     protected final int WIDTH;
-    protected final double PROBABILITY_PICKING_NEW_LOCATION = 0.5;
+    protected final double PROBABILITY_PICKING_NEW_LOCATION;
 
     /**
      * Create a board with a length and a width
@@ -22,6 +22,7 @@ public class Board {
         this.LENGTH = length;
         this.WIDTH = width;
         this.grid = new Tile[LENGTH][WIDTH];
+        PROBABILITY_PICKING_NEW_LOCATION = -Math.exp(-0.06*length)+1;
     }
 
     public int getLength() {
