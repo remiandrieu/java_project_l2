@@ -48,14 +48,10 @@ public abstract class Game {
             while(!correct){
                 correct = true;
                 playerName = Input.readString();
-                if(playerName.equals("")){
-                    System.out.println("Your name can't be empty");
-                    correct = false;
-                    continue;
-                }
                 for(Player player : this.players){
                     if(player.getName().equals(playerName)){
                         System.out.println("Name already exist");
+                        System.out.println("Player " + i + ", enter your name :");
                         correct = false;
                         break;
                     }
