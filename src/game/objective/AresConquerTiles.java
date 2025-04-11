@@ -11,7 +11,7 @@ public class AresConquerTiles extends AresObjective{
     public static final int nbTiles = 8;
 
     /**
-     * Create the ConquerIsland objective
+     * Create the ConquerTiles objective
      * @param player the player which must achieve this objective
      * @param board the board
      */
