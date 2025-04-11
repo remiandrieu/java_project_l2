@@ -1,10 +1,16 @@
 package game;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
+
 import java.io.*;
+import java.util.List;
+
 import listchooser.util.Input;
 
-import org.junit.jupiter.api.*;
+import game.board.*;
+import game.board.util.*;
+import game.action.*;
 
 public class DemeterGameTest {
     private static InputStream originalSystemIn;
@@ -54,5 +60,29 @@ public class DemeterGameTest {
         this.game.initBoard();
         assertEquals(10, this.game.getBoard().getLength());
         assertEquals(10, this.game.getBoard().getWidth());
+    }
+
+    @Test
+    public void placeFirstBuildingsTest() throws InvalidPositionException{
+        simulateInput("2\nabc\ndef");
+        this.game.initPlayers();
+        this.game.initBoard();
+        List<Coordinates> coords = BoardUtils.nFirstAvailableCoords(this.game.getBoard(), 4);
+        String inputString = "";
+        for (Coordinates co : coords){
+            inputString += co.getX() + "\n" + co.getY() + "\n";
+        }
+        simulateInput(inputString);
+        this.game.placeFirstBuildings();
+        assertEquals(10, this.game.getBoard().getLength());
+        assertEquals(10, this.game.getBoard().getWidth());
+    }
+
+    @Test
+    public void initActionsTest() throws InvalidPositionException{
+        this.game.initActions();
+        for (Action ac : this.game.getActions()){
+            assertFalse(ac instanceof AresAction);
+        }
     }
 }

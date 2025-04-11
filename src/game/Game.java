@@ -102,7 +102,7 @@ public abstract class Game {
         }
     }
 
-    public void playTurn(Player player) throws InvalidPositionException{
+    protected void playTurn(Player player) throws InvalidPositionException{
         System.out.println(this.board.boardToString(true));
         this.collectRessources(player);
         System.out .println(player + " : it's your turn !");
