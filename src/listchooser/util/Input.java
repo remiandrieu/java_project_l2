@@ -23,6 +23,10 @@ public class Input {
      * À utiliser pour les tests
      */
     public static void setInputStream(java.io.InputStream inputStream) {
+        // Fermer l'ancien scanner pour libérer toutes les ressources
+        if (scanner != null) {
+            scanner.close();
+        }
         scanner = new Scanner(inputStream);
     }
     
