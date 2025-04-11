@@ -30,6 +30,10 @@ public abstract class Game {
             correct = true;
             try {
                 nbPlayers = Input.readInt();
+                if(nbPlayers<2){
+                    System.out.println("Minimum 2 players");
+                    correct = false;
+                }
             } catch (java.io.IOException e) {
                 System.out.println("Please, enter a number");
                 correct = false;
@@ -38,9 +42,23 @@ public abstract class Game {
         }
 
         for (i = 1; i <= nbPlayers; i++){
-            String playerName;
+            String playerName = "";
             System.out.println("Player " + i + ", enter your name :");
-            playerName = Input.readString();
+            correct = false;
+            while(!correct){
+                correct = true;
+                playerName = Input.readString();
+                if(playerName == ""){
+                    System.out.println("Your name can't be empty");
+                }
+                for(Player player : this.players){
+                    if(player.getName()==playerName){
+                        System.out.println("Name already exist");
+                        correct = false;
+                        break;
+                    }
+                }
+            }
             this.players.add(this.createPlayer(playerName));
         }
     }
@@ -115,5 +133,17 @@ public abstract class Game {
         } catch (InvalidPositionException e){
             System.out.println(e);
         }
+    }
+
+    public List<Player> getPlayers() {
+        return this.players;
+    }
+
+    public Board getBoard() {
+        return this.board;
+    }
+
+    public List<Action> getActions() {
+        return this.actions;
     }
 }
