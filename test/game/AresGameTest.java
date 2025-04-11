@@ -11,9 +11,10 @@ import listchooser.util.Input;
 import game.board.*;
 import game.board.util.*;
 import game.building.*;
+import game.player.AresPlayer;
 import game.action.*;
 
-public class DemeterGameTest {
+public class AresGameTest {
     private static InputStream originalSystemIn;
     private static PrintStream originalSystemOut;
 
@@ -36,7 +37,7 @@ public class DemeterGameTest {
     @BeforeEach
     public void init() {
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
-        this.game = new DemeterGame();
+        this.game = new AresGame();
     }
 
     public void simulateInput(String input) {   
@@ -50,8 +51,12 @@ public class DemeterGameTest {
         simulateInput("-1\n1\n2\n\nabc\nabc\ndef");
         this.game.initPlayers();
         assertEquals(2, this.game.getPlayers().size());
-        assertEquals("abc", this.game.getPlayers().get(0).getName());
-        assertEquals("def", this.game.getPlayers().get(1).getName());
+        AresPlayer player1 = (AresPlayer) this.game.getPlayers().get(0);
+        assertEquals("abc", player1.getName());
+        assertEquals(30, player1.getNbWarrior());
+        AresPlayer player2 = (AresPlayer) this.game.getPlayers().get(1);
+        assertEquals("def", player2.getName());
+        assertEquals(30, player2.getNbWarrior());
     }
 
     @Test
@@ -76,10 +81,10 @@ public class DemeterGameTest {
         simulateInput(inputString);
         this.game.placeFirstBuildings();
         for (Building b : this.game.getPlayers().get(0).getBuildings()){
-            assertTrue(b instanceof DemeterBuilding);
+            assertTrue(b instanceof AresBuilding);
         }
         for (Building b : this.game.getPlayers().get(1).getBuildings()){
-            assertTrue(b instanceof DemeterBuilding);
+            assertTrue(b instanceof AresBuilding);
         }
     }
 
@@ -87,7 +92,7 @@ public class DemeterGameTest {
     public void initActionsTest() throws InvalidPositionException{
         this.game.initActions();
         for (Action ac : this.game.getActions()){
-            assertFalse(ac instanceof AresAction);
+            assertFalse(ac instanceof DemeterAction);
         }
     }
 }
