@@ -7,8 +7,7 @@ import game.player.Player;
 public class AresConquerTiles extends AresObjective{
     
     /* variables */
-    /*TODO expression for nbTile */
-    public static final int nbTiles = 8;
+    public final int nbTiles;
 
     /**
      * Create the ConquerTiles objective
@@ -16,7 +15,8 @@ public class AresConquerTiles extends AresObjective{
      * @param board the board
      */
     public AresConquerTiles(Player player, Board board){
-        super(player, board, "Conquer "+nbTiles+" tiles");
+        super(player, board, "Conquer "+(board.getLength()+board.getWidth())/2+" tiles");
+        this.nbTiles = (board.getLength()+board.getWidth())/2;
     }
     
     /**

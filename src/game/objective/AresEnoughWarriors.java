@@ -8,8 +8,7 @@ import game.player.Player;
 public class AresEnoughWarriors extends AresObjective{
     
     /* variables */
-    /*TODO expression for nbWarriors */
-    public static final int nbWarriors = 30;
+    public final int nbWarriors;
 
     /**
      * Create the EnoughWarriors objective
@@ -17,7 +16,8 @@ public class AresEnoughWarriors extends AresObjective{
      * @param board the board
      */
     public AresEnoughWarriors(Player player, Board board){
-        super(player, board, "Have "+nbWarriors+" warriors in buildings");
+        super(player, board, "Have "+board.getLength() + board.getWidth()+20+" warriors in buildings");
+        this.nbWarriors = board.getLength() + board.getWidth()+20;
     }
 
     /**
@@ -31,6 +31,6 @@ public class AresEnoughWarriors extends AresObjective{
                 nb += ((LandBuilding)building).getDimension();
             }
         }
-        return nb >= nbWarriors;
+        return nb >= this.nbWarriors;
     }
 }
