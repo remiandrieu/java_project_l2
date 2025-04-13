@@ -1,6 +1,9 @@
 package game.objective;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.*;
 
 import game.board.*;
@@ -43,11 +46,25 @@ public class AresConquerIslandTest {
 
         while(land != null){
             land = firstAvailableLand(board, 10, 10);
-            farm = new AresBuilding(player, land,2);
-            player.getBuildings().add(farm);
+            if (land != null){
+                farm = new AresBuilding(player, land,2);
+                player.getBuildings().add(farm); 
+            }
         }
-
         assertTrue(objective.isAchieved());
+    }
+
+    @Test
+    public void testIslandPartiallyConquered() throws InvalidPositionException {
+        ArrayList<Coordinates> island = board.detectIslands().get(0);
+
+        for (int i = 0; i < island.size() - 1; i++) {
+            Coordinates coord = island.get(i);
+            Land land = (Land) board.getTile(coord.getX(), coord.getY());
+            AresBuilding b = new AresBuilding(player, land, 1);
+            player.getBuildings().add(b);
+        }
+        assertFalse(objective.isIslandConquered(island));
     }
 
     /**
