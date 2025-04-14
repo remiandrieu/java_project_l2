@@ -7,19 +7,52 @@ import game.board.*;
 import game.building.Building;
 import game.objective.Objective;
 import game.player.*;
-import listchooser.InteractiveListChooser;
-import listchooser.ListChooser;
-import listchooser.util.Input;
+import listchooser.*;
+import listchooser.util.*;
 
+/* a class to model a game */
 public abstract class Game {
 
+    /* Attributes */
     protected List<Player> players;
     protected Board board;
     protected List<Action> actions;
     protected List<Objective> objectives;
 
+    /**
+     * Get the list of players of the game
+     * @return a list containing the players 
+     */
+    public List<Player> getPlayers() {
+        return this.players;
+    }
+
+    /**
+     * Get the board used in the game
+     * @return the board used in the game
+     */
+    public Board getBoard() {
+        return this.board;
+    }
+
+    /**
+     * Get the list of possible actions of the game
+     * @return a list containing all possible actions 
+     */
+    public List<Action> getActions() {
+        return this.actions;
+    }
+
+    /**
+     * Create a player specific to the game
+     * @param playerName the player's name
+     * @return return a player specific to the game
+     */
     protected abstract Player createPlayer(String playerName);
 
+    /**
+     * Initialize players of the game
+     */
     public void initPlayers(){
         int nbPlayers = -1;
 		boolean correct = false;
@@ -63,8 +96,15 @@ public abstract class Game {
         }
     }
 
+    /**
+     * Get an action used to place the first buildings of the game
+     * @return return an action used to place the first buildings of the game
+     */
     protected abstract StartAction startBuilding();
 
+    /**
+     * Initialize the first buildings of the game
+     */
     public void placeFirstBuildings() throws InvalidPositionException{
         int i;
         StartAction startAction = startBuilding();
@@ -78,8 +118,15 @@ public abstract class Game {
         }
     }
 
+    /**
+     * Set the objective of the player in parameters
+     * @param player a player
+     */
     protected abstract void setPlayerObjective(Player player);
 
+    /**
+     * Initialize an objective for each player
+     */
     public void initObjectives(){
         for (Player p : this.players){
             this.setPlayerObjective(p);
@@ -87,6 +134,9 @@ public abstract class Game {
         }
     }
 
+    /**
+     * Initialize the possible actions of the game
+     */
     public void initActions(){
         this.actions = new ArrayList<>();
         this.actions.add(new Wait(board));
@@ -95,6 +145,9 @@ public abstract class Game {
         this.actions.add(new TradePort(board));
     }
 
+    /**
+     * Initialize the board of the game
+     */
     public void initBoard(){
         int length = (int) Math.sqrt(12*(this.players.size() - 2)) + 10;
         int width = length;
@@ -107,12 +160,21 @@ public abstract class Game {
         }
     }
 
+    /**
+     * Collect the player's ressources
+     * @param player a player
+     */
     protected void collectRessources(Player player){
         for (Building b : player.getBuildings()){
             b.playerCollectRessources();
         }
     }
 
+    /**
+    * Play a turn for the player in parameters
+    * @param player a player
+    * @return true if the player's objective is completed, false otherwise
+    */
     protected boolean playTurn(Player player) throws InvalidPositionException{
         System.out.println(this.board.boardToString(true));
         this.collectRessources(player);
@@ -129,6 +191,11 @@ public abstract class Game {
         return player.getObjective().isAchieved();
     }
     
+    /**
+    * After doing all initialization, start the game
+    * Each player plays one after the other
+    * When a player has completed their objective, end the game
+    */
     public void play(){
         try{
             this.initPlayers();
@@ -148,15 +215,4 @@ public abstract class Game {
         }
     }
 
-    public List<Player> getPlayers() {
-        return this.players;
-    }
-
-    public Board getBoard() {
-        return this.board;
-    }
-
-    public List<Action> getActions() {
-        return this.actions;
-    }
 }
