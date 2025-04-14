@@ -1,6 +1,9 @@
 package game;
 
+import java.util.Random;
+
 import game.action.*;
+import game.objective.*;
 import game.player.*;
 
 public class AresGame extends Game {
@@ -19,6 +22,14 @@ public class AresGame extends Game {
         this.actions.add(new PlaceWarrior(board));
         this.actions.add(new Attack(board));
         this.actions.add(new BuySecretWeapon(board));
+    }
+
+    protected void setPlayerObjective(Player player){
+        Objective[] possibleObjectives = {new AresConquerIsland(player, this.board),
+                                          new AresConquerTiles(player, this.board),
+                                          new AresEnoughWarriors(player, this.board)};
+        Objective randomObjective = possibleObjectives[new Random().nextInt(possibleObjectives.length)];
+        player.setObjective(randomObjective);
     }
 
     protected StartAction startBuilding(){

@@ -5,6 +5,7 @@ import java.util.*;
 import game.action.*;
 import game.board.*;
 import game.building.Building;
+import game.objective.Objective;
 import game.player.*;
 import listchooser.InteractiveListChooser;
 import listchooser.ListChooser;
@@ -15,6 +16,7 @@ public abstract class Game {
     protected List<Player> players;
     protected Board board;
     protected List<Action> actions;
+    protected List<Objective> objectives;
 
     protected abstract Player createPlayer(String playerName);
 
@@ -76,6 +78,15 @@ public abstract class Game {
         }
     }
 
+    protected abstract void setPlayerObjective(Player player);
+
+    public void initObjectives(){
+        for (Player p : this.players){
+            this.setPlayerObjective(p);
+            p.getObjective().printObjective();
+        }
+    }
+
     public void initActions(){
         this.actions = new ArrayList<>();
         this.actions.add(new Wait(board));
@@ -102,10 +113,10 @@ public abstract class Game {
         }
     }
 
-    protected void playTurn(Player player) throws InvalidPositionException{
+    protected boolean playTurn(Player player) throws InvalidPositionException{
         System.out.println(this.board.boardToString(true));
         this.collectRessources(player);
-        System.out .println(player + " : it's your turn !");
+        System.out.println(player + " : it's your turn !");
         List<Action> possibleActions = new ArrayList<>();
         for (Action a : this.actions){
             if (a.isPossible(player)){
@@ -115,19 +126,23 @@ public abstract class Game {
         ListChooser<Action> lc = new InteractiveListChooser<>();
         Action chosenAction = lc.choose("Choose an action to perform.", possibleActions);
         chosenAction.act(player);
+        return player.getObjective().isAchieved();
     }
     
     public void play(){
         try{
             this.initPlayers();
             this.initBoard();
+            this.initObjectives();
             this.initActions();
             this.placeFirstBuildings();
-            int currentPlayer = 0;
-            while (true){
-                playTurn(this.players.get(currentPlayer));
+            int currentPlayer = -1;
+            boolean stop = false;
+            while (!stop){
                 currentPlayer = (currentPlayer + 1) % this.players.size();
+                stop = playTurn(this.players.get(currentPlayer));
             }
+            System.out.println(this.players.get(currentPlayer) + "win !");
         } catch (InvalidPositionException e){
             System.out.println(e);
         }

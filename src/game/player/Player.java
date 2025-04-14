@@ -2,6 +2,7 @@ package game.player;
 import java.util.*;
 import game.board.util.*;
 import game.building.*;
+import game.objective.Objective;
 
 /** a class to model a player */
 public class Player {
@@ -12,7 +13,7 @@ public class Player {
     protected final int id;
     private static int currentId = 0;
     protected List<Building> buildings;
-    // protected Objective objective;
+    protected Objective objective;
 
     /**
      * Create a player with a name, an empty HashMap for ressources and an empty ArrayList for buildings
@@ -52,6 +53,22 @@ public class Player {
      */
     public List<Building> getBuildings() {
         return this.buildings;
+    }
+
+    /**
+     * Get the objective of the player
+     * @return the objective of the player
+     */
+    public Objective getObjective() {
+        return this.objective;
+    }
+
+    /**
+     * Set the objective of the player
+     * @param objective an objective
+     */
+    public void setObjective(Objective objective) {
+        this.objective = objective;
     }
 
     /**

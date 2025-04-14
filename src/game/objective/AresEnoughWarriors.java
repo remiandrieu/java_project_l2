@@ -16,7 +16,7 @@ public class AresEnoughWarriors extends AresObjective{
      * @param board the board
      */
     public AresEnoughWarriors(Player player, Board board){
-        super(player, board, "Have "+board.getLength() + board.getWidth()+20+" warriors in buildings");
+        super(player, board, "Have "+ (board.getLength() + board.getWidth()+20)+" warriors in buildings");
         this.nbWarriors = board.getLength() + board.getWidth()+20;
     }
 
