@@ -10,10 +10,10 @@ import game.board.*;
 import game.building.*;
 import game.player.*;
 
-public class AresConquerIslandTest {
+public class AresEnoughWarriorsTest {
     Board board;
     AresPlayer player;
-    AresConquerIsland objective;
+    AresEnoughWarriors objective;
 
     @BeforeEach
     public void init(){
@@ -24,32 +24,28 @@ public class AresConquerIslandTest {
 
         }
         player = new AresPlayer("Timoleon");
-        objective = new AresConquerIsland(player, board);
+        objective = new AresEnoughWarriors(player, board);
     }
 
     @Test
     public void testConstructeur(){
-        assertEquals(objective.getDescription(), "Conquer an entire island (Have a building on every tile of any island)");
+        assertEquals(objective.getDescription(), "Have "+ (board.getLength() + board.getWidth()+20)+" warriors in buildings");
     }
 
     @Test
     public void testIsAchieved() throws InvalidPositionException {
         ArrayList<Coordinates> island = board.detectIslands().get(0);
-
-        for (int i = 0; i < island.size() - 1; i++) {
-            Coordinates coord = island.get(i);
-            Land land = (Land) board.getTile(coord.getX(), coord.getY());
-            AresBuilding b = new AresBuilding(player, land, 1);
-            player.getBuildings().add(b);
-        }
+        Coordinates coord = island.get(0);
+        Land land = (Land) board.getTile(coord.getX(), coord.getY());
+        AresBuilding b = new AresBuilding(player, land, 39);
+        player.getBuildings().add(b);
 
         assertFalse(objective.isAchieved());
 
-        Coordinates coord = island.get(island.size() - 1);
-        Land land = (Land) board.getTile(coord.getX(), coord.getY());
-        AresBuilding b = new AresBuilding(player, land, 1);
-        player.getBuildings().add(b);
-
+        Coordinates coord2 = island.get(1);
+        Land land2 = (Land) board.getTile(coord2.getX(), coord2.getY());
+        AresBuilding b2 = new AresBuilding(player, land2, 1);
+        player.getBuildings().add(b2);
         assertTrue(objective.isAchieved());
     }
 }

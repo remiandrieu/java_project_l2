@@ -39,7 +39,7 @@ public class AresConquerIsland extends AresObjective {
      * @param island the island to check if it is conquered
      * @return true if the island is conquered by the player
      */
-    public boolean isIslandConquered(ArrayList<Coordinates> island){
+    private boolean isIslandConquered(ArrayList<Coordinates> island){
         for (Coordinates coordinates : island) {
             try{
                 if ( !(((Land) this.board.getTile(coordinates.getX(), coordinates.getY())).hasBuilding() && ((Land) this.board.getTile(coordinates.getX(), coordinates.getY())).getBuilding().getPlayer() == this.player)){

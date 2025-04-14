@@ -66,7 +66,7 @@ public class EnoughPoints extends DemeterObjective {
      * @param island the island
      * @return true if the player has 2 or more buildings on the island
      */
-    public boolean isPlayerOnIsland(ArrayList<Coordinates> island){
+    private boolean isPlayerOnIsland(ArrayList<Coordinates> island){
         int nbBuildings = 0;
         for (Coordinates coordinates : island) {
             try{

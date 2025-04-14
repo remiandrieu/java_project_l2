@@ -10,10 +10,10 @@ import game.board.*;
 import game.building.*;
 import game.player.*;
 
-public class AresConquerIslandTest {
+public class AresConquerTilesTest {
     Board board;
     AresPlayer player;
-    AresConquerIsland objective;
+    AresConquerTiles objective;
 
     @BeforeEach
     public void init(){
@@ -24,28 +24,29 @@ public class AresConquerIslandTest {
 
         }
         player = new AresPlayer("Timoleon");
-        objective = new AresConquerIsland(player, board);
+        objective = new AresConquerTiles(player, board);
     }
 
     @Test
     public void testConstructeur(){
-        assertEquals(objective.getDescription(), "Conquer an entire island (Have a building on every tile of any island)");
+        assertEquals(objective.getDescription(), "Conquer "+(board.getLength()+board.getWidth())/2+" tiles");
     }
 
     @Test
     public void testIsAchieved() throws InvalidPositionException {
-        ArrayList<Coordinates> island = board.detectIslands().get(0);
+        ArrayList<ArrayList<Coordinates>> islands = board.detectIslands();
 
-        for (int i = 0; i < island.size() - 1; i++) {
-            Coordinates coord = island.get(i);
+        for (int i = 0; i < islands.get(0).size() && i<9; i++) {
+            Coordinates coord = islands.get(0).get(i);
             Land land = (Land) board.getTile(coord.getX(), coord.getY());
             AresBuilding b = new AresBuilding(player, land, 1);
             player.getBuildings().add(b);
         }
 
+
         assertFalse(objective.isAchieved());
 
-        Coordinates coord = island.get(island.size() - 1);
+        Coordinates coord = islands.get(1).get(0);
         Land land = (Land) board.getTile(coord.getX(), coord.getY());
         AresBuilding b = new AresBuilding(player, land, 1);
         player.getBuildings().add(b);
