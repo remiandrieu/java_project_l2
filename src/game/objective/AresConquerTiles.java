@@ -7,7 +7,7 @@ import game.player.Player;
 public class AresConquerTiles extends AresObjective{
     
     /* variables */
-    public final int nbTiles;
+    protected final int nbTiles;
 
     /**
      * Create the ConquerTiles objective

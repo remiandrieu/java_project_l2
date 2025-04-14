@@ -8,7 +8,7 @@ import game.player.Player;
 public class AresEnoughWarriors extends AresObjective{
     
     /* variables */
-    public final int nbWarriors;
+    protected final int nbWarriors;
 
     /**
      * Create the EnoughWarriors objective
