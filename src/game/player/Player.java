@@ -7,9 +7,9 @@ import game.objective.Objective;
 /** a class to model a player */
 public class Player {
 
+    /* Attributes */
     protected String name;
     protected Map<Ressource, Integer> ressources;
-
     protected final int id;
     private static int currentId = 0;
     protected List<Building> buildings;
@@ -113,7 +113,9 @@ public class Player {
         this.ressources.put(r, this.ressources.get(r)-value);
     }
 
-    
+    /**
+     * A String representation of this player
+     */
     public String toString() {
         String inventory = "";
         for (Ressource r : Ressource.values()){

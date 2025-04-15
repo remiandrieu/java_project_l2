@@ -9,8 +9,10 @@ import game.board.Land;
 import game.building.Building;
 import game.building.Port;
 
+/** a class to model an Ares player */
 public class AresPlayer extends Player {
 
+    /* Attributes */
     protected int nbSecretWeapons;
     protected int nbWarrior;
 
@@ -24,26 +26,46 @@ public class AresPlayer extends Player {
         this.nbSecretWeapons = 0;
     }
 
+    /**
+     * Gets the number of this player's secret weapons
+     * @return the number of this player's secret weapons
+     */
     public int getNbSecretWeapons(){
         return this.nbSecretWeapons;
     }
 
+    /**
+     * Adds one secret weapon to this player
+     */
     public void addSecretWeapon(){
         this.nbSecretWeapons += 1;
     }
 
+    /**
+     * Removes one secret weapon to this player
+     */
     public void removeSecretWeapon(){
         this.nbSecretWeapons -= 1;
     } 
 
+    /**
+     * Gets the number of this player's warriors
+     * @return the number of this player's warriors
+     */
     public int getNbWarrior() {
         return this.nbWarrior;
     }
 
+    /**
+     * Adds a given amount of warriors to this player
+     */
     public void addWarrior(int n){
         this.nbWarrior += n; 
     }
 
+    /**
+     * Removes a given amount of warriors to this player
+     */
     public void removeWarrior(int n){
         this.nbWarrior -= n; 
     }
@@ -123,6 +145,9 @@ public class AresPlayer extends Player {
         return allOccupiedIslandsHaveTwoBuildings && hasPort;
     }
     
+    /**
+     * A String representation of this player
+     */
     public String toString() {
         return super.toString() + "(" + this.nbWarrior + " warriors)";
     }

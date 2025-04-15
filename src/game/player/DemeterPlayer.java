@@ -1,8 +1,9 @@
 package game.player;
 
-/** a class to model a player */
+/** a class to model a Demeter player */
 public class DemeterPlayer extends Player {
 
+    /* Attribute */
     protected boolean thief;
 
     /**
