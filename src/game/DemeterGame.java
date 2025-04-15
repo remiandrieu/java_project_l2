@@ -6,8 +6,14 @@ import game.action.*;
 import game.objective.*;
 import game.player.*;
 
+/* a class to model a game of Demeter */
 public class DemeterGame extends Game {
 
+    /**
+     * Create a Demeter player
+     * @param playerName the player's name
+     * @return return a Demeter player
+     */
     protected Player createPlayer(String playerName){
         return new DemeterPlayer(playerName);
     };

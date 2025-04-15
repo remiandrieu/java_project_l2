@@ -5,6 +5,7 @@ import game.building.Building;
 import game.building.LandBuilding;
 import game.player.Player;
 
+/* a class to model the enough warriors objective for Ares Game */
 public class AresEnoughWarriors extends AresObjective{
     
     /* variables */

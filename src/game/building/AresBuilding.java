@@ -4,11 +4,20 @@ import game.board.*;
 import game.board.util.Ressource;
 import game.player.*;
 
+/* A class to model an Ares Building */
 public class AresBuilding extends LandBuilding{
-    protected boolean level; //Level of the building, false if army, true if camp
+    
+    /* Attribute */
+    protected boolean level; // Level of the building, false if army, true if camp
     // As the dimension is equal to the number of warriors,
     // it seems intuitive to omit a variable numberOfWarriors and to use the dimension instead.
 
+    /**
+     * creates a building used in Ares Game
+     * @param player the player who owns this building
+     * @param land the land where the building is placed
+     * @param numberWarriors the number of warriors on this building
+     */
     public AresBuilding(Player player, Land land, int numberWarriors){
         super(player, land, numberWarriors);
         this.level = false;
@@ -77,6 +86,9 @@ public class AresBuilding extends LandBuilding{
         }
     }
 
+    /**
+     * A String representation of this building
+     */
     public String toString() {
         if (this.isEvolved()){
             return "Camp("+ this.dimension + " warriors)";

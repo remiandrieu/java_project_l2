@@ -52,6 +52,9 @@ public class DemeterBuilding extends LandBuilding {
         }
     }
 
+    /**
+     * A String representation of this building
+     */
     public String toString() {
         if (this.isEvolved()){
             return "Big farm";

@@ -17,7 +17,9 @@ public class Port extends Building {
         this.cost.put(Ressource.SHEEP, 2);
     }
 
-    
+    /**
+     * A String representation of the port
+     */
     public String toString() {
         return "Harbor";
     }
