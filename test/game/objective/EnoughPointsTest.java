@@ -22,6 +22,8 @@ public class EnoughPointsTest {
 
     @Test
     public void testConstructeur() {
+        Board board = new Board(10, 10);
+        Objective objective = new EnoughPoints(player, board);
         assertEquals(objective.getDescription(), "You need to get at least 12 points.");
     }
 
