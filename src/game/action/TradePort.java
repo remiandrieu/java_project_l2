@@ -16,7 +16,7 @@ public class TradePort extends CommonAction{
     
     /**
      * creates a class for trading
-     * @param board
+     * @param board the board
      */
     public TradePort(Board board) {
         super("trade port", board);
@@ -54,10 +54,22 @@ public class TradePort extends CommonAction{
         System.out.println(player + " has exchanged 2 " + chosenRessource + " for 1 " + chosenRessource2 + "\n");
     }
 
+    /**
+     * Adds the given ressource to the player's inventory.
+     * @param player the player who is buying the resource
+     * @param chosenRessource2 the ressource to be added to the player's inventory
+     */
     public void buy(Player player, Ressource chosenRessource2) {
         player.addRessoure(chosenRessource2);
     }
 
+    /**
+     * Removes two units of the chosen ressource from the player's inventory,
+     * and returns a list containing all possible ressources.
+     * @param player the player who is spending the ressources
+     * @param chosenRessource the ressource removed
+     * @return a list of all available resources
+     */
     public List<Ressource> spend(Player player, Ressource chosenRessource) {
         player.removeRessoure(chosenRessource, 2);
         List<Ressource> l = new ArrayList<>();

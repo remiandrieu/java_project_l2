@@ -46,6 +46,12 @@ public class PlayThief extends DemeterAction {
         steal(playersToSteal, demeterPlayer, chosenRessource);
     }
 
+    /**
+     * Allows the thief to steal a ressource from other players
+     * @param playersToSteal the players that could be stolen
+     * @param demeterPlayer the thief
+     * @param chosenRessource the ressource stolen by the thief
+     */
     public void steal(Player[] playersToSteal, DemeterPlayer demeterPlayer, Ressource chosenRessource) {
         int sum = 0;
         int tmp;

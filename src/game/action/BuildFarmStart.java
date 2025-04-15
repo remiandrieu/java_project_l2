@@ -87,6 +87,12 @@ public class BuildFarmStart extends StartAction {
         build(player, x, y);
     }
 
+    /**
+     * A useful method to build a farm in BuildFarm action
+     * @param player the player who builds the farm
+     * @param x the abscissa where the player wants to build the farm
+     * @param y the ordinate where the player wants to build the farm
+     */
     public void build(Player player, int x, int y) {
         super.act(player);
         try {

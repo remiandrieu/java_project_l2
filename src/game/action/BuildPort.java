@@ -101,6 +101,12 @@ public class BuildPort extends CommonAction {
 
     }
 
+    /**
+     * A useful method to build a port in BuildPort action
+     * @param player the player who builds the port
+     * @param x the abscissa where the player wants to build the port
+     * @param y the ordinate where the player wants to build the port
+     */
     public void build(Player player, int x, int y) {
         super.act(player);
         try {

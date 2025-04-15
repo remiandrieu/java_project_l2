@@ -9,7 +9,9 @@ import game.player.*;
 import listchooser.util.Input;
 import game.building.*;
 
+/* A class to model the Attack action of Ares Game */
 public class Attack extends AresAction {
+    
     /**
      * Create the buildArmy action
      * @param board the board
@@ -23,8 +25,6 @@ public class Attack extends AresAction {
         if(!(player instanceof AresPlayer)){
             return false;
         }
-
-     
         for (int x = 0; x < this.board.getLength(); x++) {
             for (int y = 0; y < this.board.getWidth(); y++) {
                 try {
@@ -50,9 +50,11 @@ public class Attack extends AresAction {
         return false;
     }
 
-    /** Attacks one of the neighbor, the players throw dices according the number of warriors in their buildings.
+    /** 
+     * Attacks one of the neighbor, the players throw dices according the number of warriors in their buildings.
      * The one with the most points wins
      * You can use a secret weapon to buy another dice.
+     * @param player the player who executes this action
     */
     public void act(Player player){
         if(!(player instanceof AresPlayer)){

@@ -119,6 +119,13 @@ public class BuildArmy extends AresAction {
         System.out.println(player + " builds an army at (" + x + ", " + y + ")\n");
     }
 
+    /**
+     * A useful method to build an army in BuildArmy action
+     * @param player the player who builds its army
+     * @param x the abscissa where the player wants to build its army
+     * @param y the ordinate where the player wants to build its army
+     * @param numberOfWarriors the number of warriors in the army
+     */
     public void build(Player player, int x, int y, int numberOfWarriors) {
         super.act(player);
         try {

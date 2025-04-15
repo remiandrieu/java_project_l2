@@ -45,10 +45,22 @@ public class Trade extends CommonAction{
         System.out.println(player + " has exchanged 3 " + chosenRessource + " for 1 " + chosenRessource2 + "\n");
     }
 
+    /**
+     * Adds the given ressource to the player's inventory.
+     * @param player the player who is buying the resource
+     * @param chosenRessource2 the ressource to be added to the player's inventory
+     */
     public void buy(Player player, Ressource chosenRessource2) {
         player.addRessoure(chosenRessource2);
     }
 
+    /**
+     * Removes three units of the given ressource from the player's inventory,
+     * and returns a list containing all possible ressources.
+     * @param player the player who is spending the ressources
+     * @param chosenRessource the ressource removed
+     * @return a list of all available resources
+     */
     public List<Ressource> spend(Player player, Ressource chosenRessource) {
         player.removeRessoure(chosenRessource, 3);
         List<Ressource> l = new ArrayList<>();

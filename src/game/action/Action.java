@@ -58,6 +58,10 @@ public abstract class Action {
         return this.label;
     }
 
+    /**
+     * A String representation of this action
+     * @return a String representation of this action
+     */
     public String toString(){
         return this.label;
     }
