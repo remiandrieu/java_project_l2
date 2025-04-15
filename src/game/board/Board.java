@@ -25,10 +25,18 @@ public class Board {
         PROBABILITY_PICKING_NEW_LOCATION = -Math.exp(-0.06*length)+1;
     }
 
+    /**
+     * Gets the length of the board
+     * @return the length of the board
+     */
     public int getLength() {
         return LENGTH;
     }
 
+    /**
+     * Gets the width of the board
+     * @return the width of the board
+     */
     public int getWidth() {
         return WIDTH;
     }

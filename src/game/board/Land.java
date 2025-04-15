@@ -4,6 +4,8 @@ import game.building.*;
 
 /** an abstract class to represent a land */
 public abstract class Land extends Tile {
+
+    /* Attribute */
     protected Building building;
 
     /**
@@ -31,17 +33,20 @@ public abstract class Land extends Tile {
         return building != null;
     } 
 
-    /** creates an abstract method to produce the different ressources of the board
+    /** 
+     * creates an abstract method to produce the different ressources of the board
      * @return the ressource
      */
     public abstract Ressource produce();
 
-    /** creates a string representation of the ressource in this land
+    /** 
+     * creates a string representation of the ressource in this land
      * @return a string representation of the ressource in this land
      */
     public abstract String toString();
 
     /**
+     * Gets this building
      * @return the building
      */
     public Building getBuilding() {

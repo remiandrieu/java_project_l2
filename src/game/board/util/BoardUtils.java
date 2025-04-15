@@ -4,6 +4,7 @@ import java.util.*;
 
 import game.board.*;
 
+/* A class to model the useful methods for the board */
 public class BoardUtils {
 
     /**
