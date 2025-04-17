@@ -13,7 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.jupiter.api.*;
 
 import game.board.*;
-import game.board.util.Ressource;
+import game.board.util.*;
 import game.building.*;
 import game.player.*;
 import listchooser.util.Input;
@@ -64,7 +64,7 @@ public class EvolveArmyTest {
         assertFalse(action.isPossible(player));
 
         //Vérification que l'action est possible avec 1 batiment non évolué sur le plateau 
-        Land land = firstAvailableLand(board, 10, 10);
+        Land land = BoardUtils.firstAvailableLand(board);
         AresBuilding army = new AresBuilding(player, land, 5);
         player.getBuildings().add(army);
         assertTrue(action.isPossible(player));
@@ -75,7 +75,7 @@ public class EvolveArmyTest {
 
         //Vérification que l'action est impossible si le batiment appartient à un autre joueur
         AresPlayer player2 = new AresPlayer("Timoleon2");
-        land = firstAvailableLand(board, 10, 10);
+        land = BoardUtils.firstAvailableLand(board);
         army = new AresBuilding(player2, land, 10);
         player2.getBuildings().add(army);
         assertFalse(action.isPossible(player));
@@ -83,13 +83,13 @@ public class EvolveArmyTest {
         assertFalse(action.isPossible(player));
 
         //Vérification que les ports ne comptent pas
-        land = firstAvailableLand(board, 10, 10);
+        land = BoardUtils.firstAvailableLand(board);
         Port port = new Port(player, land);
         player.getBuildings().add(port);
         assertFalse(action.isPossible(player));
 
         //Vérification que le batiment ne peut etre évolué quand on y ajoute assez de soldats.
-        land = firstAvailableLand(board, 10, 10);
+        land = BoardUtils.firstAvailableLand(board);
         army = new AresBuilding(player, land, 5);
         player.getBuildings().add(army);
         assertTrue(action.isPossible(player));
@@ -99,8 +99,8 @@ public class EvolveArmyTest {
 
     @Test
     public void testAct(){
-        Land land = firstAvailableLand(board, 10, 10);
-        Coordinates coord = firstAvailableCoord(board);
+        Land land = BoardUtils.firstAvailableLand(board);
+        Coordinates coord = BoardUtils.firstAvailableCoords(board);
         String inputString = coord.getX() + "\n" + coord.getY();
 
     
@@ -113,57 +113,5 @@ public class EvolveArmyTest {
 
         assertTrue(army.isEvolved());
     }
-
-    /**
-     * Returns the first available land tile on the board i.e. the first tile that isn't a sea and doesn't have a building
-     * @param board the board we want the land on
-     * @param needsSeaNeighbour if we want to have a land next to the sea
-     * @return the first available land tile on the board
-    */
-    public static Coordinates firstAvailableCoord(Board board){
-        int x = 0;
-        int y = -1;
-        boolean stop = false;
-        Tile tile;
-        Land land;
-        while (!stop && x < board.getLength()) {
-            y += 1;
-            if (y == board.getWidth()){
-                y = 0;
-                x += 1;
-            }
-            try {
-                tile = board.getTile(x, y);
-                if (!(tile instanceof Sea)){
-                    land = (Land) tile;
-                    if (!land.hasBuilding()){
-                        stop = true;
-                    }
-                }
-            } catch (InvalidPositionException e) {}
-        }
-        return new Coordinates(x, y);
-    }
     
-    /**
-     * Returns the first available land tile on the board i.e. the first tile that isn't a sea and doesn't have a building
-     * @param board the board we want the land on
-     * @param length the length of the board
-     * @param width the width of the board
-     * @return the first available land tile on the board
-    */
-    public static Land firstAvailableLand(Board board, int length, int width) {
-        for (int x = 0; x < length; x++) {
-            for (int y = 0; y < width; y++) {
-                try {
-                    Tile tile = board.getTile(x, y);
-                    if (tile instanceof Land && !((Land) tile).hasBuilding()) {
-                        return (Land) tile;
-                    }
-                } catch (InvalidPositionException e) {
-                }
-            }
-        }
-        return null;
-    }
 }

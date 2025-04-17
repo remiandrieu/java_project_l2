@@ -9,7 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.jupiter.api.*;
 
 import game.board.*;
-import game.board.util.Ressource;
+import game.board.util.*;
 import game.building.DemeterBuilding;
 import game.building.Port;
 import game.player.*;
@@ -67,17 +67,17 @@ public class BuildFarmTest {
     @Test
     public void testBuild() throws IOException {
         player.addRessoure(Ressource.ORE);
-        Land land = firstAvailableLand(board, 10, 10);
+        Land land = BoardUtils.firstAvailableLand(board);;
         new Port(player, land);
         
-        int[] coord = firstAvailableCoord(board, 10, 10);
-        land = firstAvailableLand(board, 10, 10);
+        Coordinates coord = BoardUtils.firstAvailableCoords(board);
+        land = BoardUtils.firstAvailableLand(board);;
 
         assertEquals(1, player.getRessources().get(Ressource.WOOD));
         assertEquals(1, player.getRessources().get(Ressource.ORE));
         assertFalse(land.hasBuilding());
 
-        action.build(player, coord[0], coord[1]);
+        action.build(player, coord.getX(), coord.getY());
 
         assertEquals(0, player.getRessources().get(Ressource.WOOD));
         assertEquals(0, player.getRessources().get(Ressource.ORE));
@@ -90,77 +90,26 @@ public class BuildFarmTest {
         player.addRessoure(Ressource.ORE);
         player.addRessoure(Ressource.WOOD);
 
-        int[] coord = firstAvailableCoord(board, 10, 10);
-        String input = coord[0] + "\n" + coord[1];
+        Coordinates coord = BoardUtils.firstAvailableCoords(board);
+        String input = coord.getX() + "\n" + coord.getY();
         simulateInput(input);
         action.act(player);
-        assertTrue(((Land) board.getTile(coord[0], coord[1])).hasBuilding());
+        assertTrue(((Land) board.getTile(coord.getX(), coord.getY())).hasBuilding());
         assertTrue(player.getBuildings().get(0) instanceof DemeterBuilding);
     }
 
     @Test
     public void testFullBoard(){
         player.addRessoure(Ressource.ORE);
-        Land land = firstAvailableLand(board, 10, 10);
+        Land land = BoardUtils.firstAvailableLand(board);;
         while(land != null){
             assertTrue(action.isPossible(player));
             new Port(player, land);
-            land = firstAvailableLand(board, 10, 10);
+            land = BoardUtils.firstAvailableLand(board);;
                
         }
 
         assertFalse(action.isPossible(player));        
     }
 
-    /**
-     * Returns the first available land tile on the board i.e. the first tile that isn't a sea and doesn't have a building
-     * @param board the board we want the land on
-     * @param length the length of the board
-     * @param width the width of the board
-     * @return the first available land tile on the board
-    */
-    public static int[] firstAvailableCoord(Board board, int length, int width){
-        int x = 0;
-        int y = 0;
-        try{
-            Tile tile = board.getTile(0, 0);
-            while(x < length && ((tile instanceof Sea) || !(tile instanceof Sea) && ((Land) tile).hasBuilding())){
-                while(y < width && ((tile instanceof Sea) || !(tile instanceof Sea) && ((Land) tile).hasBuilding())){
-                    tile = board.getTile(x, y);
-                    if(!(y < width && ((tile instanceof Sea) || !(tile instanceof Sea) && ((Land) tile).hasBuilding()))){
-                        int[] coordonnees = {x, y};
-                        return coordonnees;
-                    }
-                    y += 1;
-                }
-                x += 1;
-                y = 0;
-            }
-        } catch(InvalidPositionException e){
-        }
-        int[] coordonnees = {x, y};
-        return coordonnees;
-    }
-
-    /**
-     * Returns the first available land tile on the board i.e. the first tile that isn't a sea and doesn't have a building
-     * @param board the board we want the land on
-     * @param length the length of the board
-     * @param width the width of the board
-     * @return the first available land tile on the board
-    */
-    public static Land firstAvailableLand(Board board, int length, int width) {
-        for (int x = 0; x < length; x++) {
-            for (int y = 0; y < width; y++) {
-                try {
-                    Tile tile = board.getTile(x, y);
-                    if (tile instanceof Land && !((Land) tile).hasBuilding()) {
-                        return (Land) tile;
-                    }
-                } catch (InvalidPositionException e) {
-                }
-            }
-        }
-        return null;
-    }
 }

@@ -14,15 +14,11 @@ import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 
 import game.board.Board;
-import game.board.Coordinates;
 import game.board.Fields;
 import game.board.InvalidPositionException;
 import game.board.Land;
-import game.board.Sea;
-import game.board.Tile;
 import game.board.util.Ressource;
 import game.building.Port;
-import game.player.AresPlayer;
 import game.player.Player;
 import listchooser.util.Input;
 
@@ -110,36 +106,4 @@ public class TradePortTest {
       assertSame(1, player.getRessources().get(Ressource.ORE));
     }
 
-    /**
-     * Returns the first available land tile on the board i.e. the first tile that isn't a sea and doesn't have a building
-     * @param board the board we want the land on
-     * @param needsSeaNeighbour if we want to have a land next to the sea
-     * @return the first available land tile on the board
-    */
-    public static Coordinates firstAvailableCoord(Board board, boolean needsSeaNeighbour, AresPlayer player){
-        int x = 0;
-        int y = -1;
-        boolean stop = false;
-        Tile tile;
-        Land land;
-        while (!stop && x < board.getLength()) {
-            y += 1;
-            if (y == board.getWidth()){
-                y = 0;
-                x += 1;
-            }
-            try {
-                tile = board.getTile(x, y);
-                if (!(tile instanceof Sea)){
-                    land = (Land) tile;
-                    if (!land.hasBuilding()){
-                        if (!needsSeaNeighbour || !board.landNeighbour(x, y)[1])
-                            if (player.islandsConditions(board, new Coordinates(x, y)))
-                                stop = true;
-                    }
-                }
-            } catch (InvalidPositionException e) {}
-        }
-        return new Coordinates(x, y);
-    }
 }

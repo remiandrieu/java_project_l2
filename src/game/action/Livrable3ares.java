@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import game.board.*;
+import game.board.util.BoardUtils;
 import game.board.util.Ressource;
 import game.building.Building;
 import game.player.AresPlayer;
@@ -58,7 +59,7 @@ public class Livrable3ares {
         player.addWarrior(30);
 
         BuildArmy a1 = new BuildArmy(board);
-        Coordinates co = firstAvailableCoord(board, false, player);
+        Coordinates co = BoardUtils.firstAvailableCoord(board, false, player);
         String inputString = co.getX() + "\n" + co.getY();
         simulateInput(inputString + "\n3");
         a1.act(player);
@@ -77,7 +78,7 @@ public class Livrable3ares {
         a4.act(player);
 
         BuildPort a5 = new BuildPort(board);
-        co = firstAvailableCoord(board, true, player);
+        co = BoardUtils.firstAvailableCoord(board, true, player);
         inputString = co.getX() + "\n" + co.getY();
         simulateInput(inputString);
         a5.act(player);
@@ -103,36 +104,4 @@ public class Livrable3ares {
 
     }
 
-    /**
-     * Returns the first available land tile on the board i.e. the first tile that isn't a sea and doesn't have a building
-     * @param board the board we want the land on
-     * @param needsSeaNeighbour if we want to have a land next to the sea
-     * @return the first available land tile on the board
-    */
-    public static Coordinates firstAvailableCoord(Board board, boolean needsSeaNeighbour, AresPlayer player){
-        int x = 0;
-        int y = -1;
-        boolean stop = false;
-        Tile tile;
-        Land land;
-        while (!stop && x < board.getLength()) {
-            y += 1;
-            if (y == board.getWidth()){
-                y = 0;
-                x += 1;
-            }
-            try {
-                tile = board.getTile(x, y);
-                if (!(tile instanceof Sea)){
-                    land = (Land) tile;
-                    if (!land.hasBuilding()){
-                        if (!needsSeaNeighbour || !board.landNeighbour(x, y)[1])
-                            if (player.islandsConditions(board, new Coordinates(x, y)))
-                                stop = true;
-                    }
-                }
-            } catch (InvalidPositionException e) {}
-        }
-        return new Coordinates(x, y);
-    }
 }

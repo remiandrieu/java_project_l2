@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import game.board.*;
+import game.board.util.BoardUtils;
 import game.board.util.Ressource;
 import game.building.Building;
 import game.player.DemeterPlayer;
@@ -57,7 +58,7 @@ public class Livrable3demeter {
         player.addRessoure(Ressource.ORE, 10);
 
         BuildFarm a1 = new BuildFarm(board);
-        Coordinates co = firstAvailableCoord(board, false);
+        Coordinates co = BoardUtils.firstAvailableCoord(board, false, player);
         String inputString = co.getX() + "\n" + co.getY();
         simulateInput(inputString);
         a1.act(player);
@@ -67,7 +68,7 @@ public class Livrable3demeter {
         a2.act(player);
 
         BuildPort a3 = new BuildPort(board);
-        co = firstAvailableCoord(board, true);
+        co = BoardUtils.firstAvailableCoord(board, true, player);
         inputString = co.getX() + "\n" + co.getY();
         simulateInput(inputString);
         a3.act(player);
@@ -98,35 +99,4 @@ public class Livrable3demeter {
 
     }
 
-    /**
-     * Returns the first available land tile on the board i.e. the first tile that isn't a sea and doesn't have a building
-     * @param board the board we want the land on
-     * @param needsSeaNeighbour if we want to have a land next to the sea
-     * @return the first available land tile on the board
-    */
-    public static Coordinates firstAvailableCoord(Board board, boolean needsSeaNeighbour){
-        int x = 0;
-        int y = -1;
-        boolean stop = false;
-        Tile tile;
-        Land land;
-        while (!stop && x < board.getLength()) {
-            y += 1;
-            if (y == board.getWidth()){
-                y = 0;
-                x += 1;
-            }
-            try {
-                tile = board.getTile(x, y);
-                if (!(tile instanceof Sea)){
-                    land = (Land) tile;
-                    if (!land.hasBuilding()){
-                        if (!needsSeaNeighbour || !board.landNeighbour(x, y)[1])
-                            stop = true;
-                    }
-                }
-            } catch (InvalidPositionException e) {}
-        }
-        return new Coordinates(x, y);
-    }
 }

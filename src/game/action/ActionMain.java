@@ -1,11 +1,9 @@
 package game.action;
 
 import game.board.Board;
-import game.board.Forest;
 import game.board.InvalidPositionException;
 import game.board.Land;
-import game.board.Sea;
-import game.board.Tile;
+import game.board.util.BoardUtils;
 import game.board.util.Ressource;
 import game.player.AresPlayer;
 import game.player.DemeterPlayer;
@@ -91,7 +89,7 @@ public class ActionMain {
         baPlayer.addRessoure(Ressource.WHEAT);
         baPlayer.addWarrior(10);
         for(int i = 0; i < 5; i++){
-            Land land = firstAvailableLand(baBoard, 10, 10);
+            Land land = BoardUtils.firstAvailableLand(baBoard);
             if(i<4){
                 DemeterBuilding farm = new DemeterBuilding(baPlayer, land);
                 baPlayer.getBuildings().add(farm);
@@ -135,7 +133,7 @@ public class ActionMain {
         System.out.println("WOOD: " + efPlayer.getRessources().get(Ressource.WOOD));
         
         for(int i = 0; i < 5; i++){
-            Land land = firstAvailableLand(efBoard, 10, 10);
+            Land land = BoardUtils.firstAvailableLand(efBoard);
             if(i<4){
                 DemeterBuilding farm = new DemeterBuilding(efPlayer, land);
                 efPlayer.getBuildings().add(farm);
@@ -170,7 +168,7 @@ public class ActionMain {
         System.out.println("WOOD: " + eaPlayer.getRessources().get(Ressource.WOOD));
         
         for(int i = 0; i < 5; i++){
-            Land land = firstAvailableLand(eaBoard, 10, 10);
+            Land land = BoardUtils.firstAvailableLand(eaBoard);
             if(i<4){
                 AresBuilding army = new AresBuilding(eaPlayer, land, 2);
                 eaPlayer.getBuildings().add(army);
@@ -201,7 +199,7 @@ public class ActionMain {
         bpPlayer.addRessoure(Ressource.SHEEP, 2);
 
         for(int i = 0; i < 5; i++){
-            Land land = firstAvailableLand(bpBoard, 10, 10);
+            Land land = BoardUtils.firstAvailableLand(bpBoard);
             if(i<4){
                 AresBuilding army = new AresBuilding(bpPlayer, land, 2);
                 bpPlayer.getBuildings().add(army);
@@ -285,7 +283,7 @@ public class ActionMain {
         System.out.println("Player nb secret weapons: " + attPlayer3.getNbSecretWeapons());
 
         for(int i = 0; i < 10; i++){
-            Land land = firstAvailableLand(attBoard, 10, 10);
+            Land land = BoardUtils.firstAvailableLand(attBoard);
             if(i%3 == 0){
                 AresBuilding army = new AresBuilding(attPlayer1, land, 1);
                 attPlayer1.getBuildings().add(army);
@@ -319,7 +317,7 @@ public class ActionMain {
         pwPlayer.addWarrior(10);
 
         for(int i = 0; i < 5; i++){
-            Land land = firstAvailableLand(pwBoard, 10, 10);
+            Land land = BoardUtils.firstAvailableLand(pwBoard);
             if(i<4){
                 AresBuilding army = new AresBuilding(pwPlayer, land, 2);
                 pwPlayer.getBuildings().add(army);
@@ -421,30 +419,4 @@ public class ActionMain {
         System.out.println(bwBoard.boardToString(true));
     } 
 
-    /**
-     * Returns the first available land tile on the board i.e. the first tile that isn't a sea and doesn't have a building
-     * @param board the board we want the land on
-     * @param length the length of the board
-     * @param width the width of the board
-     * @return the first available land tile on the board
-    */
-    public static Land firstAvailableLand(Board board, int length, int width){
-        Land land = new Forest(0, 0); // Définition de base de land, la fonction ne fonctionne pas si on ne définit pas cette variable 
-        try{
-            int x = 0;
-            int y = 0;
-            Tile tile = board.getTile(0, 0);
-            while(x < length && ((tile instanceof Sea) || !(tile instanceof Sea) && ((Land) tile).hasBuilding())){
-                while(y < width && ((tile instanceof Sea) || !(tile instanceof Sea) && ((Land) tile).hasBuilding())){
-                    tile = board.getTile(x, y);
-                    y += 1;
-                }
-                x += 1;
-                y = 0;
-            }
-            land = (Land) tile;
-        } catch(InvalidPositionException e){
-        }
-        return land;
-    }
 }

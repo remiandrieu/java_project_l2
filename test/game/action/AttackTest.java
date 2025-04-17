@@ -11,8 +11,7 @@ import game.board.Board;
 import game.board.Coordinates;
 import game.board.InvalidPositionException;
 import game.board.Land;
-import game.board.Tile;
-import game.board.util.Ressource;
+import game.board.util.*;
 import game.building.AresBuilding;
 import game.building.Port;
 import game.player.AresPlayer;
@@ -70,7 +69,7 @@ public class AttackTest {
         
         //Only player 1's buildings
         for(int i = 0; i < 15; i++){
-            Land land = firstAvailableLand(this.board, 10, 10);
+            Land land = BoardUtils.firstAvailableLand(this.board);
             AresBuilding army = new AresBuilding(this.player1, land, 5);
             this.player1.getBuildings().add(army);
         }
@@ -81,7 +80,7 @@ public class AttackTest {
         init();
 
         for(int i = 0; i < 15; i++){
-            Land land = firstAvailableLand(this.board, 10, 10);
+            Land land = BoardUtils.firstAvailableLand(this.board);
             if(i%3 == 0){
                 AresBuilding army = new AresBuilding(this.player1, land, 5);
                 this.player1.getBuildings().add(army);
@@ -101,7 +100,7 @@ public class AttackTest {
         init();
 
         for(int i = 0; i < 15; i++){
-            Land land = firstAvailableLand(this.board, 10, 10);
+            Land land = BoardUtils.firstAvailableLand(this.board);
             if(i%3 == 0){
                 Port port = new Port(this.player1, land);
                 this.player1.getBuildings().add(port);
@@ -121,7 +120,7 @@ public class AttackTest {
         init();
 
         for(int i = 0; i < 15; i++){
-            Land land = firstAvailableLand(this.board, 10, 10);
+            Land land = BoardUtils.firstAvailableLand(this.board);
             if(i%3 == 0){
                 AresBuilding army = new AresBuilding(this.player1, land, 5);
                 this.player1.getBuildings().add(army);
@@ -162,7 +161,7 @@ public class AttackTest {
 
     @Test
     public void testThrowDice(){
-        Land land = firstAvailableLand(this.board, 10, 10);
+        Land land = BoardUtils.firstAvailableLand(this.board);
         AresBuilding building = new AresBuilding(this.player1, land, 1);
         Coordinates coor = land.getCoordinates();
 
@@ -203,7 +202,7 @@ public class AttackTest {
 
     @Test
     public void testRemovesWarriors(){
-        Land land = firstAvailableLand(this.board, 10, 10);
+        Land land = BoardUtils.firstAvailableLand(this.board);
         AresBuilding building = new AresBuilding(this.player1, land, 2);
         this.player1.getBuildings().add(building);
         Coordinates coor = land.getCoordinates();
@@ -224,25 +223,4 @@ public class AttackTest {
         assertFalse(this.player1.getBuildings().isEmpty());
     }
 
-    /**
-     * Returns the first available land tile on the board i.e. the first tile that isn't a sea and doesn't have a building
-     * @param board the board we want the land on
-     * @param length the length of the board
-     * @param width the width of the board
-     * @return the first available land tile on the board
-    */
-    public static Land firstAvailableLand(Board board, int length, int width) {
-        for (int x = 0; x < length; x++) {
-            for (int y = 0; y < width; y++) {
-                try {
-                    Tile tile = board.getTile(x, y);
-                    if (tile instanceof Land && !((Land) tile).hasBuilding()) {
-                        return (Land) tile;
-                    }
-                } catch (InvalidPositionException e) {
-                }
-            }
-        }
-        return null;
-    }
 }
