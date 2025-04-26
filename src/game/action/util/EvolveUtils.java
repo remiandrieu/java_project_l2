@@ -8,7 +8,6 @@ import game.board.Coordinates;
 import game.board.InvalidPositionException;
 import game.board.Land;
 import game.board.Tile;
-import game.building.DemeterBuilding;
 import game.building.LandBuilding;
 import game.player.Player;
 import listchooser.util.Input;
@@ -67,7 +66,7 @@ public class EvolveUtils {
             for (int y = 0; y < board.getWidth(); y++) {
                 try {
                     Tile tile = board.getTile(x, y);
-                    if (tile instanceof Land && ((Land) tile).hasBuilding() && ((Land) tile).getBuilding() instanceof DemeterBuilding) {
+                    if (tile instanceof Land && ((Land) tile).hasBuilding() && ((Land) tile).getBuilding() instanceof LandBuilding) {
                         Land land = (Land) tile;
                         
                         LandBuilding building = (LandBuilding) land.getBuilding();
