@@ -1,12 +1,10 @@
 package game.action;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import game.action.util.EvolveUtils;
 import game.board.*;
 import game.board.util.Ressource;
-import game.building.*;
 import game.player.Player;
 
 /* a class to model an action that evolve a farm to a big farm in DemeterGame */
@@ -41,26 +39,7 @@ public class EvolveFarm extends DemeterAction {
      * @param player the player that executes the action
      */
     public void act(Player player){
-        ArrayList<Coordinates> availableFarms = EvolveUtils.buildingsThatCanEvolve(player,this.board);
-        System.out.println(player + " wants to upgrade a farm.");
-
-        //On affiche les bâtiments.
-        System.out.println("Available Farms:");
-        Iterator<Coordinates> it = availableFarms.iterator();
-        while(it.hasNext()){
-            Coordinates coor = it.next();
-            System.out.println("X: " + coor.getX() + ", Y: " + coor.getY());
-        }
-
-        Coordinates coor = EvolveUtils.askCoordinates(availableFarms);
-        
+        EvolveUtils.act(player, board);
         super.act(player);
-        try {
-            Land land = (Land) this.board.getTile(coor.getX(), coor.getY());
-            DemeterBuilding building = (DemeterBuilding) land.getBuilding();
-            building.evolve();
-        } catch (InvalidPositionException e) {
-        }
-        System.out.println(player + " upgraded the farm at (" + coor.getX() + ", " + coor.getY() + ")\n");
     }
 }
