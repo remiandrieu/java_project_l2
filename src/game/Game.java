@@ -221,6 +221,7 @@ public abstract class Game {
             this.initObjectives();
             this.initActions();
             this.placeFirstBuildings();
+            this.play();
         } catch (Exception e){
             System.out.println(e);
         }
@@ -243,6 +244,7 @@ public abstract class Game {
             this.initObjectives();
             this.initActions();
             this.placeFirstBuildings();
+            this.play();
         } catch (Exception e){
             System.out.println(e);
         }
