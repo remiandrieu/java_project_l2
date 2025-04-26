@@ -14,6 +14,7 @@ import listchooser.util.*;
 public abstract class Game {
 
     /* Attributes */
+    protected int nbPlayers;
     protected List<Player> players;
     protected Board board;
     protected List<Action> actions;
@@ -51,32 +52,13 @@ public abstract class Game {
     protected abstract Player createPlayer(String playerName);
 
     /**
-     * Initialize players of the game
+     * Initialize players names
      */
-    public void initPlayers(){
-        int nbPlayers = -1;
-		boolean correct = false;
+    public void initPlayersNames(){
         int i;
-
+        boolean correct;
         this.players = new ArrayList<>();
-        
-        System.out.println("Choose the number of players :");
-        while (!correct) {
-            correct = true;
-            try {
-                nbPlayers = Input.readInt();
-                if(nbPlayers<2){
-                    System.out.println("Minimum 2 players");
-                    correct = false;
-                }
-            } catch (java.io.IOException e) {
-                System.out.println("Please, enter a number");
-                correct = false;
-                continue;
-            }
-        }
-
-        for (i = 1; i <= nbPlayers; i++){
+        for (i = 1; i <= this.nbPlayers; i++){
             String playerName = "";
             System.out.println("Player " + i + ", enter your name :");
             correct = false;
@@ -94,6 +76,32 @@ public abstract class Game {
             }
             this.players.add(this.createPlayer(playerName));
         }
+    }
+
+    /**
+     * Initialize players of the game
+     */
+    public void initPlayers(){
+        int nbPlayers = -1;
+		boolean correct = false;
+
+        System.out.println("Choose the number of players :");
+        while (!correct) {
+            correct = true;
+            try {
+                nbPlayers = Input.readInt();
+                if(nbPlayers<2){
+                    System.out.println("Minimum 2 players");
+                    correct = false;
+                }
+            } catch (java.io.IOException e) {
+                System.out.println("Please, enter a number");
+                correct = false;
+                continue;
+            }
+        }
+        this.nbPlayers = nbPlayers;
+        this.initPlayersNames();
     }
 
     /**
@@ -190,29 +198,55 @@ public abstract class Game {
         chosenAction.act(player);
         return player.getObjective().isAchieved();
     }
+
+    public void play() throws InvalidPositionException{
+        int currentPlayer = -1;
+        boolean stop = false;
+        while (!stop){
+            currentPlayer = (currentPlayer + 1) % this.players.size();
+            stop = playTurn(this.players.get(currentPlayer));
+        }
+        System.out.println(this.players.get(currentPlayer) + "win !");
+    }
     
     /**
     * After doing all initialization, start the game
     * Each player plays one after the other
     * When a player has completed their objective, end the game
     */
-    public void play(){
+    public void initGame(){
         try{
             this.initPlayers();
             this.initBoard();
             this.initObjectives();
             this.initActions();
             this.placeFirstBuildings();
-            int currentPlayer = -1;
-            boolean stop = false;
-            while (!stop){
-                currentPlayer = (currentPlayer + 1) % this.players.size();
-                stop = playTurn(this.players.get(currentPlayer));
-            }
-            System.out.println(this.players.get(currentPlayer) + "win !");
-        } catch (InvalidPositionException e){
+        } catch (Exception e){
             System.out.println(e);
         }
     }
 
+    /**
+    * After doing all initialization, start the game
+    * Each player plays one after the other
+    * When a player has completed their objective, end the game
+    */
+    public void initGame(int length, int width, int nbPlayers){
+        try{
+            if (length < 10) {throw new InvalidArgumentException("Incorrect length");}
+            if (width < 10) {throw new InvalidArgumentException("Incorrect width");}
+            if (nbPlayers < 2) {throw new InvalidArgumentException("Incorrect number of players");}
+            this.nbPlayers = nbPlayers;
+            this.initPlayersNames();
+            this.board = new Board(length, width);
+            this.board.createGrid();
+            this.initObjectives();
+            this.initActions();
+            this.placeFirstBuildings();
+        } catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    
 }

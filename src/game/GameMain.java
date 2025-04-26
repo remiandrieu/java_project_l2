@@ -12,7 +12,7 @@ public class GameMain {
         possibleGames.add(new AresGame());
         ListChooser<Game> lc = new InteractiveListChooser<>();
         Game chosenGame = lc.choose("Choose a game !", possibleGames);
-        chosenGame.play();
+        chosenGame.initGame();
     }
 
 }
