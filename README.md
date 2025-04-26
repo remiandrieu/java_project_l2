@@ -34,7 +34,7 @@ Les ressources ont été implémentées avec un enum car chaque joueur aura une 
 La classe abstraite tile représente l'ensemble des tuiles. La classe abstraite Land représente les terrains qui produisent une ressource, la méthode produce renvoie la ressource associée au terrain et la méthode toString permet l'affichage correct du plateau.
 Le board possède un tableau à deux dimensions de tuiles pour le plateau. Pour générer le plateau il faut appeler la méthode createGrid(). Board possède aussi d'autres méthodes utilisées dans createGrid et qui pourront aussi servir par la suite.
 
-Presque toutes les classes n'ont pas été testées car elles ne possèdent pas de méthodes ou uniquement des méthodes triviales. De même pour quelques méthodes de Board qui sont triviales.
+Presque toutes les classes n'ont pas été testsées car elles ne possèdent pas de méthodes ou uniquement des méthodes triviales. De même pour quelques méthodes de Board qui sont triviales.
 
 ____
 
@@ -72,7 +72,7 @@ Pour exécuter `livrable1.jar` :
 
 
 Pour compiler et exécuter les tests :  
-```javac -classpath junit-console.jar:classes -sourcepath test test/game/board/*.java && java -jar junit-console.jar -classpath test:classes -scan-classpath```
+```javac -classpath junit-console.jar:classes -sourcepath tests tests/game/board/*.java && java -jar junit-console.jar -classpath tests:classes -scan-classpath```
 
 
 
@@ -131,7 +131,7 @@ Pour exécuter `livrable2.jar` :
 
 
 Pour compiler et exécuter les tests :  
-```javac -classpath junit-console.jar:classes -sourcepath test test/game/board/*.java test/game/building/*.java && java -jar junit-console.jar -classpath test:classes -scan-classpath```
+```javac -classpath junit-console.jar:classes -sourcepath tests tests/game/board/*.java tests/game/building/*.java && java -jar junit-console.jar -classpath tests:classes -scan-classpath```
 
 ### Difficultés restant à résoudre
 
@@ -189,7 +189,7 @@ Pour exécuter `livrable3ares.jar` :
 
 
 Pour compiler et exécuter les tests :  
-```javac -classpath junit-console.jar:classes -sourcepath test test/game/board/*.java test/game/building/*.java test/game/action/*.java test/listchooser/util/*.java && java -jar junit-console.jar -classpath test:classes -scan-classpath```
+```javac -classpath junit-console.jar:classes -sourcepath tests tests/game/board/*.java tests/game/building/*.java tests/game/action/*.java tests/listchooser/util/*.java && java -jar junit-console.jar -classpath tests:classes -scan-classpath```
 
 ### Difficultés restant à résoudre
 
@@ -350,7 +350,7 @@ On a finalement décidé de faire une implémentation similaire aux actions. La 
 
 
 ### Difficultés rencontrées
-Doute sur les parties du code de createGrid à encapsuler dans des methodes. Test des methodes avec du random. Nous n'avons pas trouvé de moyen pour que si un nouveau type de terrain est ajouté, le choix du terrain inclu ce nouveau terrain. La methode getRandomTypeOfLand devra donc être modifié. Enfin le choix d'un voisin mer aléatoirement n'est pas trés efficace, nous reviendrons peut être sur son implémentation.
+Doute sur les parties du code de createGrid à encapsuler dans des methodes. tests des methodes avec du random. Nous n'avons pas trouvé de moyen pour que si un nouveau type de terrain est ajouté, le choix du terrain inclu ce nouveau terrain. La methode getRandomTypeOfLand devra donc être modifié. Enfin le choix d'un voisin mer aléatoirement n'est pas trés efficace, nous reviendrons peut être sur son implémentation.
 
 ### Objectifs pour la semaine
 
@@ -398,13 +398,13 @@ Continuer l'implémentation des actions et commencer l'implémentation des joueu
 
 - Encapsulation de la méthode `createGrid()`
 
-- Test des nouvelles méthodes de `Board`
+- tests des nouvelles méthodes de `Board`
 
 - Création de la classe `Player`
 
 Andreï / Samuel : 
 - Nous avons terminé l'implémentation des classes **AresBuilding** et **DemeterBuilding** en faisant quelques changements d'héritage etc...
-- Nous avons créé et complété les fichier de tests **AresBuildingTest** et **DemeterBuildingTest**. 
+- Nous avons créé et complété les fichier de tests **AresBuildingtests** et **DemeterBuildingtests**. 
 
 ### Difficultés rencontrées
 
@@ -424,7 +424,7 @@ Andreï / Samuel :
 - Continuer l'implémentation des actions.
 
 #### Andreï / Samuel : 
-- Vérifier le bon fonctionnement des tests de **AresBuildingTest** et **DemeterBuildingTest** après l'implémentation de **Player**. Compléter la partie [Livrable 2](#livrable-2) du README.
+- Vérifier le bon fonctionnement des tests de **AresBuildingtests** et **DemeterBuildingtests** après l'implémentation de **Player**. Compléter la partie [Livrable 2](#livrable-2) du README.
 
 ## Semaine 7
 
@@ -475,18 +475,18 @@ Ensuite, il a fallu gérer les problèmes de types (choisir entre `Land` et `Til
 
 ### Objectifs pour la semaine
 #### Tom:    
-- Corriger le ActionMain pour l'ajout d'un batiment afin de tester act sur une tuile avec un batiment.
-- Modifier les tests de TradeTest en encapsulant les parties sans input.
+- Corriger le ActionMain pour l'ajout d'un batiment afin de testser act sur une tuile avec un batiment.
+- Modifier les tests de Tradetests en encapsulant les parties sans input.
 - Finir BuildArmy.
 - Faire les tests pour BuildFarm et BuildArmy.
-- Tester BuildArmy dans le ActionMain.
+- testser BuildArmy dans le ActionMain.
 - Faire la documentation.  
 
 #### Andreï:  
 Faire les tests pour les méthodes `act()` de **EvolveArmy** et **EvolveFarm**. 
 
 #### Samuel/Rémi:  
-Terminer l'implémentation de la méthode `detectIslands()` et la tester (nous n'avions pas pu le faire en raison d'un bug sur les PCs du M5).
+Terminer l'implémentation de la méthode `detectIslands()` et la testser (nous n'avions pas pu le faire en raison d'un bug sur les PCs du M5).
 
 ## Semaine 9
 
@@ -533,26 +533,26 @@ Nous avons finalement remplacé les HashSets par des ArrayLists pour plus de sim
 
 #### Samuel :
 
-- Écriture des classes de tests `BuyThiefTest` et `PlayThiefTest`.
+- Écriture des classes de tests `BuyThieftests` et `PlayThieftests`.
 - Début de l'implémentation de l'action `PlaceWarrior`.
 
 #### Tom :
 
-- encapsulation et test de BuildFfarm et BuildArmy. 
-- modif de isPossible pour tester la présence d'un Land sans Building.
+- encapsulation et tests de BuildFfarm et BuildArmy. 
+- modif de isPossible pour testser la présence d'un Land sans Building.
 - implémentation de BuildArmy terminé.
 
 #### Andreï:
 
 - Création action `Attack`
-- Test `BuildArmy` et `BuildFarm`
+- tests `BuildArmy` et `BuildFarm`
 
 ### Difficultés rencontrées
 
 #### Samuel :
 
-Problème quand la méthode `act` à tester contient des inputs. Il a fallu encapsuler la méthode `act` dans une autre méthode à part et ne lui laisser que les inputs. Grâce à ça, on peut tester la méthode à part car elle ne contient pas d'input.
-Dans la méthode `PlayThief`, on vole certaines ressources des joueurs victimes, ce qui veut dire que ces ressources après le vol seront remises à 0. Dans le test, il faut donc vérifier que ces ressources sont bien passées à zéro.  
+Problème quand la méthode `act` à testser contient des inputs. Il a fallu encapsuler la méthode `act` dans une autre méthode à part et ne lui laisser que les inputs. Grâce à ça, on peut testser la méthode à part car elle ne contient pas d'input.
+Dans la méthode `PlayThief`, on vole certaines ressources des joueurs victimes, ce qui veut dire que ces ressources après le vol seront remises à 0. Dans le tests, il faut donc vérifier que ces ressources sont bien passées à zéro.  
 Les ressources des joueurs étant stockées dans une HashMap, je ne me souvenais plus de la méthode permettant de récupérer une valeur à partir de sa clé.
 
 ### Objectifs pour la semaine
@@ -569,7 +569,7 @@ Finir l'implémentation de l'action `PlaceWarrior`.
 - Implémentation des tests pas encore réalisés.
 
 ### Difficultés rencontrées
-Nous avons eu des difficultés à simuler les inputs pour tester les méthodes act des actions.
+Nous avons eu des difficultés à simuler les inputs pour testser les méthodes act des actions.
 Nous avons eu aussi des difficultés à vérifier que pour construire une armée ou un port sur une île qu’on n’occupe pas encore, il faut disposer d’au moins un port sur une île qu’on occupe déjà. De plus il faudra disposer d’au moins 2 bâtiments sur chacune des îles
 qu’on occupe déjà.
 
@@ -595,8 +595,8 @@ qu’on occupe déjà.
 
 ### Objectifs pour finaliser le projet
 
-- Finir les objectifs et les tester.
-- Finir l'implémentation de Game et tester ses méthodes.
+- Finir les objectifs et les testser.
+- Finir l'implémentation de Game et testser ses méthodes.
 - Faire un diapo pour la soutenance.
 - Préparer la soustenance.
 - Faire livrable 4.
