@@ -3,11 +3,11 @@ package game.action;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import game.action.util.EvolveUtils;
 import game.board.*;
 import game.board.util.Ressource;
 import game.building.*;
 import game.player.Player;
-import listchooser.util.Input;
 
 /* a class to model an action that evolve a farm to a big farm in DemeterGame */
 public class EvolveFarm extends DemeterAction {
@@ -31,7 +31,7 @@ public class EvolveFarm extends DemeterAction {
     public boolean isPossible(Player player){
         boolean res = super.isPossible(player);
         
-        ArrayList<Coordinates> availableFarms = buildingsThatCanEvolve(player);
+        ArrayList<Coordinates> availableFarms = EvolveUtils.buildingsThatCanEvolve(player,this.board);
         
         return res && !availableFarms.isEmpty();
     }
@@ -41,7 +41,7 @@ public class EvolveFarm extends DemeterAction {
      * @param player the player that executes the action
      */
     public void act(Player player){
-        ArrayList<Coordinates> availableFarms = buildingsThatCanEvolve(player);
+        ArrayList<Coordinates> availableFarms = EvolveUtils.buildingsThatCanEvolve(player,this.board);
         System.out.println(player + " wants to upgrade a farm.");
 
         //On affiche les bâtiments.
@@ -52,7 +52,7 @@ public class EvolveFarm extends DemeterAction {
             System.out.println("X: " + coor.getX() + ", Y: " + coor.getY());
         }
 
-        Coordinates coor = askCoordinates(availableFarms);
+        Coordinates coor = EvolveUtils.askCoordinates(availableFarms);
         
         super.act(player);
         try {
@@ -62,73 +62,5 @@ public class EvolveFarm extends DemeterAction {
         } catch (InvalidPositionException e) {
         }
         System.out.println(player + " upgraded the farm at (" + coor.getX() + ", " + coor.getY() + ")\n");
-    }
-
-    /**
-     * Asks the player for coordinates, doesn't stop until the coordinates are in the list.
-     * @param list the list the coordinates must belong to
-     * @return the coordinates given by the player
-     */
-    public Coordinates askCoordinates(ArrayList<Coordinates> list){  
-        int x = -1;
-        int y = -1;
-		boolean correct = false;
-        Coordinates coor = new Coordinates(x, y);
-        
-        while (!correct) {
-            correct = true;
-            System.out.println("enter the x coordinate: ");
-        	try {
-        		x = Input.readInt();
-            } catch (java.io.IOException e) {
-        		System.out.println("Please, enter a number");
-                correct = false;
-                continue;
-            }
-            System.out.println("enter the y coordinate: ");
-            try {
-        		y = Input.readInt();
-            } catch (java.io.IOException e) {
-        		System.out.println("Please, enter a number");
-                correct = false;
-                continue;
-            }
-
-            coor = new Coordinates(x, y);
-
-            if (! list.contains(coor)){
-                System.out.println("Incorrect Position");
-                correct = false;
-            }
-        }
-        return coor;
-    }
-
-
-    /**
-     * Returns an array of all the coordinates of the player's buildings that can evolve
-     * @param player the player's buildings to check
-     * @return an array of all the coordinates of the player's buildings that can evolve
-     */
-    public ArrayList<Coordinates> buildingsThatCanEvolve(Player player){
-        ArrayList<Coordinates> buildingsThatCanEvolveCoordinates = new ArrayList<>(); 
-
-        for (int x = 0; x < this.board.getLength(); x++) {
-            for (int y = 0; y < this.board.getWidth(); y++) {
-                try {
-                    Tile tile = board.getTile(x, y);
-                    if (tile instanceof Land && ((Land) tile).hasBuilding() && ((Land) tile).getBuilding() instanceof DemeterBuilding) {
-                        Land land = (Land) tile;
-                        DemeterBuilding building = (DemeterBuilding) land.getBuilding();
-
-                        if(building.getPlayer() == player && !building.isEvolved()){
-                           buildingsThatCanEvolveCoordinates.add(new Coordinates(x, y));
-                        } 
-                    }
-                } catch (InvalidPositionException e) {
-                }
-            }
-        }
-        return buildingsThatCanEvolveCoordinates;
     }
 }

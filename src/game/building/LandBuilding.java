@@ -42,4 +42,15 @@ public abstract class LandBuilding extends Building {
 
     /** Creates a string representation of the building */
     public abstract String toString();
+
+    /**
+     * Returns true if the building is evolve.
+     * @return true if the building is evolve.
+     */
+    public abstract boolean isEvolved();
+
+    /**
+     * Evolves the farm into a cultivation. If the building is already an exploitation, it does nothing.
+     */
+    public abstract void evolve();
 }
