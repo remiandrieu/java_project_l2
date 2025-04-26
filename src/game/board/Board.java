@@ -335,9 +335,20 @@ public class Board {
      * @throws InvalidPositionException 
     */
     public String boardToString(boolean buildings) throws InvalidPositionException{
-        String res = "";
-        for (int x = 0; x < this.LENGTH; x++){
-            for (int y = 0; y < this.WIDTH; y++){
+        int globalOffset = (int) Math.floor(Math.log10(this.LENGTH-1));
+        int currentOffset, x, y;
+        String res = " ".repeat(globalOffset+1) + "  ";
+        for (y = 0; y < this.WIDTH; y++){
+            currentOffset = (int) Math.floor(Math.log10(y));
+            if (currentOffset<0) {currentOffset=0;}
+            res += y + " ".repeat(3-currentOffset);
+        }
+        res += '\n';
+        for (x = 0; x < this.LENGTH; x++){
+            currentOffset = (int) Math.floor(Math.log10(x));
+            if (currentOffset<0) {currentOffset=0;}
+            res += " ".repeat(globalOffset-currentOffset) + x + "  ";
+            for (y = 0; y < this.WIDTH; y++){
                 Tile tile = this.getTile(x, y);
                 if (tile instanceof Sea){
                     res += ".   ";
