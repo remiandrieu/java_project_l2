@@ -98,7 +98,6 @@ public class BuildArmyTest {
             assertTrue(action.isPossible(player));
             new Port(player, land);
             land = BoardUtils.firstAvailableLand(board);
-               
         }
 
         assertFalse(action.isPossible(player));        

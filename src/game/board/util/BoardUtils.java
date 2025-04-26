@@ -100,7 +100,7 @@ public class BoardUtils {
             Coordinates co = firstAvailableCoords(board);
             Tile res = board.getTile(co.getX(), co.getY());
             return (Land) res;
-        } catch (InvalidPositionException e) {
+        } catch (Exception e) {
         }
         return null;
     }

@@ -55,8 +55,8 @@ public class AttackTest {
         this.player1 = new AresPlayer("P1");
         this.player2 = new AresPlayer("P2");
         this.player3 = new AresPlayer("P3");
-        this.player1.addRessoure(Ressource.WOOD);
-        this.player1.addRessoure(Ressource.SHEEP);
+        this.player1.addRessource(Ressource.WOOD);
+        this.player1.addRessource(Ressource.SHEEP);
         this.action = new Attack(this.board);
     }
 
