@@ -53,8 +53,8 @@ public class EvolveArmyTest {
 
         }
         player = new AresPlayer("Timoleon");
-        player.addRessoure(Ressource.ORE, 3);
-        player.addRessoure(Ressource.WOOD, 2);
+        player.addRessource(Ressource.ORE, 3);
+        player.addRessource(Ressource.WOOD, 2);
         action = new EvolveArmy(board);
     }
 

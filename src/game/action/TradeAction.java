@@ -51,7 +51,7 @@ public abstract class TradeAction extends CommonAction{
      * @param chosenRessource the ressource to be added to the player's inventory
      */
     public void buy(Player player, Ressource chosenRessource) {
-        player.addRessoure(chosenRessource);
+        player.addRessource(chosenRessource);
     }
 
     /**
@@ -62,7 +62,7 @@ public abstract class TradeAction extends CommonAction{
      * @return a list of all available resources
      */
     public List<Ressource> spend(Player player, Ressource chosenRessource) {
-        player.removeRessoure(chosenRessource, getNbRessource());
+        player.removeRessource(chosenRessource, getNbRessource());
         List<Ressource> l = new ArrayList<>();
 		for (Ressource r : Ressource.values()){
             l.add(r);

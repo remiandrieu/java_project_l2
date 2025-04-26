@@ -46,16 +46,16 @@ public class BuySecretWeaponTest {
 
     @Test
     public void testIsPossible(){
-        player.addRessoure(Ressource.WOOD);
+        player.addRessource(Ressource.WOOD);
         assertFalse(action.isPossible(player));
-        player.addRessoure(Ressource.ORE);
+        player.addRessource(Ressource.ORE);
         assertTrue(action.isPossible(player));
     }
 
     @Test
     public void testAct(){
-        player.addRessoure(Ressource.WOOD);
-        player.addRessoure(Ressource.ORE);
+        player.addRessource(Ressource.WOOD);
+        player.addRessource(Ressource.ORE);
         assertEquals(0, player.getNbSecretWeapons());
         action.act(player);
         assertEquals(1, player.getNbSecretWeapons());

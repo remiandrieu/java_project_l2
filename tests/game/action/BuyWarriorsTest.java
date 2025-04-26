@@ -17,17 +17,17 @@ public class BuyWarriorsTest {
     public void init(){
         board = new Board(10,10);
         player = new AresPlayer("Player");
-        player.addRessoure(Ressource.WHEAT, 2);
-        player.addRessoure(Ressource.SHEEP, 2);
-        player.addRessoure(Ressource.ORE);
+        player.addRessource(Ressource.WHEAT, 2);
+        player.addRessource(Ressource.SHEEP, 2);
+        player.addRessource(Ressource.ORE);
         action = new BuyWarriors(board);
     }
 
     @Test
     public void testIsPossible(){
-        player.removeRessoure(Ressource.WHEAT);
+        player.removeRessource(Ressource.WHEAT);
         assertFalse(action.isPossible(player));
-        player.addRessoure(Ressource.WHEAT);
+        player.addRessource(Ressource.WHEAT);
         assertTrue(action.isPossible(player));
     }
 

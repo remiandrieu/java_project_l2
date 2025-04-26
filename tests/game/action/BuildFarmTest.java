@@ -53,20 +53,20 @@ public class BuildFarmTest {
 
         }
         player = new DemeterPlayer("Player");
-        player.addRessoure(Ressource.WOOD);
+        player.addRessource(Ressource.WOOD);
         action = new BuildFarm(board);
     }
 
     @Test
     public void testIsPossible(){
         assertFalse(action.isPossible(player));
-        player.addRessoure(Ressource.ORE);
+        player.addRessource(Ressource.ORE);
         assertTrue(action.isPossible(player));
     }
 
     @Test
     public void testBuild() throws IOException {
-        player.addRessoure(Ressource.ORE);
+        player.addRessource(Ressource.ORE);
         Land land = BoardUtils.firstAvailableLand(board);;
         new Port(player, land);
         
@@ -87,8 +87,8 @@ public class BuildFarmTest {
 
     @Test
     public void testAct() throws InvalidPositionException {
-        player.addRessoure(Ressource.ORE);
-        player.addRessoure(Ressource.WOOD);
+        player.addRessource(Ressource.ORE);
+        player.addRessource(Ressource.WOOD);
 
         Coordinates coord = BoardUtils.firstAvailableCoords(board);
         String input = coord.getX() + "\n" + coord.getY();
@@ -100,7 +100,7 @@ public class BuildFarmTest {
 
     @Test
     public void testFullBoard(){
-        player.addRessoure(Ressource.ORE);
+        player.addRessource(Ressource.ORE);
         Land land = BoardUtils.firstAvailableLand(board);;
         while(land != null){
             assertTrue(action.isPossible(player));

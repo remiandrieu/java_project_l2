@@ -21,8 +21,8 @@ public class PlayThiefTest {
         victim1 = new DemeterPlayer("Victim1");
         victim2 = new DemeterPlayer("Victim2");
         action = new PlayThief(board);
-        victim1.addRessoure(Ressource.WOOD, 3);
-        victim2.addRessoure(Ressource.WOOD, 2);
+        victim1.addRessource(Ressource.WOOD, 3);
+        victim2.addRessource(Ressource.WOOD, 2);
         thief.addThief();
     }
 

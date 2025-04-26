@@ -52,10 +52,10 @@ public class Livrable3ares {
         board.createGrid();
         
         AresPlayer player = new AresPlayer("Timoleon");
-        player.addRessoure(Ressource.WHEAT, 10);
-        player.addRessoure(Ressource.SHEEP, 10);
-        player.addRessoure(Ressource.WOOD, 10);
-        player.addRessoure(Ressource.ORE, 10);
+        player.addRessource(Ressource.WHEAT, 10);
+        player.addRessource(Ressource.SHEEP, 10);
+        player.addRessource(Ressource.WOOD, 10);
+        player.addRessource(Ressource.ORE, 10);
         player.addWarrior(30);
 
         BuildArmy a1 = new BuildArmy(board);

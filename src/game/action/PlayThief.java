@@ -57,10 +57,10 @@ public class PlayThief extends DemeterAction {
         int tmp;
         for(Player p : playersToSteal){
             tmp = p.getRessources().get(chosenRessource);
-            p.removeRessoure(chosenRessource, tmp);
+            p.removeRessource(chosenRessource, tmp);
             sum += tmp;
         }
-        demeterPlayer.addRessoure(chosenRessource, sum);
+        demeterPlayer.addRessource(chosenRessource, sum);
         demeterPlayer.removeThief();
     }
 }

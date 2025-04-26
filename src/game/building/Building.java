@@ -61,7 +61,7 @@ public abstract class Building {
      * The player who owns the building will collect the resources of the land.
      */
     public void playerCollectRessources(){
-        this.player.addRessoure(this.collectRessources());
+        this.player.addRessource(this.collectRessources());
     }
 
     /** Creates a string representation of the building */

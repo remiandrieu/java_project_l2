@@ -34,8 +34,8 @@ public class BuildPortTest {
     
     @Test
     void testIsPossibleWithNoLandTiles() {
-        player.addRessoure(Ressource.WOOD, 1);
-        player.addRessoure(Ressource.SHEEP, 2);
+        player.addRessource(Ressource.WOOD, 1);
+        player.addRessource(Ressource.SHEEP, 2);
         
         Board seaBoard = new Board(2, 2);
         try {
@@ -52,8 +52,8 @@ public class BuildPortTest {
     
     @Test
     void testIsPossibleWithAllLandTilesOccupied() {
-        player.addRessoure(Ressource.WOOD, 1);
-        player.addRessoure(Ressource.SHEEP, 2);
+        player.addRessource(Ressource.WOOD, 1);
+        player.addRessource(Ressource.SHEEP, 2);
         
         Board smallBoard = new Board(3, 3);
         try {
@@ -77,8 +77,8 @@ public class BuildPortTest {
     
     @Test
     void testIsPossibleWithAvailableLand() {
-        player.addRessoure(Ressource.WOOD, 1);
-        player.addRessoure(Ressource.SHEEP, 2);
+        player.addRessource(Ressource.WOOD, 1);
+        player.addRessource(Ressource.SHEEP, 2);
         
         try {
             board.createGrid();
@@ -89,8 +89,8 @@ public class BuildPortTest {
     
     @Test
     void testIsPossibleWithInsufficientResources() {
-        player.addRessoure(Ressource.WOOD, 0);
-        player.addRessoure(Ressource.SHEEP, 1);
+        player.addRessource(Ressource.WOOD, 0);
+        player.addRessource(Ressource.SHEEP, 1);
         
         try {
             board.createGrid();
@@ -108,8 +108,8 @@ public class BuildPortTest {
             board.setTile(3, 1, new Forest(3, 3));
         } catch (InvalidPositionException e) {
         }
-        player.addRessoure(Ressource.WOOD, 1);
-        player.addRessoure(Ressource.SHEEP, 2);
+        player.addRessource(Ressource.WOOD, 1);
+        player.addRessource(Ressource.SHEEP, 2);
 
         buildPort.build(player,2, 1);
 
@@ -132,8 +132,8 @@ public class BuildPortTest {
                 }
             }
             BuildPort buildPort = new BuildPort(landBoard);
-            player.addRessoure(Ressource.WOOD, 1);
-            player.addRessoure(Ressource.SHEEP, 2);
+            player.addRessource(Ressource.WOOD, 1);
+            player.addRessource(Ressource.SHEEP, 2);
             assertFalse(buildPort.isPossible(player));
         } catch (InvalidPositionException e) {
         }
@@ -153,8 +153,8 @@ public class BuildPortTest {
         Land newLand = new Forest(5, 5);
         board.setTile(5, 5, newLand);
         
-        player.addRessoure(Ressource.WOOD, 1);
-        player.addRessoure(Ressource.SHEEP, 2);
+        player.addRessource(Ressource.WOOD, 1);
+        player.addRessource(Ressource.SHEEP, 2);
         assertFalse(buildPort.isPossible(aresPlayer));
         assertTrue(buildPort.isPossible(player));
     }

@@ -52,10 +52,10 @@ public class Livrable3demeter {
         board.createGrid();
         
         DemeterPlayer player = new DemeterPlayer("Timoleon");
-        player.addRessoure(Ressource.WHEAT, 10);
-        player.addRessoure(Ressource.SHEEP, 10);
-        player.addRessoure(Ressource.WOOD, 10);
-        player.addRessoure(Ressource.ORE, 10);
+        player.addRessource(Ressource.WHEAT, 10);
+        player.addRessource(Ressource.SHEEP, 10);
+        player.addRessource(Ressource.WOOD, 10);
+        player.addRessource(Ressource.ORE, 10);
 
         BuildFarm a1 = new BuildFarm(board);
         Coordinates co = BoardUtils.firstAvailableCoord(board, false, player);

@@ -46,7 +46,7 @@ public abstract class Action {
      */
     public void act(Player player){
         for(Ressource key: cost.keySet()){
-            player.removeRessoure(key, cost.get(key));
+            player.removeRessource(key, cost.get(key));
         }
     }
 

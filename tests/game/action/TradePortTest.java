@@ -47,10 +47,10 @@ public class TradePortTest {
 
     @Test
     void testSpend() {
-      player.addRessoure(Ressource.ORE);
-      player.addRessoure(Ressource.ORE);
-      player.addRessoure(Ressource.ORE);
-      player.addRessoure(Ressource.ORE);
+      player.addRessource(Ressource.ORE);
+      player.addRessource(Ressource.ORE);
+      player.addRessource(Ressource.ORE);
+      player.addRessource(Ressource.ORE);
       assertSame(4, player.getRessources().get(Ressource.ORE));
       trade.spend(player, Ressource.ORE);
       assertSame(2, player.getRessources().get(Ressource.ORE));
@@ -69,20 +69,20 @@ public class TradePortTest {
 
     @Test
     void testAvailableRessources() {
-        player.addRessoure(Ressource.ORE);
+        player.addRessource(Ressource.ORE);
         assertEquals(0, trade.availableRessources(player).size());
-        player.addRessoure(Ressource.ORE);
-        player.addRessoure(Ressource.SHEEP);
+        player.addRessource(Ressource.ORE);
+        player.addRessource(Ressource.SHEEP);
         assertEquals(1, trade.availableRessources(player).size());
         assertEquals(Ressource.ORE, trade.availableRessources(player).get(0));
     }
 
     @Test
     void testIsPossible() throws InvalidPositionException {
-        player.addRessoure(Ressource.ORE);
-        player.addRessoure(Ressource.SHEEP);
+        player.addRessource(Ressource.ORE);
+        player.addRessource(Ressource.SHEEP);
         assertFalse(trade.isPossible(player));
-        player.addRessoure(Ressource.SHEEP);
+        player.addRessource(Ressource.SHEEP);
         assertFalse(trade.isPossible(player));
         board.fillWithSea();
         Land land = new Fields(0, 0);
@@ -93,7 +93,7 @@ public class TradePortTest {
 
     @Test
     void actTest() throws InvalidPositionException {
-      player.addRessoure(Ressource.SHEEP, 2);
+      player.addRessource(Ressource.SHEEP, 2);
       
       board.fillWithSea();
       Land land = new Fields(0, 0);

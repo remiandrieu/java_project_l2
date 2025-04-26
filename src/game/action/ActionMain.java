@@ -20,12 +20,12 @@ public class ActionMain {
         Board tradeBoard = new Board(10, 10);
         Trade trade = new Trade(tradeBoard);
         DemeterPlayer tradePlayer = new DemeterPlayer("Timoleon");
-        tradePlayer.addRessoure(Ressource.ORE);
-        tradePlayer.addRessoure(Ressource.ORE);
-        tradePlayer.addRessoure(Ressource.ORE);
-        tradePlayer.addRessoure(Ressource.SHEEP);
-        tradePlayer.addRessoure(Ressource.SHEEP);
-        tradePlayer.addRessoure(Ressource.SHEEP);
+        tradePlayer.addRessource(Ressource.ORE);
+        tradePlayer.addRessource(Ressource.ORE);
+        tradePlayer.addRessource(Ressource.ORE);
+        tradePlayer.addRessource(Ressource.SHEEP);
+        tradePlayer.addRessource(Ressource.SHEEP);
+        tradePlayer.addRessource(Ressource.SHEEP);
         System.out.println("WHEAT: " + tradePlayer.getRessources().get(Ressource.WHEAT));
         System.out.println("SHEEP: " + tradePlayer.getRessources().get(Ressource.SHEEP));
         System.out.println("ORE: " + tradePlayer.getRessources().get(Ressource.ORE));
@@ -41,11 +41,11 @@ public class ActionMain {
         Board tpBoard = new Board(10, 10);
         TradePort tradePort = new TradePort(tpBoard);
         DemeterPlayer tpPlayer = new DemeterPlayer("Timoleon");
-        tpPlayer.addRessoure(Ressource.ORE);
-        tpPlayer.addRessoure(Ressource.ORE);
-        tpPlayer.addRessoure(Ressource.SHEEP);
-        tpPlayer.addRessoure(Ressource.SHEEP);
-        tpPlayer.addRessoure(Ressource.WOOD);
+        tpPlayer.addRessource(Ressource.ORE);
+        tpPlayer.addRessource(Ressource.ORE);
+        tpPlayer.addRessource(Ressource.SHEEP);
+        tpPlayer.addRessource(Ressource.SHEEP);
+        tpPlayer.addRessource(Ressource.WOOD);
         System.out.println("WHEAT: " + tpPlayer.getRessources().get(Ressource.WHEAT));
         System.out.println("SHEEP: " + tpPlayer.getRessources().get(Ressource.SHEEP));
         System.out.println("ORE: " + tpPlayer.getRessources().get(Ressource.ORE));
@@ -62,9 +62,9 @@ public class ActionMain {
         bfBoard.createGrid();
         DemeterPlayer bfPlayer = new DemeterPlayer("Timoleon");
         BuildFarm bd = new BuildFarm(bfBoard);
-        bfPlayer.addRessoure(Ressource.ORE);
-        bfPlayer.addRessoure(Ressource.WOOD);
-        bfPlayer.addRessoure(Ressource.WOOD);
+        bfPlayer.addRessource(Ressource.ORE);
+        bfPlayer.addRessource(Ressource.WOOD);
+        bfPlayer.addRessource(Ressource.WOOD);
         System.out.println("WHEAT: " + bfPlayer.getRessources().get(Ressource.WHEAT));
         System.out.println("SHEEP: " + bfPlayer.getRessources().get(Ressource.SHEEP));
         System.out.println("ORE: " + bfPlayer.getRessources().get(Ressource.ORE));
@@ -84,9 +84,9 @@ public class ActionMain {
         baBoard.createGrid();
         AresPlayer baPlayer = new AresPlayer("Timoleon");
         BuildArmy ba = new BuildArmy(baBoard);
-        baPlayer.addRessoure(Ressource.WOOD);
-        baPlayer.addRessoure(Ressource.SHEEP);
-        baPlayer.addRessoure(Ressource.WHEAT);
+        baPlayer.addRessource(Ressource.WOOD);
+        baPlayer.addRessource(Ressource.SHEEP);
+        baPlayer.addRessource(Ressource.WHEAT);
         baPlayer.addWarrior(10);
         for(int i = 0; i < 5; i++){
             Land land = BoardUtils.firstAvailableLand(baBoard);
@@ -123,9 +123,9 @@ public class ActionMain {
         Board efBoard = new Board(10, 10);
         efBoard.createGrid();
         DemeterPlayer efPlayer = new DemeterPlayer("Timoleon");
-        efPlayer.addRessoure(Ressource.WHEAT, 1);
-        efPlayer.addRessoure(Ressource.SHEEP);
-        efPlayer.addRessoure(Ressource.WOOD, 2);
+        efPlayer.addRessource(Ressource.WHEAT, 1);
+        efPlayer.addRessource(Ressource.SHEEP);
+        efPlayer.addRessource(Ressource.WOOD, 2);
 
         System.out.println("WHEAT: " + efPlayer.getRessources().get(Ressource.WHEAT));
         System.out.println("SHEEP: " + efPlayer.getRessources().get(Ressource.SHEEP));
@@ -159,8 +159,8 @@ public class ActionMain {
         Board eaBoard = new Board(10, 10);
         eaBoard.createGrid();
         DemeterPlayer eaPlayer = new DemeterPlayer("Timoleon");
-        eaPlayer.addRessoure(Ressource.ORE, 3);
-        eaPlayer.addRessoure(Ressource.WOOD, 2);
+        eaPlayer.addRessource(Ressource.ORE, 3);
+        eaPlayer.addRessource(Ressource.WOOD, 2);
 
         System.out.println("WHEAT: " + eaPlayer.getRessources().get(Ressource.WHEAT));
         System.out.println("SHEEP: " + eaPlayer.getRessources().get(Ressource.SHEEP));
@@ -195,8 +195,8 @@ public class ActionMain {
         bpBoard.createGrid();
         AresPlayer bpPlayer = new AresPlayer("Timoleon");
         BuildPort bp = new BuildPort(bpBoard);
-        bpPlayer.addRessoure(Ressource.WOOD);
-        bpPlayer.addRessoure(Ressource.SHEEP, 2);
+        bpPlayer.addRessource(Ressource.WOOD);
+        bpPlayer.addRessource(Ressource.SHEEP, 2);
 
         for(int i = 0; i < 5; i++){
             Land land = BoardUtils.firstAvailableLand(bpBoard);
@@ -227,9 +227,9 @@ public class ActionMain {
          Board btBoard = new Board(10, 10);
          DemeterPlayer btPlayer = new DemeterPlayer("Timoleon");
          BuyThief bt = new BuyThief(btBoard);
-         btPlayer.addRessoure(Ressource.WOOD);
-         btPlayer.addRessoure(Ressource.ORE);
-         btPlayer.addRessoure(Ressource.WHEAT);
+         btPlayer.addRessource(Ressource.WOOD);
+         btPlayer.addRessource(Ressource.ORE);
+         btPlayer.addRessource(Ressource.WHEAT);
          System.out.println("WHEAT: " + btPlayer.getRessources().get(Ressource.WHEAT));
          System.out.println("SHEEP: " + btPlayer.getRessources().get(Ressource.SHEEP));
          System.out.println("ORE: " + btPlayer.getRessources().get(Ressource.ORE));
@@ -250,8 +250,8 @@ public class ActionMain {
         AresPlayer victim1 = new AresPlayer("Victim1");
         DemeterPlayer victim2 = new DemeterPlayer("Victim2");
         // Ajouter des ressources aux victimes
-        victim1.addRessoure(Ressource.WHEAT, 3);
-        victim2.addRessoure(Ressource.WHEAT, 2);
+        victim1.addRessource(Ressource.WHEAT, 3);
+        victim2.addRessource(Ressource.WHEAT, 2);
         // Ajouter un voleur au joueur principal
         ptPlayer.addThief();
         
@@ -311,9 +311,9 @@ public class ActionMain {
         pwBoard.createGrid();
         AresPlayer pwPlayer = new AresPlayer("Timoleon");
         PlaceWarrior pw = new PlaceWarrior(pwBoard);
-        pwPlayer.addRessoure(Ressource.WOOD);
-        pwPlayer.addRessoure(Ressource.SHEEP);
-        pwPlayer.addRessoure(Ressource.WHEAT);
+        pwPlayer.addRessource(Ressource.WOOD);
+        pwPlayer.addRessource(Ressource.SHEEP);
+        pwPlayer.addRessource(Ressource.WHEAT);
         pwPlayer.addWarrior(10);
 
         for(int i = 0; i < 5; i++){
@@ -355,8 +355,8 @@ public class ActionMain {
         bswBoard.createGrid();
         AresPlayer bswPlayer = new AresPlayer("Timoleon");
         BuySecretWeapon bsw = new BuySecretWeapon(bswBoard);
-        bswPlayer.addRessoure(Ressource.WOOD,2);
-        bswPlayer.addRessoure(Ressource.ORE,2);  
+        bswPlayer.addRessource(Ressource.WOOD,2);
+        bswPlayer.addRessource(Ressource.ORE,2);  
 
         System.out.println("WHEAT: " + bswPlayer.getRessources().get(Ressource.WHEAT));
         System.out.println("SHEEP: " + bswPlayer.getRessources().get(Ressource.SHEEP));
@@ -389,9 +389,9 @@ public class ActionMain {
         bwBoard.createGrid();
         AresPlayer bwPlayer = new AresPlayer("Timoleon");
         BuyWarriors bw = new BuyWarriors(bwBoard);
-        bwPlayer.addRessoure(Ressource.SHEEP,4);
-        bwPlayer.addRessoure(Ressource.WHEAT,4);
-        bwPlayer.addRessoure(Ressource.ORE,2);  
+        bwPlayer.addRessource(Ressource.SHEEP,4);
+        bwPlayer.addRessource(Ressource.WHEAT,4);
+        bwPlayer.addRessource(Ressource.ORE,2);  
 
         System.out.println("WHEAT: " + bwPlayer.getRessources().get(Ressource.WHEAT));
         System.out.println("SHEEP: " + bwPlayer.getRessources().get(Ressource.SHEEP));

@@ -19,12 +19,12 @@ public class TradeTest {
 
     @Test
     void testSpend() {
-      player.addRessoure(Ressource.ORE);
-      player.addRessoure(Ressource.ORE);
-      player.addRessoure(Ressource.ORE);
-      player.addRessoure(Ressource.ORE);
-      player.addRessoure(Ressource.ORE);
-      player.addRessoure(Ressource.ORE);
+      player.addRessource(Ressource.ORE);
+      player.addRessource(Ressource.ORE);
+      player.addRessource(Ressource.ORE);
+      player.addRessource(Ressource.ORE);
+      player.addRessource(Ressource.ORE);
+      player.addRessource(Ressource.ORE);
       assertSame(6, player.getRessources().get(Ressource.ORE));
       trade.spend(player, Ressource.ORE);
       assertSame(3, player.getRessources().get(Ressource.ORE));
@@ -43,24 +43,24 @@ public class TradeTest {
 
     @Test
     void testAvailableRessources() {
-        player.addRessoure(Ressource.ORE);
-        player.addRessoure(Ressource.ORE);
+        player.addRessource(Ressource.ORE);
+        player.addRessource(Ressource.ORE);
         assertEquals(0, trade.availableRessources(player).size());
-        player.addRessoure(Ressource.ORE);
-        player.addRessoure(Ressource.SHEEP);
-        player.addRessoure(Ressource.SHEEP);
+        player.addRessource(Ressource.ORE);
+        player.addRessource(Ressource.SHEEP);
+        player.addRessource(Ressource.SHEEP);
         assertEquals(1, trade.availableRessources(player).size());
         assertEquals(Ressource.ORE, trade.availableRessources(player).get(0));
     }
 
     @Test
     void testIsPossible() {
-        player.addRessoure(Ressource.ORE);
-        player.addRessoure(Ressource.ORE);
-        player.addRessoure(Ressource.SHEEP);
-        player.addRessoure(Ressource.SHEEP);
+        player.addRessource(Ressource.ORE);
+        player.addRessource(Ressource.ORE);
+        player.addRessource(Ressource.SHEEP);
+        player.addRessource(Ressource.SHEEP);
         assertFalse(trade.isPossible(player));
-        player.addRessoure(Ressource.SHEEP);
+        player.addRessource(Ressource.SHEEP);
         assertTrue(trade.isPossible(player));
     }
 }

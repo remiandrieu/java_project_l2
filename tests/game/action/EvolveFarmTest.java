@@ -53,9 +53,9 @@ public class EvolveFarmTest {
 
         }
         player = new DemeterPlayer("Timoleon");
-        player.addRessoure(Ressource.WHEAT);
-        player.addRessoure(Ressource.SHEEP);
-        player.addRessoure(Ressource.WOOD, 2);
+        player.addRessource(Ressource.WHEAT);
+        player.addRessource(Ressource.SHEEP);
+        player.addRessource(Ressource.WOOD, 2);
         action = new EvolveFarm(board);
     }
 

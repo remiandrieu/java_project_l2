@@ -17,16 +17,16 @@ public class BuyThiefTest {
         board = new Board(10,10);
         player = new DemeterPlayer("Player");
         action = new BuyThief(board);
-        player.addRessoure(Ressource.ORE, 1);
-        player.addRessoure(Ressource.WOOD, 1);
-        player.addRessoure(Ressource.WHEAT, 1);
+        player.addRessource(Ressource.ORE, 1);
+        player.addRessource(Ressource.WOOD, 1);
+        player.addRessource(Ressource.WHEAT, 1);
     }
 
     @Test
     public void testIsPossible(){
-        player.removeRessoure(Ressource.WHEAT);
+        player.removeRessource(Ressource.WHEAT);
         assertFalse(action.isPossible(player));
-        player.addRessoure(Ressource.WHEAT);
+        player.addRessource(Ressource.WHEAT);
         assertFalse(player.hasThief());
         assertTrue(action.isPossible(player));
     }

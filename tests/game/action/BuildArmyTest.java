@@ -50,26 +50,26 @@ public class BuildArmyTest {
             
         }
         player = new AresPlayer("Player");
-        player.addRessoure(Ressource.WOOD);
-        player.addRessoure(Ressource.SHEEP);
+        player.addRessource(Ressource.WOOD);
+        player.addRessource(Ressource.SHEEP);
         action = new BuildArmy(board);
     }
 
     @Test
     public void testIsPossible(){
         assertFalse(action.isPossible(player));
-        player.addRessoure(Ressource.WHEAT);
+        player.addRessource(Ressource.WHEAT);
         assertFalse(action.isPossible(player));
-        player.removeRessoure(Ressource.WHEAT);
+        player.removeRessource(Ressource.WHEAT);
         player.addWarrior(1);
         assertFalse(action.isPossible(player));
-        player.addRessoure(Ressource.WHEAT);
+        player.addRessource(Ressource.WHEAT);
         assertTrue(action.isPossible(player));
     }
 
     @Test
     public void testBuild() throws IOException {
-        player.addRessoure(Ressource.WHEAT);
+        player.addRessource(Ressource.WHEAT);
         player.addWarrior(10);
         Land land = BoardUtils.firstAvailableLand(board);
         new Port(player, land);
@@ -92,7 +92,7 @@ public class BuildArmyTest {
     @Test
     public void testFullBoard(){
         player.addWarrior(10);
-        player.addRessoure(Ressource.WHEAT);
+        player.addRessource(Ressource.WHEAT);
         Land land = BoardUtils.firstAvailableLand(board);
         while(land != null){
             assertTrue(action.isPossible(player));
@@ -106,8 +106,8 @@ public class BuildArmyTest {
 
     @Test
     public void testAct() throws InvalidPositionException {
-        player.addRessoure(Ressource.ORE);
-        player.addRessoure(Ressource.WOOD);
+        player.addRessource(Ressource.ORE);
+        player.addRessource(Ressource.WOOD);
         player.addWarrior(10);
 
         Coordinates coord = BoardUtils.firstAvailableCoords(board);
