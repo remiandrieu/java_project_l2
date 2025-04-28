@@ -18,7 +18,7 @@ public class EvolveUtils {
      * @param player the player's buildings to check
      * @return an array of all the coordinates of the player's buildings that can evolve
      */
-    public static ArrayList<Coordinates> buildingsThatCanEvolve(Player player, Board board){
+    public static ArrayList<Coordinates> buildingsThatCanEvolve(Player player){
         ArrayList<Coordinates> buildingsThatCanEvolveCoordinates = new ArrayList<>(); 
         for (Building building : player.getBuildings()){
                 if (building instanceof LandBuilding && !((LandBuilding) building).isEvolved()){
@@ -33,7 +33,7 @@ public class EvolveUtils {
      * @param player the player who wants to evolve his building
     **/
     public static void act(Player player, Board board){
-        ArrayList<Coordinates> availableArmies = EvolveUtils.buildingsThatCanEvolve(player,board);
+        ArrayList<Coordinates> availableArmies = EvolveUtils.buildingsThatCanEvolve(player);
 
         System.out.println(player + " wants to upgrade a building.");
 

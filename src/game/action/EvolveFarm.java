@@ -29,7 +29,7 @@ public class EvolveFarm extends DemeterAction {
     public boolean isPossible(Player player){
         boolean res = super.isPossible(player);
         
-        ArrayList<Coordinates> availableFarms = EvolveUtils.buildingsThatCanEvolve(player,this.board);
+        ArrayList<Coordinates> availableFarms = EvolveUtils.buildingsThatCanEvolve(player);
         
         return res && !availableFarms.isEmpty();
     }

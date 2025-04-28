@@ -28,7 +28,7 @@ public class EvolveArmy extends AresAction {
     public boolean isPossible(Player player){
         boolean res = super.isPossible(player);
         
-        ArrayList<Coordinates> availableArmies = EvolveUtils.buildingsThatCanEvolve(player,this.board);
+        ArrayList<Coordinates> availableArmies = EvolveUtils.buildingsThatCanEvolve(player);
         
         return res && !availableArmies.isEmpty();
     }
