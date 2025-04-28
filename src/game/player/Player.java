@@ -5,7 +5,7 @@ import game.building.*;
 import game.objective.Objective;
 
 /** a class to model a player */
-public class Player {
+public abstract class Player {
 
     /* Attributes */
     protected String name;
