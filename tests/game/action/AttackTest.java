@@ -196,7 +196,7 @@ public class AttackTest {
         //8 Soldats et une arme secrète = 4 dés
         for(int i = 0; i < 10; i ++){
             int score = action.scoreThrowingDice(coor, true);
-            assertTrue(5 <= score && score <= 24);
+            assertTrue(4 <= score && score <= 24);
         }
     }
 
