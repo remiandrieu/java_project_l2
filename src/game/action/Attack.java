@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import game.action.util.ActionUtils;
 import game.board.*;
 import game.player.*;
 import listchooser.util.Input;
@@ -75,7 +76,7 @@ public class Attack extends AresAction {
 
         System.out.println("Choose an army that will attack: ");
 
-        Coordinates coorAttackingBuilding = askCoordinates(buildingsThatCanAttackCoordinates);
+        Coordinates coorAttackingBuilding = ActionUtils.askCoordinates(buildingsThatCanAttackCoordinates);
 
         System.out.println();
 
@@ -108,7 +109,7 @@ public class Attack extends AresAction {
 
         System.out.println("Choose an army to attack: ");
 
-        Coordinates coorBuildingToAttack = askCoordinates(neighboringBuildingsCoordinates);
+        Coordinates coorBuildingToAttack = ActionUtils.askCoordinates(neighboringBuildingsCoordinates);
         AresPlayer otherPlayer = null;
 
         try {
@@ -263,46 +264,6 @@ public class Attack extends AresAction {
 
         System.out.println();
     }
-
-    /**
-     * Asks the player for coordinates, doesn't stop until the coordinates are in the list.
-     * @param list the list the coordinates must belong to
-     * @return the coordinates given by the player
-     */
-    public Coordinates askCoordinates(ArrayList<Coordinates> list){  
-        int x = -1;
-        int y = -1;
-		boolean correct = false;
-        Coordinates coor = new Coordinates(x, y);
-        
-        while (!correct) {
-            correct = true;
-            System.out.println("enter the x coordinate: ");
-        	try {
-        		x = Input.readInt();
-            } catch (java.io.IOException e) {
-        		System.out.println("Please, enter a number");
-                correct = false;
-                continue;
-            }
-            System.out.println("enter the y coordinate: ");
-            try {
-        		y = Input.readInt();
-            } catch (java.io.IOException e) {
-        		System.out.println("Please, enter a number");
-                correct = false;
-                continue;
-            }
-
-            coor = new Coordinates(x, y);
-
-            if (! list.contains(coor)){
-                System.out.println("Incorrect Position");
-                correct = false;
-            }
-        }
-        return coor;
-    } 
 
     /**
      * Returns an array of all the coordinates of the player's buildings that can attack

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import game.action.util.ActionUtils;
 import game.board.*;
 import game.building.*;
 import game.player.*;
@@ -45,63 +46,27 @@ public class PlaceWarrior extends AresAction {
      * @param player the player who wants add warriors in an army or a camp
     **/
     public void act(Player player){
-        int x = -1;
-        int y = -1;
         int numberOfWarriors = -1;
-        List<AresBuilding> availableBuilding = new ArrayList<>();
+        ArrayList<Coordinates> availableBuilding = new ArrayList<>();
         try{
             System.out.println(player + " adds some warriors to one of his camps.");
             for (Building building : player.getBuildings()){
                 if (building instanceof AresBuilding){
-                    availableBuilding.add((AresBuilding) building);
+                    availableBuilding.add(building.getLand().getCoordinates());
                 }
             }
         }
         catch(Exception e){
         }
-        //On affiche les bâtiments.
+
         System.out.println("Available Building:");
-        Iterator<AresBuilding> it = availableBuilding.iterator();
+        Iterator<Coordinates> it = availableBuilding.iterator();
         while(it.hasNext()){
-            AresBuilding aresBuilding = it.next();
-            System.out.println("X: " + aresBuilding.getLand().getCoordinates().getX() + ", Y: " + aresBuilding.getLand().getCoordinates().getY());
+            Coordinates coor = it.next();
+            System.out.println("X: " + coor.getX() + ", Y: " + coor.getY());
         }
-
-	    boolean correct = false;
-        boolean res = false;
-        while (!correct) {
-            correct = true;
-            System.out.println("enter the x coordinate: ");
-        	try {
-        		x = Input.readInt();
-            } catch (java.io.IOException e) {
-            	System.out.println("Please, enter a number");
-                correct = false;
-                continue;
-        	}
-            System.out.println("enter the y coordinate: ");
-            try {
-        		y = Input.readInt();
-        	} catch (java.io.IOException e) {
-            	System.out.println("Please, enter a number");
-                correct = false;
-                continue;
-        	}
-            int[] coord = {x, y};
-
-            res = false;
-            it = availableBuilding.iterator();
-            while(it.hasNext() && !res){
-                AresBuilding aresBuilding = it.next();
-                res = (coord[0] == aresBuilding.getLand().getCoordinates().getX()) && (coord[1] == aresBuilding.getLand().getCoordinates().getY());
-            }
-
-            if (!res){
-                System.out.println("This tile doesn't have an Ares building.");
-                correct = false;
-            }
-        }
-        correct = false;
+        Coordinates coor = ActionUtils.askCoordinates(availableBuilding);
+        boolean correct = false;
         while (!correct) {
             correct = true;
             System.out.println("How many Warriors? : ");
@@ -121,7 +86,7 @@ public class PlaceWarrior extends AresAction {
             }
         }
         try {
-            Land land = (Land) this.board.getTile(x, y);
+            Land land = (Land) this.board.getTile(coor.getX(), coor.getY());
             AresBuilding building = (AresBuilding) land.getBuilding();
             building.addWarriors(numberOfWarriors);
             ((AresPlayer) player).removeWarrior(numberOfWarriors);

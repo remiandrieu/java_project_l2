@@ -1,15 +1,14 @@
 package game.action;
 
+import game.action.util.BuildUtils;
 import game.board.Board;
 import game.board.Coordinates;
 import game.board.InvalidPositionException;
 import game.board.Land;
-import game.board.Sea;
 import game.board.util.Ressource;
 import game.building.Port;
 import game.player.AresPlayer;
 import game.player.Player;
-import listchooser.util.Input;
 
 /* a class to model the BuildPort action in Ares Game */
 public class BuildPort extends CommonAction {
@@ -48,46 +47,18 @@ public class BuildPort extends CommonAction {
      * @param player the player who wants to build an farm
      */
     public void act(Player player){
-        int x = -1;
-        int y = -1;
+        Coordinates coor = new Coordinates(-1, -1);
 		boolean correct = false;
         try {
             System.out.println(player + " wants to build a port.\nAt which coordinates ?");
             while (!correct) {
             	correct = true;
-                System.out.println("enter the x coordinate: ");
-            	try {
-            		x = Input.readInt();
-            	} catch (java.io.IOException e) {
-            		System.out.println("Please, enter a number");
-                    correct = false;
-                    continue;
-            	}
-                System.out.println("enter the y coordinate: ");
-                try {
-            		y = Input.readInt();
-            	} catch (java.io.IOException e) {
-            		System.out.println("Please, enter a number");
-                    correct = false;
-                    continue;
-            	}
-                if (!this.board.isCorrectLocation(x, y)){
-                    System.out.println("tile out of grid");
-                    correct = false;
-                }
-                else if (this.board.getTile(x, y) instanceof Sea){
-                    System.out.println("tile is not a land");
-                    correct = false;
-                }
-                else if (((Land)this.board.getTile(x, y)).hasBuilding()){
-                    System.out.println("tile already has a building");
-                    correct = false;
-                }
-                else if (this.board.landNeighbour(x, y)[1]){
+                coor = BuildUtils.askCoordinates(this.board);
+                if (this.board.landNeighbour(coor.getX(), coor.getY())[1]){
                     System.out.println("tile not next to a sea tile");
                     correct = false;
                 }
-                else if (player instanceof AresPlayer && !((AresPlayer) player).islandsConditions(this.board, new Coordinates(x, y))){
+                else if (player instanceof AresPlayer && !((AresPlayer) player).islandsConditions(this.board, coor)){
                     System.out.println("Is not a valid position");
                     correct = false;
                 }
@@ -95,10 +66,8 @@ public class BuildPort extends CommonAction {
         } catch (InvalidPositionException e) {
         }
         
-        build(player, x, y);
-        System.out.println(player + " builds a port at (" + x + ", " + y + ")\n");
-        
-
+        build(player, coor.getX(), coor.getY());
+        System.out.println(player + " builds a port at (" + coor.getX() + ", " + coor.getY() + ")\n");
     }
 
     /**

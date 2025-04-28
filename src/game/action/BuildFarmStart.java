@@ -1,12 +1,12 @@
 package game.action;
 
+import game.action.util.BuildUtils;
 import game.board.Board;
+import game.board.Coordinates;
 import game.board.InvalidPositionException;
 import game.board.Land;
-import game.board.Sea;
 import game.building.DemeterBuilding;
 import game.player.Player;
-import listchooser.util.Input;
 
 /* a class to model the BuildFarm action in Ares Game */
 public class BuildFarmStart extends StartAction {
@@ -43,48 +43,10 @@ public class BuildFarmStart extends StartAction {
      * @param player the player who wants to build an farm
      */
     public void act(Player player){
-        int x = -1;
-        int y = -1;
-		boolean correct = false;
-        try {
-            System.out.println(player + " : place your " + ((player.getBuildings().size()==0)?"first":"second") + " building !");
-
-            while (!correct) {
-            	correct = true;
-                System.out.println("enter the x coordinate: ");
-            	try {
-            		x = Input.readInt();
-            	} catch (java.io.IOException e) {
-            		System.out.println("Please, enter a number");
-                    correct = false;
-                    continue;
-            	}
-                System.out.println("enter the y coordinate: ");
-                try {
-            		y = Input.readInt();
-            	} catch (java.io.IOException e) {
-            		System.out.println("Please, enter a number");
-                    correct = false;
-                    continue;
-            	}
-                if (!this.board.isCorrectLocation(x, y)){
-                    System.out.println("tile out of grid");
-                    correct = false;
-                }
-                else if (this.board.getTile(x, y) instanceof Sea){
-                    System.out.println("tile is not a land");
-                    correct = false;
-                }
-                else if (((Land)this.board.getTile(x, y)).hasBuilding()){
-                    System.out.println("tile already has a building");
-                    correct = false;
-                }
-            }
-        } catch (InvalidPositionException e) {
-        }
-
-        System.out.println(player + " builds a farm at (" + x + ", " + y + ")\n");
-        build(player, x, y);
+        System.out.println(player + " : place your " + ((player.getBuildings().size()==0)?"first":"second") + " building !");
+        Coordinates coor = BuildUtils.askCoordinates(this.board);
+        System.out.println(player + " builds a farm at (" + coor.getX() + ", " + coor.getY() + ")\n");
+        build(player, coor.getX(), coor.getY());
     }
 
     /**
