@@ -54,7 +54,7 @@ public abstract class Game {
     /**
      * Initialize players names
      */
-    public void initPlayersNames(){
+    protected void initPlayersNames(){
         int i;
         boolean correct;
         this.players = new ArrayList<>();
@@ -135,7 +135,7 @@ public abstract class Game {
     /**
      * Initialize an objective for each player
      */
-    public void initObjectives(){
+    protected void initObjectives(){
         for (Player p : this.players){
             this.setPlayerObjective(p);
             p.getObjective().printObjective();
@@ -199,7 +199,7 @@ public abstract class Game {
         return player.getObjective().isAchieved();
     }
 
-    public void play() throws InvalidPositionException{
+    protected void play() throws InvalidPositionException{
         int currentPlayer = -1;
         boolean stop = false;
         while (!stop){

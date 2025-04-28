@@ -45,8 +45,8 @@ public class BuildArmyStart extends StartAction {
      * @param player the player who wants to build an army
      */
     public void act(Player player){
-        Coordinates coor = BuildUtils.askCoordinates(this.board);
 		System.out.println(player + " : place your " + ((player.getBuildings().size()==0)?"first":"second") + " army !");
+        Coordinates coor = BuildUtils.askCoordinates(this.board);
         build(player, coor.getX(), coor.getY(), 1);
         System.out.println(player + " builds an army at (" + coor.getX() + ", " + coor.getY() + ") with 1 warrior\n");
     }
