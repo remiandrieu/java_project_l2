@@ -19,8 +19,6 @@ ARES_JAR = ares.jar
 DEMETER_JAR = demeter.jar
 
 
-all: cls
-
 # Création des répertoires s'il n'existent pas
 $(CLASSES_DIR):
 	mkdir -p $(CLASSES_DIR)
@@ -69,4 +67,5 @@ clean:
 	rm -rf $(JAR_DIR)
 
 
-.PHONY: all cls doc test clean
+all: cls
+.PHONY: clean
