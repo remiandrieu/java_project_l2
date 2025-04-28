@@ -45,22 +45,8 @@ public class BuildArmyStart extends StartAction {
      * @param player the player who wants to build an army
      */
     public void act(Player player){
-        Coordinates coor = new Coordinates(-1, -1);
-		boolean correct = false;
-        try {
-            System.out.println(player + " : place your " + ((player.getBuildings().size()==0)?"first":"second") + " army !");
-            while (!correct) {
-                correct = true;
-                coor = BuildUtils.askCoordinates(this.board);
-                if (!((AresPlayer) player).islandsConditions(this.board, coor)){
-                    System.out.println("Is not a valid position");
-                    correct = false;
-                }
-            }
-        }
-        catch (InvalidPositionException e) {
-            correct = false;
-        } 
+        Coordinates coor = BuildUtils.askCoordinates(this.board);
+		System.out.println(player + " : place your " + ((player.getBuildings().size()==0)?"first":"second") + " army !");
         build(player, coor.getX(), coor.getY(), 1);
         System.out.println(player + " builds an army at (" + coor.getX() + ", " + coor.getY() + ") with 1 warrior\n");
     }
