@@ -35,9 +35,14 @@ public class AresConquerTilesTest {
     @Test
     public void testIsAchieved() throws InvalidPositionException {
         ArrayList<ArrayList<Coordinates>> islands = board.detectIslands();
-
-        for (int i = 0; i < islands.get(0).size() && i<9; i++) {
-            Coordinates coord = islands.get(0).get(i);
+        int j = 0;
+        int i = 0;
+        for (int n = 0; n<9; n++) {
+            if (i == islands.get(j).size()){
+                j++;
+                i=0;
+            }
+            Coordinates coord = islands.get(j).get(i++);
             Land land = (Land) board.getTile(coord.getX(), coord.getY());
             AresBuilding b = new AresBuilding(player, land, 1);
             player.getBuildings().add(b);
