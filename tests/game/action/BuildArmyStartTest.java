@@ -97,7 +97,7 @@ public class BuildArmyStartTest {
         player.addWarrior(10);
 
         Coordinates coord = BoardUtils.firstAvailableCoords(board);
-        String input = coord.getX() + "\n" + coord.getY() + "\n3";
+        String input = coord.getX() + "\n" + coord.getY();
         simulateInput(input);
         action.act(player);
         assertTrue(((Land) board.getTile(coord.getX(), coord.getY())).hasBuilding());
