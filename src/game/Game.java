@@ -187,6 +187,10 @@ public abstract class Game {
         System.out.println(this.board.boardToString(true));
         this.collectRessources(player);
         System.out.println(player + " : it's your turn !");
+        System.out.println("Buildinds :");
+        for(Building building : player.getBuildings()){
+            System.out.println("    " + building.toString() + building.getLand().getCoordinates().toString());
+        }
         List<Action> possibleActions = new ArrayList<>();
         for (Action a : this.actions){
             if (a.isPossible(player)){
@@ -195,7 +199,19 @@ public abstract class Game {
         }
         ListChooser<Action> lc = new InteractiveListChooser<>();
         Action chosenAction = lc.choose("Choose an action to perform.", possibleActions);
-        chosenAction.act(player);
+        if(chosenAction instanceof PlayThief){
+            Player[] playersToSteal = new Player[this.nbPlayers-1];
+            int i = 0;
+            for(Player p : this.getPlayers()){
+                if(p!=player){
+                    playersToSteal[i++]=p;
+                }
+            }
+            ((PlayThief)chosenAction).act(player,playersToSteal);
+        }
+        else {
+            chosenAction.act(player);
+        }
         return player.getObjective().isAchieved();
     }
 

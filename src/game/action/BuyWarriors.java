@@ -3,6 +3,7 @@ package game.action;
 import game.board.Board;
 import game.board.util.Ressource;
 import game.player.AresPlayer;
+import game.player.Player;
 
 public class BuyWarriors extends AresAction {
     /**
@@ -25,9 +26,9 @@ public class BuyWarriors extends AresAction {
      * Adds 5 warriors to the player
      * @param player the player
      */
-    public void act(AresPlayer player){
+    public void act(Player player){
         super.act(player);
-        player.addWarrior(5);
+        ((AresPlayer) player).addWarrior(5);
         System.out.println(player + " buys 5 warriors\n");
     }
 }

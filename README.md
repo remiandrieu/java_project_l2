@@ -211,7 +211,7 @@ Ensuite il y a deux manières de lancer une partie, soit en choisissant la taill
 
 Enfin, une interface graphique a été créée.
 
-Pour la représentation du plateau dans le terminale, les mers sont représentées par des points. Sinon la première lettre représente l'initial du type de terrain avec T pout Tree au lieu de F pour Forest car déjà pris par Field. Puis la secondes lettre représente l'initial du type de batiment, avec A pour Army par exemple. Enfin le dernier chiffre correspond au numero du joueur à qui appartient le batiment.
+Pour la représentation du plateau dans le terminal, les mers sont représentées par des points. Sinon la première lettre représente l'initial du type de terrain, avec T pout Tree au lieu de F pour Forest car déjà pris par Field. Puis la secondes lettre représente l'initial du type de batiment, avec A pour Army par exemple. Enfin le dernier chiffre correspond au numero du joueur à qui appartient le batiment.
 
 #### commandes
 
