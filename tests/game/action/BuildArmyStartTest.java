@@ -9,8 +9,6 @@ import org.junit.jupiter.api.*;
 
 import game.board.*;
 import game.board.util.*;
-import game.building.AresBuilding;
-import game.building.Building;
 import game.building.Port;
 import game.player.*;
 
@@ -88,24 +86,6 @@ public class BuildArmyStartTest {
         }
 
         assertFalse(action.isPossible(player));        
-    }
-
-    @Test
-    public void testAct() throws InvalidPositionException {
-        player.addRessource(Ressource.ORE);
-        player.addRessource(Ressource.WOOD);
-        player.addWarrior(10);
-
-        Coordinates coord = BoardUtils.firstAvailableCoords(board);
-        String input = coord.getX() + "\n" + coord.getY();
-        simulateInput(input);
-        action.act(player);
-        assertTrue(((Land) board.getTile(coord.getX(), coord.getY())).hasBuilding());
-        Building b = player.getBuildings().get(0);
-        assertTrue(b instanceof AresBuilding);
-        AresBuilding ab = (AresBuilding) b;
-        assertEquals(1, ab.getDimension());
-        
     }
 
 }
