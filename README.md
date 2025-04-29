@@ -187,7 +187,7 @@ Pour créer un jar exécutable `livrable3ares.jar` :
 Pour exécuter `livrable3ares.jar` :
 ```java -jar livrable3ares.jar```
 
-
+dd
 Pour compiler et exécuter les tests :  
 ```javac -classpath junit-console.jar:classes -sourcepath tests tests/game/board/*.java tests/game/building/*.java tests/game/action/*.java tests/listchooser/util/*.java && java -jar junit-console.jar -classpath tests:classes -scan-classpath```
 
@@ -207,9 +207,10 @@ Nous avons rencontré des difficultés pour limiter les redondances dans les cla
 
 Nous avons aussi fait un gros travail sur la génération du plateau, afin d'obtenir un nombre d'îles raisonnable et des tailles d'îles ni trop grandes ni trop petites. Cela a été réalisé grâce à une probabilité de poursuivre la génération de terrain qui est calculé par une formule en fonction de la taille du plateau.
 
-Ensuite il y a deux manières de lancer une partie, soit en choisissant la taille du plateau et le nombre de joueurs avec ares.jar et demeter.jar, soit avec game.jar qui peut être créé à partir de GameMain avec la commande ```jar cvfe game.jar game.GameMain -C classes .``` puis ```mv game.jar jar/game.jar``` ou directement avec```make game.jar``` , puis exécuté avec la commande ```java -jar game.jar``` sans argument. Avec game.jar on a d'abord un premier input pour le choix du jeu puis seul le nombre de joueurs est choisi, la taille du plateau sera calculé en fonction du nombre de joueurs pour des parties optimales.
+Ensuite il y a deux manières de lancer une partie, soit en choisissant la taille du plateau et le nombre de joueurs avec ares.jar et demeter.jar, soit avec game.jar qui peut être créé à partir de GameMain avec la commande ```make game.jar``` , puis exécuté avec la commande ```java -jar jar/game.jar```. Avec game.jar on a d'abord un premier input pour le choix du jeu puis seul le nombre de joueurs est choisi, la taille du plateau sera calculé en fonction du nombre de joueurs pour des parties optimales.
 
-Enfin, une interface graphique a été créée.
+Enfin, une interface graphique a été créée, permettant un meilleur représentation du plateau. Le jeu continue de se jouer sur le terminal, et une modification du plateau (construction d'un bâtiment, ajout de guerriers à une armée, etc) met à jour automatiquement l'interface graphique. 
+Pour lancer le jeu avec l'interface graphique, utilisez la commande ```java -jar jar/game.jar gui```
 
 Pour la représentation du plateau dans le terminal, les mers sont représentées par des points. Sinon la première lettre représente l'initial du type de terrain, avec T pout Tree au lieu de F pour Forest car déjà pris par Field. Puis la secondes lettre représente l'initial du type de batiment, avec A pour Army par exemple. Enfin le dernier chiffre correspond au numero du joueur à qui appartient le batiment.
 
@@ -235,6 +236,14 @@ Pour créer un jar exécutable `ares.jar` :
 Pour exécuter `ares.jar` :
 ```java -jar jar/ares.jar <lenght> <width> <nb_player>```
 
+Pour créer un jar exécutable `game.jar` :
+```make game.jar```
+
+Pour exécuter `game.jar` sans interface graphique :
+```java -jar jar/game.jar```
+
+Pour exécuter `game.jar` sans interface graphique :
+```java -jar jar/game.jar gui```
 
 Pour compiler et exécuter les tests :  
 ```make tests```
