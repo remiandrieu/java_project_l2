@@ -10,7 +10,7 @@ public class Coordinates {
     /**
      * Creates a pair of (x,y) coordinates 
      * @param x the x coordinate
-     * @param width the y coordinate
+     * @param y the y coordinate
      */
     public Coordinates(int x, int y){
         this.x = x;

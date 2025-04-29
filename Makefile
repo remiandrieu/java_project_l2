@@ -15,6 +15,9 @@ TEST_CLASSES_DIR = $(CLASSES_DIR)-$(TEST_DIR)
 SRC_FILES := $(shell find $(SRC_DIR) -name "*.java")
 TEST_FILES := $(shell find $(TEST_DIR) -name "*.java")
 
+PACKAGES := $(shell find $(SRC_DIR) -name "*.java" | sed 's|$(SRC_DIR)/||' | sed 's|/[^/]*\.java$$||' | sort -u | sed 's|/|.|g' | tr '\n' ' ')
+
+GAME_JAR = game.jar
 ARES_JAR = ares.jar
 DEMETER_JAR = demeter.jar
 
@@ -40,7 +43,7 @@ cls: $(CLASSES_DIR)
 
 # Documentation
 doc: $(DOC_DIR)
-	javadoc -d $(DOC_DIR) -sourcepath $(SRC_DIR) -subpackages . -private
+	javadoc -d $(DOC_DIR) -sourcepath $(SRC_DIR) -cp $(CLASSES_DIR) $(PACKAGES)
 
 
 # Compilation et éxécution des tests
@@ -50,6 +53,10 @@ tests: cls $(TEST_CLASSES_DIR)
 
 
 # Création des éxécutables jar
+$(GAME_JAR): cls $(JAR_DIR)
+	$(JAR) cvfe $(GAME_JAR) game.GameMain -C $(CLASSES_DIR) .
+	mv $(GAME_JAR) $(JAR_DIR)/$(GAME_JAR)
+
 $(ARES_JAR): cls $(JAR_DIR)
 	$(JAR) cvfe $(ARES_JAR) game.AresGameMain -C $(CLASSES_DIR) .
 	mv $(ARES_JAR) $(JAR_DIR)/$(ARES_JAR)

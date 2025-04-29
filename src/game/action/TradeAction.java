@@ -73,7 +73,6 @@ public abstract class TradeAction extends CommonAction{
     /**
      * checks the available ressources of a player
      * @param player the player
-     * @param nbRessource the number of ressource to trade
      * @return a list of the available ressources for the given player
      */
     public List<Ressource> availableRessources(Player player){

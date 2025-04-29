@@ -91,8 +91,6 @@ public class BoardUtils {
     /**
      * Returns the first available land tile on the board i.e. the first tile that isn't a sea and doesn't have a building
      * @param board the board we want the land on
-     * @param length the length of the board
-     * @param width the width of the board
      * @return the first available land tile on the board
     */
     public static Land firstAvailableLand(Board board) {
