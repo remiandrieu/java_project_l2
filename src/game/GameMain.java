@@ -12,6 +12,9 @@ public class GameMain {
         possibleGames.add(new AresGame());
         ListChooser<Game> lc = new InteractiveListChooser<>();
         Game chosenGame = lc.choose("Choose a game !", possibleGames);
+        if (args.length == 1 && args[0].equals("gui")){
+            chosenGame.enableGUI();
+        }
         chosenGame.initGame();
     }
 

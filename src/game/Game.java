@@ -5,6 +5,7 @@ import java.util.*;
 import game.action.*;
 import game.board.*;
 import game.building.Building;
+import game.gui.GameGUI;
 import game.objective.Objective;
 import game.player.*;
 import listchooser.*;
@@ -19,6 +20,8 @@ public abstract class Game {
     protected Board board;
     protected List<Action> actions;
     protected List<Objective> objectives;
+    protected boolean hasGUI = false;
+    protected GameGUI gameGUI; 
 
     /**
      * Get the list of players of the game
@@ -119,10 +122,12 @@ public abstract class Game {
         for (i=0; i < players.size(); i++){
             System.out.println(this.board.boardToString(true));
             startAction.act(players.get(i));
+            if (this.hasGUI) {this.gameGUI.refresh();}
         }
         for (i=players.size()-1; i >= 0; i--){
             System.out.println(this.board.boardToString(true));
             startAction.act(players.get(i));
+            if (this.hasGUI) {this.gameGUI.refresh();}
         }
     }
 
@@ -187,10 +192,6 @@ public abstract class Game {
         System.out.println(this.board.boardToString(true));
         this.collectRessources(player);
         System.out.println(player + " : it's your turn !");
-        System.out.println("Buildinds :");
-        for(Building building : player.getBuildings()){
-            System.out.println("    " + building.toString() + building.getLand().getCoordinates().toString());
-        }
         List<Action> possibleActions = new ArrayList<>();
         for (Action a : this.actions){
             if (a.isPossible(player)){
@@ -199,19 +200,8 @@ public abstract class Game {
         }
         ListChooser<Action> lc = new InteractiveListChooser<>();
         Action chosenAction = lc.choose("Choose an action to perform.", possibleActions);
-        if(chosenAction instanceof PlayThief){
-            Player[] playersToSteal = new Player[this.nbPlayers-1];
-            int i = 0;
-            for(Player p : this.getPlayers()){
-                if(p!=player){
-                    playersToSteal[i++]=p;
-                }
-            }
-            ((PlayThief)chosenAction).act(player,playersToSteal);
-        }
-        else {
-            chosenAction.act(player);
-        }
+        chosenAction.act(player);
+        if (this.hasGUI) {this.gameGUI.refresh();}
         return player.getObjective().isAchieved();
     }
 
@@ -236,6 +226,9 @@ public abstract class Game {
             this.initBoard();
             this.initObjectives();
             this.initActions();
+            if (this.hasGUI) {
+                this.gameGUI.initGUI();
+            }
             this.placeFirstBuildings();
             this.play();
         } catch (Exception e){
@@ -264,6 +257,11 @@ public abstract class Game {
         } catch (Exception e){
             System.out.println(e);
         }
+    }
+
+    public void enableGUI(){
+        this.hasGUI = true;
+        this.gameGUI = new GameGUI(this);
     }
 
     
