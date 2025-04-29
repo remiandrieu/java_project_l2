@@ -199,7 +199,65 @@ Certains tests pourraient être retravaillés pour être plus clairs et compréh
 
 ### Atteinte des objectifs
 
+Il n'y a pas de fichier UML.png car il est illisible. L'ensemble des umls finaux sont dans le dossier uml_final et les umls des livrables 1, 2 et 3 ont un nom qui commence par respectivement livrable1 , livrable2 et livrable3.
+
+L'ensemble du projet a été traité.
+
+Nous avons rencontré des difficultés pour limiter les redondances dans les classes du dossier action. Certaines classes possédant du code en commun héritent de la même classe, auquel cas il suffit de créer une classe abstraite qui hérite de ces classes. Cependant, d'autres classes possédant du code en commun héritent de différentes classes telles que BuildFarm, BuildArmy et BuildPort. Nous avons donc créé des classes utils tel que BuildUtils avec des méthodes statiques réutilisées dans les différentes classes.
+
+Nous avons aussi fait un gros travail sur la génération du plateau, afin d'obtenir un nombre d'îles raisonnable et des tailles d'îles ni trop grandes ni trop petites. Cela a été réalisé grâce à une probabilité de poursuivre la génération de terrain qui est calculé par une formule en fonction de la taille du plateau.
+
+Ensuite il y a deux manières de lancer une partie, soit en choisissant la taille du plateau et le nombre de joueurs avec ares.jar et demeter.jar, soit avec game.jar qui peut être créé à partir de GameMain avec la commande ```jar cvfe game.jar game.GameMain -C classes .``` puis ```mv game.jar jar/game.jar``` ou directement avec```make game.jar``` , puis exécuté avec la commande ```java -jar game.jar``` sans argument. Avec game.jar on a d'abord un premier input pour le choix du jeu puis seul le nombre de joueurs est choisi, la taille du plateau sera calculé en fonction du nombre de joueurs pour des parties optimales.
+
+Enfin, une interface graphique a été créée.
+
+#### commandes
+
+Pour générer la documentation :  
+```make doc```
+
+Pour consulter la documentation, ouvrez `index.html` situé dans le dossier `docs`
+
+Pour compiler :
+```make cls```
+
+Pour créer un jar exécutable `demeter.jar` :
+```make demeter.jar```
+
+Pour exécuter `demeter.jar` :
+```java -jar jar/demeter.jar <lenght> <width> <nb_player>```
+
+Pour créer un jar exécutable `ares.jar` :
+```make ares.jar```
+
+Pour exécuter `ares.jar` :
+```java -jar jar/ares.jar <lenght> <width> <nb_player>```
+
+
+Pour compiler et exécuter les tests :  
+```make tests```
+
+Pour supprimer classes, classes-tests, jar et docs :  
+```make clean```
+
+### UML
+
+![Board](images/uml_final/uml_board.png)
+
+![Coordinates](images/uml_final/uml_coordinates.png)
+
+![Building](images/uml_final/uml_building.png)
+
+![Player](images/uml_final/uml_player.png)
+
+![Action](images/uml_final/uml_action.png)
+
+![Objective](images/uml_final/uml_objective.png)
+
+![Game](images/uml_final/uml_game.png)
+
 ### Difficultés restant à résoudre
+L'ensemble du sujet a été traité, il ne semble pas avoir de difficultés restantes à résoudre.
 
 # Journal de bord
 
