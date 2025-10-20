@@ -31,7 +31,7 @@ java -jar jar/game.jar gui  # Avec interface graphique
 
 This project was realized with three other students as part of the "Project" course in the second year of the Computer Science bachelor's degree program at the University of Lille.  
 The subject of this project can be found in the file [sujet.pdf](sujet.pdf) (in french).  
-The [project.md](project.md) file traces the progress of the project week by week.  
+The [projet.md](projet.md) file traces the progress of the project week by week.  
 At the end of the project, a presentation was held where we explained the design choices we had made and the difficulties we had encountered. (the slides can be found [here](diapo_soutenance.pdf).)
 
 ### How to use
